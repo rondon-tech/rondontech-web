@@ -36,13 +36,13 @@ const SECTION_POSES: Record<string, PoseConfig> = {
   experiencia: {
     src: "/avatar/avatar-hero.webp",
     label: "Trayectoria & Experiencia",
-    status: "7+ AÑOS CORE",
+    status: "10+ AÑOS CORE",
     badgeColor: "border-indigo-500/50 text-indigo-300",
   },
   trayectoria: {
     src: "/avatar/avatar-hero.webp",
     label: "Trayectoria & Experiencia",
-    status: "7+ AÑOS CORE",
+    status: "10+ AÑOS CORE",
     badgeColor: "border-indigo-500/50 text-indigo-300",
   },
   habilidades: {

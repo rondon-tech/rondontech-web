@@ -11,7 +11,7 @@ import { AvatarHUDWidget } from "@/components/avatar/AvatarHUDWidget";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-[#fbfbfd] text-[#000d10] flex flex-col min-w-0 selection:bg-[#bc7155]/20 selection:text-[#bc7155]">
+    <main className="relative min-h-screen w-full max-w-full overflow-x-clip bg-[#fbfbfd] text-[#000d10] flex flex-col min-w-0 selection:bg-[#bc7155]/20 selection:text-[#bc7155]">
       {/* Floating Pill Navbar */}
       <Navbar />
 

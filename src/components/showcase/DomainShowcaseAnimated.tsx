@@ -19,6 +19,12 @@ interface DomainItem {
   clientOrOrg: string;
   ctaText: string;
   ctaHref: string;
+  verifiedSeal?: {
+    companyName: string;
+    rut: string;
+    registry: string;
+    status: string;
+  };
 }
 
 const DOMAINS: DomainItem[] = [
@@ -65,22 +71,28 @@ const DOMAINS: DomainItem[] = [
   {
     id: "smart-building",
     number: "03",
-    title: "Smart Buildings & Domótica Inmótica.",
-    subtitle: "Fundador & Director de Operaciones en Ablu Tech Ltda.",
-    tagline: "El bloque exclusivo de automatización y seguridad integrada",
+    title: "Smart Buildings, Inmótica & Seguridad Integrada.",
+    subtitle: "Fundador & Director de Operaciones · Ablu Tech Ltda.",
+    tagline: "Infraestructura física y digital autónoma para residencias de alto estándar y corporativos",
     description:
-      "Creación e integración de soluciones tecnológicas avanzadas en ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA (RUT: 78.539.015-6) para residencias de alto estándar y edificios corporativos. Control de iluminación inteligente, videovigilancia IP con analítica de IA, accesos biométricos y climatización unificada.",
+      "Diseño, integración y comisionamiento de ingeniería inmótica y domótica de alto estándar. Centralización de iluminación inteligente, videovigilancia IP con analítica de IA, accesos biométricos unificados y climatización zonificada de máxima eficiencia energética bajo protocolos de estándar internacional.",
     image: "/media/smart-building-iot.webp",
     isFeaturedClay: true, // The iconic Clay Ember #bc7155 card
     metrics: [
-      { label: "Razón Social", val: "Ablu Tech Ltda." },
-      { label: "RUT Sociedad", val: "78.539.015-6" },
-      { label: "Ecosistemas", val: "Matter / Zigbee" },
+      { label: "Proyectos & Obras", val: "+80 Despliegues" },
+      { label: "Ecosistemas", val: "Matter / Zigbee / IP" },
+      { label: "Garantía & SLA", val: "100% Certificada" },
     ],
-    tags: ["Ablu Tech", "CCTV AI", "Control Climático", "Audio Multiroom", "Inmótica"],
+    tags: ["Ablu Tech", "Inmótica Corporativa", "CCTV AI", "Control Climático", "Audio Multiroom", "Acceso Biométrico"],
     clientOrOrg: "Ablu Tech Ltda. (ablutech.com)",
     ctaText: "Visitar Ablu Tech (ablutech.com)",
     ctaHref: "https://ablutech.com",
+    verifiedSeal: {
+      companyName: "ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA",
+      rut: "78.539.015-6",
+      registry: "Registro de Empresas y Sociedades · Ministerio de Economía de Chile",
+      status: "Empresa Constituida & Certificada",
+    },
   },
   {
     id: "ai-software",
@@ -252,6 +264,33 @@ export function DomainShowcaseAnimated() {
               >
                 {activeDomain.description}
               </p>
+
+              {/* Official Verified Company Seal for Ablu Tech */}
+              {activeDomain.verifiedSeal && (
+                <div className="rounded-2xl border border-white/25 bg-black/25 backdrop-blur-md p-3.5 sm:p-4 space-y-2 text-white shadow-inner">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                      </span>
+                      <span className="font-mono text-[10px] uppercase tracking-wider font-semibold text-emerald-300">
+                        {activeDomain.verifiedSeal.status}
+                      </span>
+                    </div>
+                    <span className="font-mono text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded bg-white/20 text-white border border-white/30">
+                      RUT: {activeDomain.verifiedSeal.rut}
+                    </span>
+                  </div>
+                  <div className="font-mono text-xs sm:text-sm font-bold text-white tracking-tight leading-snug break-words">
+                    {activeDomain.verifiedSeal.companyName}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-white/80 font-mono">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span className="truncate">{activeDomain.verifiedSeal.registry}</span>
+                  </div>
+                </div>
+              )}
 
               {/* Metrics Grid */}
               <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 border-t border-current/15 w-full min-w-0">

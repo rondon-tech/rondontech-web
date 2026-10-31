@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
 import { Download, ArrowRight, ShieldCheck, Radio, Sparkles, MapPin } from "lucide-react";
+import { ScrambleText } from "@/components/ui/ScrambleText";
 
 export function HeroEditorial() {
   const triggerDownloadCV = () => {
@@ -104,7 +105,7 @@ export function HeroEditorial() {
                 Experiencia
               </div>
               <div className="font-mono text-2xl font-bold text-[#000d10]">
-                +6 Años
+                <ScrambleText text="+10 Años" durationMs={800} delayMs={100} />
               </div>
               <div className="text-xs text-zinc-600">Telecom & Terreno</div>
             </div>
@@ -114,7 +115,7 @@ export function HeroEditorial() {
                 Despliegues
               </div>
               <div className="font-mono text-2xl font-bold text-[#000d10]">
-                +500 Sitios
+                <ScrambleText text="+500 Sitios" durationMs={800} delayMs={250} />
               </div>
               <div className="text-xs text-zinc-600">Entel / Movistar 5G</div>
             </div>
@@ -124,7 +125,7 @@ export function HeroEditorial() {
                 Empresa
               </div>
               <div className="font-mono text-2xl font-bold text-[#bc7155]">
-                Ablu Tech
+                <ScrambleText text="Ablu Tech" durationMs={800} delayMs={400} />
               </div>
               <div className="text-xs text-zinc-600">Fundador & COO</div>
             </div>
@@ -134,7 +135,7 @@ export function HeroEditorial() {
                 Innovación
               </div>
               <div className="font-mono text-2xl font-bold text-[#000d10]">
-                AI Agents
+                <ScrambleText text="AI Agents" durationMs={800} delayMs={550} />
               </div>
               <div className="text-xs text-zinc-600">Google Antigravity</div>
             </div>

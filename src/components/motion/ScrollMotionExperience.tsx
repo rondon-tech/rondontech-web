@@ -48,13 +48,13 @@ const SCENES: SceneInfo[] = [
     start: 0.67,
     end: 1.0,
     number: "03",
-    tag: "SMART SPACES & DOMÓTICA",
+    tag: "SMART SPACES & INMÓTICA",
     title: "Ablu Tech: Inmótica, CCTV Inteligente & Control.",
-    desc: "Transformación de espacios residenciales y corporativos en ecosistemas inteligentes. Telemetría climática, videovigilancia IP analítica y automatización centralizada de accesos y energía.",
+    desc: "Transformación de espacios residenciales y corporativos en entornos autónomos. Telemetría climática, videovigilancia IP con analítica de IA, control biométrico y automatización centralizada bajo estándares abiertos.",
     kpis: [
       { label: "Empresa", value: "Ablu Tech Ltda." },
+      { label: "RUT Oficial", value: "78.539.015-6" },
       { label: "Protocolos", value: "Zigbee / Matter" },
-      { label: "Seguridad", value: "CCTV AI Analitycs" },
     ],
     accentColor: "#38bdf8",
   },
@@ -139,10 +139,10 @@ export function ScrollMotionExperience() {
     <section
       ref={containerRef}
       id="cinematica"
-      className="relative w-full max-w-full min-w-0 h-[175vh] sm:h-[260vh] bg-[#000d10] text-white overflow-hidden"
+      className="relative w-full max-w-full min-w-0 h-[130vh] sm:h-[190vh] bg-[#000d10] text-white"
     >
       {/* Sticky Fullscreen Presentation */}
-      <div className="sticky top-0 h-screen w-full max-w-full min-w-0 overflow-hidden flex flex-col justify-between px-4 pb-4 pt-20 sm:p-8 lg:p-12 z-20">
+      <div className="sticky top-0 h-[100dvh] w-full max-w-full min-w-0 overflow-hidden flex flex-col justify-between px-4 pb-3 pt-20 sm:p-8 lg:p-12 z-20">
         
         {/* Background Video Layer with Film Vignette */}
         <div className="absolute inset-0 z-0">
@@ -249,6 +249,23 @@ export function ScrollMotionExperience() {
                 </div>
               ))}
             </div>
+
+            {/* Direct jump to Especialidades when reaching Scene 03 */}
+            {activeSceneIndex === 2 && (
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="pt-2"
+              >
+                <a
+                  href="#especialidades"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-mono font-semibold bg-cyan-400 text-[#000d10] hover:bg-cyan-300 transition-all shadow-md shadow-cyan-400/20 cursor-pointer"
+                >
+                  <span>Continuar a Especialidades</span>
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </a>
+              </motion.div>
+            )}
           </motion.div>
         </div>
 

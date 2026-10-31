@@ -31,7 +31,7 @@ export function TimelineSection() {
               Trayectoria.
             </h2>
             <p className="lg:col-span-4 font-body-editorial text-zinc-700 text-sm sm:text-base lg:text-lg break-words leading-relaxed">
-              Más de 6 años liderando auditorías en terreno, modernizando redes celulares 5G/LTE y fundando soluciones tecnológicas de alta gama.
+              Más de 10 años liderando operaciones técnicas en terreno, modernizando redes celulares 5G/LTE y fundando soluciones tecnológicas de alta gama.
             </p>
           </div>
         </div>
