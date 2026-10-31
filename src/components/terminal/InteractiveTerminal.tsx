@@ -175,7 +175,7 @@ export function InteractiveTerminal() {
           {
             id: `res-${Date.now()}-3`,
             type: "output",
-            text: "• Ablu Tech Ltda. (2025 - Presente): ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA (RUT: 78.539.015-6). Soluciones de domótica, CCTV y automatizaciones con IA.",
+            text: "• Ablu Tech Ltda. (2025 - Presente): Fundador & Director de Operaciones. Domótica e inmótica de alto estándar, CCTV con IA y automatización empresarial.",
           },
           {
             id: `res-${Date.now()}-4`,

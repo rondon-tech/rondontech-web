@@ -38,7 +38,7 @@ export const PROFILE_DATA = {
   status: "DISPONIBLE PARA NUEVOS RETOS",
   summary: [
     "Ingeniero en Electrónica mención Control y TSU en Informática con más de 10 años de trayectoria en operaciones de terreno, telecomunicaciones móviles (5G/LTE/RF), enlaces de microondas y fibra óptica para los principales operadores de Chile y Latinoamérica.",
-    "Fundador de Ablu Tech Ltda. (ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA · RUT: 78.539.015-6), donde desarrollo en paralelo soluciones de domótica, videovigilancia inteligente (CCTV), control de acceso y automatizaciones asistidas por Inteligencia Artificial (Antigravity, Claude Code, Dify y agentes autónomos) para empresas y clientes residenciales."
+    "Fundador y Director de Operaciones en Ablu Tech Ltda., donde desarrollo en paralelo soluciones de domótica e inmótica de alto estándar, videovigilancia inteligente (CCTV), control de acceso y automatizaciones asistidas por Inteligencia Artificial (Antigravity, Claude Code, Dify y agentes autónomos) para empresas y clientes residenciales."
   ],
   telemetryMetrics: [
     { label: "Experiencia en Telecom & TI", value: "+10 Años" },
@@ -78,16 +78,16 @@ export const PROFILE_DATA = {
   experience: [
     {
       id: "ablutech",
-      role: "Desarrollo e Implementación de Soluciones Tecnológicas",
+      role: "Fundador y Director de Operaciones",
       organization: "Ablu Tech Ltda.",
       dates: "Enero 2025 - Actualidad",
       location: "Santiago, Chile",
-      context: "Actividad independiente orientada a proyectos de domótica, seguridad electrónica, aplicaciones y automatización empresarial con IA en ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA (RUT: 78.539.015-6).",
+      context: "Dirección técnica y de operaciones en proyectos de domótica e inmótica de alto estándar, seguridad electrónica (CCTV IP con analítica de IA), control de accesos e infraestructura de automatización empresarial con agentes de IA.",
       bullets: [
-        "Implemento proyectos de domótica y automatización de espacios residenciales y corporativos.",
-        "Integro soluciones avanzadas de videovigilancia CCTV y control de acceso seguro.",
-        "Desarrollo aplicaciones y servidores dedicados a la monitorización y gestión de procesos.",
-        "Utilizo Antigravity, OpenCode, Claude Code y Codex en el desarrollo asistido por IA de aplicaciones y automatizaciones para ventas, redes sociales y rutinas de domótica. También gestión y desarrollo de bases de datos en MySQL, PostgreSQL y MariaDB."
+        "Diseño y despliegue de soluciones integrales de domótica e inmótica (Matter, Zigbee, KNX) para residencias de alto estándar y corporativos.",
+        "Integración de videovigilancia IP (CCTV) con analítica inteligente de video, reconocimiento facial y control de accesos biométricos unificados.",
+        "Desarrollo y orquestación de aplicaciones cloud y agentes de IA autónomos (Google Antigravity, Claude Code, Python, Node.js) para optimización operativa.",
+        "Implementación y administración de infraestructura de servidores y bases de datos relacionales (PostgreSQL, MySQL, MariaDB) con alta disponibilidad."
       ],
       techStack: ["Domótica", "CCTV", "IoT", "Antigravity", "OpenCode", "Codex", "MySQL", "PostgreSQL", "MariaDB", "Python", "Next.js"]
     },
@@ -208,7 +208,7 @@ export const PROFILE_DATA = {
     status: "STATUS: ONLINE ● Operacional | Ubicación: Santiago, Chile | Buscando: Nuevos Retos Profesionales en Telecomunicaciones, IoT y Automatización.",
     skills: "SKILLS: [Telecom 5G/LTE/RF] [Transmisión MMOO & Fibra] [Energía AC/DC & UPS] [Domótica & CCTV Ablu Tech] [Agentes IA: Antigravity, OpenCode, Claude, Codex] [Bases de Datos: MySQL, PostgreSQL, MariaDB]",
     pillars: "PILARES: 1. Telecomunicaciones Críticas | 2. Domótica & IoT (Ablu Tech) | 3. Desarrollo y Automatización con IA",
-    experience: "TRAYECTORIA: Entel (2023-Hoy) | Ablu Tech Ltda. (2025-Hoy, RUT: 78.539.015-6) | WISECOM (2022) | Telrad (2018-2022) | CelPlan (2017-2018)",
+    experience: "TRAYECTORIA: Entel (2023-Hoy) | Ablu Tech Ltda. (2025-Hoy) | WISECOM (2022) | Telrad (2018-2022) | CelPlan (2017-2018)",
     contact: "CONTACTO: WhatsApp: +56 9 6552 9637 | Email: arondon@ablutech.com | LinkedIn: https://www.linkedin.com/in/ingeniero-abrahan-rondon/ | Web: https://rondontech.com",
     cv: "DESCARGA: Iniciando descarga del archivo CV_Abrahan_Rondon.pdf ..."
   }
