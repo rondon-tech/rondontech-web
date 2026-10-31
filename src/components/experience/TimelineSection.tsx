@@ -14,23 +14,23 @@ export function TimelineSection() {
   };
 
   return (
-    <section id="experiencia" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 max-w-6xl mx-auto overflow-hidden">
+    <section id="experiencia" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 w-full max-w-6xl mx-auto min-w-0 overflow-hidden">
       {/* Anchor for both #experiencia and #trayectoria */}
       <span id="trayectoria" className="relative -top-24 block" />
-      <div>
+      <div className="w-full min-w-0">
         {/* Section Header */}
-        <div className="space-y-4 mb-12 sm:mb-16">
+        <div className="space-y-4 mb-12 sm:mb-16 w-full min-w-0">
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#000d10] shrink-0" />
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-600 font-semibold">
+            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
               HISTORIAL TÉCNICO // TELECOMUNICACIONES & EMPRENDIMIENTO
             </span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-end">
-            <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-end w-full min-w-0">
+            <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight break-words text-4xl sm:text-5xl lg:text-7xl">
               Trayectoria.
             </h2>
-            <p className="lg:col-span-4 font-body-editorial text-zinc-700 text-base sm:text-lg">
+            <p className="lg:col-span-4 font-body-editorial text-zinc-700 text-sm sm:text-base lg:text-lg break-words leading-relaxed">
               Más de 6 años liderando auditorías en terreno, modernizando redes celulares 5G/LTE y fundando soluciones tecnológicas de alta gama.
             </p>
           </div>

@@ -23,21 +23,21 @@ export function SkillsMatrixSection() {
       : PROFILE_DATA.skillsCategories.filter((cat) => cat.category === activeFilter);
 
   return (
-    <section id="habilidades" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 max-w-7xl mx-auto overflow-hidden">
-      <div>
+    <section id="habilidades" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 w-full max-w-7xl mx-auto min-w-0 overflow-hidden">
+      <div className="w-full min-w-0">
         {/* Section Header */}
-        <div className="space-y-4 mb-12 sm:mb-14">
+        <div className="space-y-4 mb-12 sm:mb-14 w-full min-w-0">
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#000d10] shrink-0" />
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-600 font-semibold">
+            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
               MATRIZ TÉCNICA // CAPACIDADES DE INGENIERÍA
             </span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-end">
-            <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-end w-full min-w-0">
+            <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight break-words text-4xl sm:text-5xl lg:text-7xl">
               Habilidades.
             </h2>
-            <p className="lg:col-span-4 font-body-editorial text-zinc-700 text-base sm:text-lg">
+            <p className="lg:col-span-4 font-body-editorial text-zinc-700 text-sm sm:text-base lg:text-lg break-words leading-relaxed">
               Dominio integral de instrumentación en terreno, protocolos de red,
               sistemas de energía y automatizaciones con IA moderna.
             </p>

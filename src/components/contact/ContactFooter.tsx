@@ -32,24 +32,24 @@ export function ContactFooter() {
   };
 
   return (
-    <footer id="contacto" className="py-16 sm:py-24 px-4 sm:px-8 bg-[#000d10] text-white relative z-10 border-t border-white/10">
-      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+    <footer id="contacto" className="py-16 sm:py-24 px-4 sm:px-8 bg-[#000d10] text-white relative z-10 border-t border-white/10 w-full max-w-full min-w-0 overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 w-full min-w-0">
         {/* Main Editorial CTA Card */}
-        <div className="bg-[#151623] border border-white/15 p-6 sm:p-12 lg:p-16 rounded-none relative overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="bg-[#151623] border border-white/15 p-6 sm:p-12 lg:p-16 rounded-none relative overflow-hidden w-full min-w-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full min-w-0">
             {/* Left Column: Big Statement */}
-            <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 font-mono text-xs uppercase tracking-wider text-emerald-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>DISPONIBLE PARA PROYECTOS & CONSULTORÍA CRÍTICA</span>
+            <div className="lg:col-span-8 space-y-6 w-full min-w-0">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 font-mono text-[10px] sm:text-xs uppercase tracking-wider text-emerald-400 max-w-full">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span className="truncate">DISPONIBLE PARA PROYECTOS & CONSULTORÍA CRÍTICA</span>
               </div>
 
-              <h2 className="font-display-63 text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight break-words">
                 Construyamos la Próxima <br />
                 <span className="text-[#bc7155]">Frontera Tecnológica.</span>
               </h2>
 
-              <p className="font-body-editorial text-zinc-300 max-w-xl text-base sm:text-lg">
+              <p className="font-body-editorial text-zinc-300 max-w-xl text-sm sm:text-base lg:text-lg break-words leading-relaxed">
                 Ya sea para modernización de redes de telecomunicaciones, auditorías de centros de datos,
                 domótica de alta gama con Ablu Tech o sistemas autónomos de IA, conversemos directamente.
               </p>

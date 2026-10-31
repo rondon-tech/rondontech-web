@@ -23,16 +23,16 @@ export function HeroEditorial() {
   };
 
   return (
-    <section className="relative pt-24 pb-14 sm:pt-36 sm:pb-24 px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
+    <section className="relative pt-24 pb-14 sm:pt-36 sm:pb-24 px-4 sm:px-8 w-full max-w-7xl mx-auto min-w-0 overflow-hidden">
       {/* Top Status & Telemetry Strip */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-[#d5d3d4]">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-[#d5d3d4] w-full min-w-0">
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-          <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-zinc-700 font-semibold">
+          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-700 font-semibold break-words">
             INGENIERO EN ELECTRÓNICA & TELECOMUNICACIONES // SANTIAGO, CL
           </span>
         </div>
-        <div className="flex items-center gap-4 font-mono text-[11px] sm:text-xs text-zinc-600">
+        <div className="flex items-center gap-4 font-mono text-[10px] sm:text-xs text-zinc-600">
           <span className="hidden md:inline">DISPONIBILIDAD: PROYECTOS CRÍTICOS & CONSULTORÍA</span>
           <span className="px-2.5 py-1 rounded-full bg-[#000d10]/5 text-[#000d10] font-bold border border-[#d5d3d4]">
             RONDONTECH v3.1
@@ -41,12 +41,12 @@ export function HeroEditorial() {
       </div>
 
       {/* Main Architectural Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full min-w-0">
         {/* Left Column: Massive Editorial Typography */}
-        <div className="lg:col-span-8 space-y-6 sm:space-y-8">
+        <div className="lg:col-span-8 space-y-6 sm:space-y-8 w-full min-w-0">
           {/* Hero Wordmark with signature Hyer stop */}
           <div className="space-y-1">
-            <h1 className="font-display-hero text-[#000d10] uppercase tracking-[-0.035em] leading-[0.92] break-words text-[34px] xs:text-[44px] sm:text-6xl md:text-7xl lg:text-[110px] xl:text-[150px] 2xl:text-[180px]">
+            <h1 className="text-[#000d10] uppercase tracking-tight leading-[0.92] break-words text-[32px] min-[370px]:text-[40px] sm:text-6xl md:text-7xl lg:text-[110px] xl:text-[150px] 2xl:text-[180px] font-extrabold">
               RONDONTECH<span className="text-[#bc7155]">.</span>
             </h1>
             <div className="h-1.5 w-20 sm:w-24 bg-[#bc7155] rounded-full mt-2" />

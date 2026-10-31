@@ -288,18 +288,18 @@ export function InteractiveTerminal() {
   };
 
   return (
-    <section id="consola" className="py-24 px-4 sm:px-8 relative z-10 bg-[#0f0f1c] text-white border-y border-white/10">
-      <div className="max-w-5xl mx-auto">
+    <section id="consola" className="py-20 sm:py-24 px-4 sm:px-8 relative z-10 bg-[#0f0f1c] text-white border-y border-white/10 w-full max-w-full min-w-0 overflow-hidden">
+      <div className="max-w-5xl mx-auto w-full min-w-0">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5 text-[#bc7155] font-mono text-xs tracking-wider uppercase mb-4">
-            <Terminal className="w-3.5 h-3.5 text-[#bc7155]" />
-            <span>INTERACTIVE TELEMETRY TERMINAL // KERNEL v3.0</span>
+        <div className="flex flex-col items-center text-center mb-10 sm:mb-12 w-full min-w-0">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/5 text-[#bc7155] font-mono text-[10px] sm:text-xs tracking-wider uppercase mb-4 max-w-full">
+            <Terminal className="w-3.5 h-3.5 text-[#bc7155] shrink-0" />
+            <span className="truncate">INTERACTIVE TELEMETRY TERMINAL // KERNEL v3.0</span>
           </div>
-          <h2 className="font-display-63 text-white tracking-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-3 break-words">
             Consola Operacional de Comandos.
           </h2>
-          <p className="font-body-editorial text-zinc-400 max-w-lg text-base">
+          <p className="font-body-editorial text-zinc-400 max-w-lg text-sm sm:text-base break-words">
             Interactúa en tiempo real con el runtime para auditar experiencia, credenciales y descargar el CV oficial.
           </p>
         </div>

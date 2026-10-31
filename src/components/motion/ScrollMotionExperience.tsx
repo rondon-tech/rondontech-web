@@ -139,10 +139,10 @@ export function ScrollMotionExperience() {
     <section
       ref={containerRef}
       id="cinematica"
-      className="relative w-full h-[175vh] sm:h-[260vh] bg-[#000d10] text-white"
+      className="relative w-full max-w-full min-w-0 h-[175vh] sm:h-[260vh] bg-[#000d10] text-white overflow-hidden"
     >
       {/* Sticky Fullscreen Presentation */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between p-4 sm:p-8 lg:p-12 z-20">
+      <div className="sticky top-0 h-screen w-full max-w-full min-w-0 overflow-hidden flex flex-col justify-between px-4 pb-4 pt-20 sm:p-8 lg:p-12 z-20">
         
         {/* Background Video Layer with Film Vignette */}
         <div className="absolute inset-0 z-0">
@@ -253,16 +253,16 @@ export function ScrollMotionExperience() {
         </div>
 
         {/* Bottom Bar: Timeline Progress & Scene Switcher */}
-        <div className="relative z-10 border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="relative z-10 border-t border-white/10 pt-3 sm:pt-4 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 w-full min-w-0">
           {/* Scroll instruction indicator */}
-          <div className="flex items-center gap-2 text-xs font-mono text-white/60">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-            <span>DESPLÁZATE HACIA ABAJO PARA EXPLORAR LA SECUENCIA</span>
-            <ChevronDown className="w-4 h-4 animate-bounce text-cyan-400" />
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono text-white/60">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+            <span className="truncate">DESPLÁZATE HACIA ABAJO PARA EXPLORAR</span>
+            <ChevronDown className="w-3.5 h-3.5 animate-bounce text-cyan-400 shrink-0" />
           </div>
 
           {/* 3 Step Indicator */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {SCENES.map((scene, i) => (
               <button
                 key={scene.number}
@@ -274,10 +274,10 @@ export function ScrollMotionExperience() {
                     setActiveSceneIndex(i);
                   }
                 }}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-full font-mono text-xs transition-all ${
+                className={`flex items-center gap-1 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[11px] sm:text-xs transition-all cursor-pointer ${
                   activeSceneIndex === i
                     ? "bg-white text-[#000d10] font-bold"
-                    : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"
+                    : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
                 }`}
               >
                 <span>{scene.number}</span>
