@@ -16,7 +16,7 @@ interface PoseConfig {
 
 const SECTION_POSES: Record<string, PoseConfig> = {
   hero: {
-    src: "/avatar/avatar-hero.webp",
+    src: "/avatar/avatar-hud.webp",
     label: "Centro de Mando",
     status: "EN LÍNEA",
     badgeColor: "border-[#bc7155]/50 text-[#bc7155]",
