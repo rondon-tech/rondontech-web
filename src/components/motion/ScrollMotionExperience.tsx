@@ -76,27 +76,38 @@ export function ScrollMotionExperience() {
 
   const duration = 10.0; // 10 seconds total video duration
 
-  // Update video frame smoothly based on scroll
+  // Update video frame smoothly based on scroll using requestAnimationFrame throttling
   useEffect(() => {
+    let animationFrameId: number;
     const unsubscribe = scrollYProgress.on("change", (latest) => {
       if (videoRef.current && !isPlaying && isLoaded) {
-        // Map 0.0 - 1.0 to video duration
-        const targetTime = Math.min(Math.max(latest * duration, 0), duration);
-        videoRef.current.currentTime = targetTime;
-        setCurrentTime(targetTime);
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(() => {
+          if (!videoRef.current) return;
+          // Map 0.0 - 1.0 to video duration
+          const targetTime = Math.min(Math.max(latest * duration, 0), duration);
+          // Only update if difference > 0.04s to avoid mobile GPU micro-stutter
+          if (Math.abs(videoRef.current.currentTime - targetTime) > 0.04) {
+            videoRef.current.currentTime = targetTime;
+            setCurrentTime(targetTime);
+          }
 
-        // Determine scene
-        if (latest < 0.33) {
-          setActiveSceneIndex(0);
-        } else if (latest < 0.67) {
-          setActiveSceneIndex(1);
-        } else {
-          setActiveSceneIndex(2);
-        }
+          // Determine scene
+          if (latest < 0.33) {
+            setActiveSceneIndex(0);
+          } else if (latest < 0.67) {
+            setActiveSceneIndex(1);
+          } else {
+            setActiveSceneIndex(2);
+          }
+        });
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [scrollYProgress, isPlaying, isLoaded]);
 
   // Video time update listener when playing manually
@@ -128,10 +139,10 @@ export function ScrollMotionExperience() {
     <section
       ref={containerRef}
       id="cinematica"
-      className="relative w-full h-[280vh] bg-[#000d10] text-white"
+      className="relative w-full h-[175vh] sm:h-[260vh] bg-[#000d10] text-white"
     >
       {/* Sticky Fullscreen Presentation */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between p-6 sm:p-12 z-20">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between p-4 sm:p-8 lg:p-12 z-20">
         
         {/* Background Video Layer with Film Vignette */}
         <div className="absolute inset-0 z-0">
@@ -140,7 +151,7 @@ export function ScrollMotionExperience() {
             src="/media/showcase-scroll-motion.mp4"
             playsInline
             muted
-            preload="auto"
+            preload="metadata"
             onLoadedData={() => setIsLoaded(true)}
             onTimeUpdate={handleTimeUpdate}
             onEnded={() => setIsPlaying(false)}
@@ -154,17 +165,17 @@ export function ScrollMotionExperience() {
         </div>
 
         {/* Top HUD: Editorial Status & Timecode */}
-        <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">
-              CINEMATIC SCROLL TELEMETRY // SEED 2026
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 sm:pb-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/80">
+              CINEMATIC SCROLL // SEED 2026
             </span>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             {/* Scrubber timecode */}
-            <div className="font-mono text-xs tracking-wider text-white/80 bg-white/5 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10">
+            <div className="font-mono text-[11px] sm:text-xs tracking-wider text-white/90 bg-white/5 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/10">
               <span className="text-cyan-400">TCR:</span> 00:0{Math.floor(currentTime)}:
               {Math.floor((currentTime % 1) * 100).toString().padStart(2, "0")} / 00:10:00
             </div>
@@ -172,15 +183,15 @@ export function ScrollMotionExperience() {
             {/* Manual Play/Pause override */}
             <button
               onClick={togglePlay}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold bg-white text-[#000d10] hover:bg-zinc-200 transition-colors"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-mono font-semibold bg-white text-[#000d10] hover:bg-zinc-200 transition-colors cursor-pointer"
             >
               {isPlaying ? (
                 <>
-                  <Pause className="w-3.5 h-3.5" /> Pausar
+                  <Pause className="w-3.5 h-3.5" /> <span className="hidden xs:inline">Pausar</span>
                 </>
               ) : (
                 <>
-                  <Play className="w-3.5 h-3.5 fill-current" /> Reproducir
+                  <Play className="w-3.5 h-3.5 fill-current" /> <span className="hidden xs:inline">Reproducir</span>
                 </>
               )}
             </button>
@@ -188,27 +199,27 @@ export function ScrollMotionExperience() {
         </div>
 
         {/* Center / Left: Dynamic Editorial Scene Card */}
-        <div className="relative z-10 max-w-2xl my-auto py-8">
+        <div className="relative z-10 max-w-2xl my-auto py-4 sm:py-8">
           <motion.div
             key={currentScene.number}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-6"
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="space-y-4 sm:space-y-6"
           >
             {/* Scene tag & index */}
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-2xl font-bold text-white/30">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <span className="font-mono text-xl sm:text-2xl font-bold text-white/40">
                 {currentScene.number}
               </span>
-              <div className="h-px w-8 bg-white/20" />
+              <div className="h-px w-6 sm:w-8 bg-white/20" />
               <span
-                className="font-mono text-xs uppercase tracking-[0.25em] px-2.5 py-1 rounded-full border"
+                className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border font-semibold"
                 style={{
-                  borderColor: `${currentScene.accentColor}50`,
+                  borderColor: `${currentScene.accentColor}60`,
                   color: currentScene.accentColor,
-                  backgroundColor: `${currentScene.accentColor}10`,
+                  backgroundColor: `${currentScene.accentColor}15`,
                 }}
               >
                 {currentScene.tag}
@@ -220,19 +231,19 @@ export function ScrollMotionExperience() {
               {currentScene.title}
             </h3>
 
-            {/* Body */}
-            <p className="font-body-editorial text-zinc-300 max-w-xl text-base sm:text-lg">
+            {/* Body with crisp contrast */}
+            <p className="font-body-editorial text-zinc-200 max-w-xl text-sm sm:text-base leading-relaxed">
               {currentScene.desc}
             </p>
 
             {/* Technical KPIs */}
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 max-w-lg">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10 max-w-lg">
               {currentScene.kpis.map((kpi, idx) => (
-                <div key={idx} className="space-y-1">
-                  <div className="font-mono text-[11px] uppercase tracking-wider text-white/50">
+                <div key={idx} className="space-y-0.5 sm:space-y-1">
+                  <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-white/60">
                     {kpi.label}
                   </div>
-                  <div className="font-mono text-sm sm:text-base font-bold text-white">
+                  <div className="font-mono text-xs sm:text-base font-bold text-white">
                     {kpi.value}
                   </div>
                 </div>

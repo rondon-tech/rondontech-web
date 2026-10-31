@@ -109,46 +109,46 @@ export function DomainShowcaseAnimated() {
   const activeDomain = DOMAINS.find((d) => d.id === activeId) || DOMAINS[0];
 
   return (
-    <section id="especialidades" className="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
+    <section id="especialidades" className="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Editorial Header */}
-      <div className="space-y-4 mb-16">
-        <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#bc7155]" />
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8e8e95]">
+      <div className="space-y-4 mb-12 sm:mb-16">
+        <div className="flex items-center gap-2.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#bc7155] shrink-0" />
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-600 font-semibold">
             DOMINIOS DE ALTA INGENIERÍA // CUATRO PILARES
           </span>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-end">
           <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight">
             Especialidades.
           </h2>
-          <p className="lg:col-span-4 font-body-editorial text-[#8e8e95]">
+          <p className="lg:col-span-4 font-body-editorial text-zinc-700 text-base sm:text-lg">
             Integración vertical desde el espectro electromagnético en terreno hasta
             la orquestación de agentes cognitivos en la nube.
           </p>
         </div>
       </div>
 
-      {/* Pill Selector (1000px border radius) */}
-      <div className="flex flex-wrap items-center gap-3 mb-10 pb-4 border-b border-[#d5d3d4]">
+      {/* Pill Selector (1000px border radius, mobile horizontal scroll) */}
+      <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 sm:gap-3 mb-8 pb-3 border-b border-[#d5d3d4] overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {DOMAINS.map((domain) => {
           const isActive = domain.id === activeId;
           return (
             <button
               key={domain.id}
               onClick={() => setActiveId(domain.id)}
-              className={`relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+              className={`relative px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 ${
                 isActive
                   ? domain.isFeaturedClay
-                    ? "bg-[#bc7155] text-white shadow-lg shadow-[#bc7155]/25"
+                    ? "bg-[#bc7155] text-white shadow-md shadow-[#bc7155]/30"
                     : "bg-[#000d10] text-white"
                   : "bg-white text-[#000d10] border border-[#d5d3d4] hover:border-[#000d10]"
               }`}
             >
-              <span className="font-mono text-xs opacity-70">{domain.number}</span>
+              <span className="font-mono text-[11px] sm:text-xs opacity-75">{domain.number}</span>
               <span>{domain.title.split(".")[0]}</span>
               {domain.isFeaturedClay && (
-                <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded-full bg-white/20 ml-1">
+                <span className="text-[9px] sm:text-[10px] uppercase font-mono px-1.5 py-0.5 rounded-full bg-white/25 ml-0.5">
                   Destacado
                 </span>
               )}
@@ -161,25 +161,25 @@ export function DomainShowcaseAnimated() {
       <AnimatePresence mode="wait">
         <motion.div
           key={activeDomain.id}
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -15 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className={`grid grid-cols-1 lg:grid-cols-12 rounded-none overflow-hidden transition-colors duration-500 ${
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className={`grid grid-cols-1 lg:grid-cols-12 rounded-none overflow-hidden transition-colors duration-300 ${
             activeDomain.isFeaturedClay
               ? "bg-[#bc7155] text-white"
               : "bg-white text-[#000d10] border border-[#d5d3d4]"
           }`}
         >
           {/* Left Column: Visual Showcase (2K Image with Pan Zoom) */}
-          <div className="lg:col-span-7 relative min-h-[380px] lg:min-h-[580px] overflow-hidden group">
+          <div className="lg:col-span-7 relative min-h-[300px] sm:min-h-[420px] lg:min-h-[580px] overflow-hidden group">
             <Image
               src={activeDomain.image}
               alt={activeDomain.title}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 60vw"
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
             />
             {/* Subtle Gradient Shade */}
             <div
@@ -191,9 +191,9 @@ export function DomainShowcaseAnimated() {
             />
 
             {/* Floating Top Badge */}
-            <div className="absolute top-6 left-6 z-10">
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-10">
               <span
-                className={`font-mono text-xs uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md ${
+                className={`font-mono text-[11px] sm:text-xs uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md ${
                   activeDomain.isFeaturedClay
                     ? "bg-white/20 text-white border border-white/30"
                     : "bg-[#000d10]/80 text-white border border-white/20"
@@ -204,9 +204,9 @@ export function DomainShowcaseAnimated() {
             </div>
 
             {/* Bottom Caption Pill */}
-            <div className="absolute bottom-6 left-6 right-6 z-10 flex items-center justify-between">
+            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 z-10 flex items-center justify-between">
               <span
-                className={`font-mono text-xs uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md hidden sm:inline-block ${
+                className={`font-mono text-[10px] sm:text-xs uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md hidden sm:inline-block ${
                   activeDomain.isFeaturedClay
                     ? "bg-white/20 text-white border border-white/20"
                     : "bg-white/90 text-[#000d10] border border-[#d5d3d4]"
@@ -218,49 +218,49 @@ export function DomainShowcaseAnimated() {
           </div>
 
           {/* Right Column: Editorial Technical Breakdown */}
-          <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-8">
-            <div className="space-y-6">
+          <div className="lg:col-span-5 p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6 sm:space-y-8">
+            <div className="space-y-4 sm:space-y-6">
               {/* Header Number & Subtitle */}
-              <div className="flex items-center justify-between border-b pb-4 border-current/15">
-                <span className="font-mono text-3xl font-bold opacity-40">
+              <div className="flex items-center justify-between border-b pb-3 sm:pb-4 border-current/15">
+                <span className="font-mono text-2xl sm:text-3xl font-bold opacity-50">
                   {activeDomain.number}
                 </span>
-                <span className="font-mono text-xs uppercase tracking-widest opacity-80">
+                <span className="font-mono text-[11px] sm:text-xs uppercase tracking-widest opacity-90">
                   {activeDomain.subtitle}
                 </span>
               </div>
 
-              {/* Title in Hyer 37px Style */}
-              <h3 className="font-heading-37 tracking-tight">
+              {/* Title in Hyer Style */}
+              <h3 className={`font-heading-37 tracking-tight ${activeDomain.isFeaturedClay ? "text-white" : "text-[#000d10]"}`}>
                 {activeDomain.title}
               </h3>
 
               {/* Tagline */}
               <p
                 className={`text-sm sm:text-base font-semibold ${
-                  activeDomain.isFeaturedClay ? "text-white/90" : "text-[#bc7155]"
+                  activeDomain.isFeaturedClay ? "text-white" : "text-[#bc7155]"
                 }`}
               >
                 {activeDomain.tagline}
               </p>
 
-              {/* Description Body */}
+              {/* Description Body - 100% High Contrast */}
               <p
                 className={`font-body-editorial text-sm sm:text-base ${
-                  activeDomain.isFeaturedClay ? "text-white/85" : "text-[#8e8e95]"
+                  activeDomain.isFeaturedClay ? "!text-white text-white/95" : "text-zinc-700"
                 }`}
               >
                 {activeDomain.description}
               </p>
 
               {/* Metrics Grid */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-current/15">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-current/15">
                 {activeDomain.metrics.map((m, i) => (
                   <div key={i} className="space-y-1">
-                    <div className="font-mono text-[11px] uppercase tracking-wider opacity-60">
+                    <div className={`font-mono text-[10px] sm:text-[11px] uppercase tracking-wider ${activeDomain.isFeaturedClay ? "text-white/80" : "text-zinc-500"}`}>
                       {m.label}
                     </div>
-                    <div className="font-mono text-base font-bold">
+                    <div className={`font-mono text-sm sm:text-base font-bold ${activeDomain.isFeaturedClay ? "text-white" : "text-[#000d10]"}`}>
                       {m.val}
                     </div>
                   </div>
@@ -268,13 +268,13 @@ export function DomainShowcaseAnimated() {
               </div>
 
               {/* Tag Badges */}
-              <div className="flex flex-wrap gap-2 pt-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
                 {activeDomain.tags.map((tag) => (
                   <span
                     key={tag}
-                    className={`font-mono text-[11px] px-2.5 py-1 rounded-full ${
+                    className={`font-mono text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full ${
                       activeDomain.isFeaturedClay
-                        ? "bg-white/15 text-white border border-white/20"
+                        ? "bg-white/20 text-white border border-white/30"
                         : "bg-[#000d10]/5 text-[#000d10] border border-[#d5d3d4]"
                     }`}
                   >
@@ -285,7 +285,7 @@ export function DomainShowcaseAnimated() {
             </div>
 
             {/* Action Pill Button (1000px) */}
-            <div className="pt-6 border-t border-current/15">
+            <div className="pt-4 sm:pt-6 border-t border-current/15">
               <a
                 href={activeDomain.ctaHref}
                 target={activeDomain.ctaHref.startsWith("http") ? "_blank" : undefined}

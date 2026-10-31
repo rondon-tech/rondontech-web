@@ -23,21 +23,21 @@ export function SkillsMatrixSection() {
       : PROFILE_DATA.skillsCategories.filter((cat) => cat.category === activeFilter);
 
   return (
-    <section id="habilidades" className="py-24 px-4 sm:px-8 relative z-10 max-w-7xl mx-auto">
+    <section id="habilidades" className="py-16 sm:py-24 px-4 sm:px-8 relative z-10 max-w-7xl mx-auto overflow-hidden">
       <div>
         {/* Section Header */}
-        <div className="space-y-4 mb-14">
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#000d10]" />
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8e8e95]">
+        <div className="space-y-4 mb-12 sm:mb-14">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#000d10] shrink-0" />
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-600 font-semibold">
               MATRIZ TÉCNICA // CAPACIDADES DE INGENIERÍA
             </span>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-end">
             <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight">
               Habilidades.
             </h2>
-            <p className="lg:col-span-4 font-body-editorial text-[#8e8e95]">
+            <p className="lg:col-span-4 font-body-editorial text-zinc-700 text-base sm:text-lg">
               Dominio integral de instrumentación en terreno, protocolos de red,
               sistemas de energía y automatizaciones con IA moderna.
             </p>

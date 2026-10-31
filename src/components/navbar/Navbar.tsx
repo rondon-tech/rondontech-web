@@ -24,19 +24,19 @@ export function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-5 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-8 py-3 sm:py-5 transition-all duration-300">
       <div className="max-w-7xl mx-auto">
-        <div className="rounded-full px-6 py-3 flex items-center justify-between border border-[#d5d3d4] bg-white/90 backdrop-blur-xl shadow-lg shadow-black/5 transition-all">
+        <div className="rounded-full px-3.5 py-2 sm:px-6 sm:py-3 flex items-center justify-between border border-[#d5d3d4] bg-white/90 backdrop-blur-xl shadow-lg shadow-black/5 transition-all">
           {/* Logo / Brand */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-[#000d10] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-105">
-              <Radio className="w-4 h-4 text-white" />
+          <a href="#" className="flex items-center gap-2 group shrink-0">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#000d10] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-105">
+              <Radio className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="font-mono text-sm font-bold tracking-tight text-[#000d10]">
+              <span className="font-mono text-xs sm:text-sm font-bold tracking-tight text-[#000d10]">
                 RONDONTECH<span className="text-[#bc7155]">.</span>
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-[#000d10]/5 text-[#8e8e95] border border-[#d5d3d4]">
+              <span className="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-[#000d10]/5 text-[#4b5563] border border-[#d5d3d4]">
                 PRO
               </span>
             </div>

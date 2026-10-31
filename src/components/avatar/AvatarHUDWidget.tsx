@@ -16,55 +16,55 @@ interface PoseConfig {
 
 const SECTION_POSES: Record<string, PoseConfig> = {
   hero: {
-    src: "/avatar/avatar_smart_engineer.png",
+    src: "/avatar/avatar-hero.webp",
     label: "Centro de Mando",
     status: "EN LÍNEA",
     badgeColor: "border-[#bc7155]/50 text-[#bc7155]",
   },
   cinematica: {
-    src: "/avatar/avatar_datacenter_tech.png",
+    src: "/avatar/avatar-terminal.webp",
     label: "Telemetría Cinemática",
     status: "SCROLL MOTION",
     badgeColor: "border-cyan-500/50 text-cyan-300",
   },
   especialidades: {
-    src: "/avatar/avatar_ai_architect.png",
+    src: "/avatar/avatar-specialties.webp",
     label: "Especialidades 5G & AI",
     status: "ESPECIALISTA",
     badgeColor: "border-blue-500/50 text-blue-300",
   },
   experiencia: {
-    src: "/avatar/avatar_smart_engineer.png",
+    src: "/avatar/avatar-hero.webp",
     label: "Trayectoria & Experiencia",
     status: "7+ AÑOS CORE",
     badgeColor: "border-indigo-500/50 text-indigo-300",
   },
   trayectoria: {
-    src: "/avatar/avatar_smart_engineer.png",
+    src: "/avatar/avatar-hero.webp",
     label: "Trayectoria & Experiencia",
     status: "7+ AÑOS CORE",
     badgeColor: "border-indigo-500/50 text-indigo-300",
   },
   habilidades: {
-    src: "/avatar/avatar_ai_architect.png",
+    src: "/avatar/avatar-specialties.webp",
     label: "Stack & Habilidades",
     status: "HARDWARE & SOFTWARE",
     badgeColor: "border-cyan-500/50 text-cyan-300",
   },
   skills: {
-    src: "/avatar/avatar_ai_architect.png",
+    src: "/avatar/avatar-specialties.webp",
     label: "Stack & Habilidades",
     status: "HARDWARE & SOFTWARE",
     badgeColor: "border-cyan-500/50 text-cyan-300",
   },
   consola: {
-    src: "/avatar/avatar_datacenter_tech.png",
+    src: "/avatar/avatar-terminal.webp",
     label: "Terminal Interactiva",
     status: "MODO OPERADOR",
     badgeColor: "border-emerald-500/50 text-emerald-300",
   },
   contacto: {
-    src: "/avatar/avatar_neutral_pose.png",
+    src: "/avatar/avatar-contact.webp",
     label: "Contacto & Alianzas",
     status: "DISPONIBLE",
     badgeColor: "border-[#bc7155]/50 text-[#bc7155]",
@@ -236,7 +236,7 @@ export function AvatarHUDWidget() {
         </div>
 
         {/* Dynamic Context Information */}
-        <div className="text-left font-mono">
+        <div className="text-left font-mono hidden sm:block">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-[10px] font-bold text-white tracking-wide">
