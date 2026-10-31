@@ -23,23 +23,25 @@ export function SkillsMatrixSection() {
       : PROFILE_DATA.skillsCategories.filter((cat) => cat.category === activeFilter);
 
   return (
-    <section id="habilidades" className="py-20 px-4 sm:px-8 relative z-10">
-      <div className="max-w-6xl mx-auto">
+    <section id="habilidades" className="py-24 px-4 sm:px-8 relative z-10 max-w-7xl mx-auto">
+      <div>
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 font-mono text-xs tracking-wider uppercase mb-3">
-            <Layers className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Matriz Técnica Completa</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Habilidades &{" "}
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Herramientas de Especialidad
+        <div className="space-y-4 mb-14">
+          <div className="flex items-center gap-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#000d10]" />
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8e8e95]">
+              MATRIZ TÉCNICA // CAPACIDADES DE INGENIERÍA
             </span>
-          </h2>
-          <p className="max-w-xl text-sm sm:text-base text-zinc-400">
-            Dominio de software de consola, hardware de telecomunicaciones, sistemas de energía ininterrumpida y herramientas modernas de inteligencia artificial.
-          </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight">
+              Habilidades.
+            </h2>
+            <p className="lg:col-span-4 font-body-editorial text-[#8e8e95]">
+              Dominio integral de instrumentación en terreno, protocolos de red,
+              sistemas de energía y automatizaciones con IA moderna.
+            </p>
+          </div>
         </div>
 
         {/* Filter Chips */}

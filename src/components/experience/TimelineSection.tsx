@@ -14,23 +14,26 @@ export function TimelineSection() {
   };
 
   return (
-    <section id="trayectoria" className="py-20 px-4 sm:px-8 relative z-10">
-      <div className="max-w-5xl mx-auto">
+    <section id="experiencia" className="py-24 px-4 sm:px-8 relative z-10 max-w-6xl mx-auto">
+      {/* Anchor for both #experiencia and #trayectoria */}
+      <span id="trayectoria" className="relative -top-24 block" />
+      <div>
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 font-mono text-xs tracking-wider uppercase mb-3">
-            <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Trayectoria Comprobada</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Experiencia en{" "}
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Infraestructura & Terreno
+        <div className="space-y-4 mb-16">
+          <div className="flex items-center gap-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#000d10]" />
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8e8e95]">
+              HISTORIAL TÉCNICO // TELECOMUNICACIONES & EMPRENDIMIENTO
             </span>
-          </h2>
-          <p className="max-w-xl text-sm sm:text-base text-zinc-400">
-            Más de una década resolviendo incidencias críticas en terreno, modernizando redes celulares y liderando integraciones tecnológicas.
-          </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            <h2 className="lg:col-span-8 font-display-xl text-[#000d10] tracking-tight">
+              Trayectoria.
+            </h2>
+            <p className="lg:col-span-4 font-body-editorial text-[#8e8e95]">
+              Más de 6 años liderando auditorías en terreno, modernizando redes celulares 5G/LTE y fundando soluciones tecnológicas de alta gama.
+            </p>
+          </div>
         </div>
 
         {/* Timeline Container */}

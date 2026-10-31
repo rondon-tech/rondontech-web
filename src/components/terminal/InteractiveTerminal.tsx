@@ -288,24 +288,24 @@ export function InteractiveTerminal() {
   };
 
   return (
-    <section id="consola" className="py-20 px-4 sm:px-8 relative z-10">
-      <div className="max-w-4xl mx-auto">
+    <section id="consola" className="py-24 px-4 sm:px-8 relative z-10 bg-[#0f0f1c] text-white border-y border-white/10">
+      <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 font-mono text-xs tracking-wider uppercase mb-3">
-            <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Interactive Telemetry Terminal</span>
+        <div className="flex flex-col items-center text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/5 text-[#bc7155] font-mono text-xs tracking-wider uppercase mb-4">
+            <Terminal className="w-3.5 h-3.5 text-[#bc7155]" />
+            <span>INTERACTIVE TELEMETRY TERMINAL // KERNEL v3.0</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
-            Consola Operacional de Comandos
+          <h2 className="font-display-63 text-white tracking-tight mb-3">
+            Consola Operacional de Comandos.
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 max-w-lg">
-            Interactúa en tiempo real para consultar mi disponibilidad, experiencia en terreno y descargar el CV.
+          <p className="font-body-editorial text-zinc-400 max-w-lg text-base">
+            Interactúa en tiempo real con el runtime para auditar experiencia, credenciales y descargar el CV oficial.
           </p>
         </div>
 
         {/* Terminal Window */}
-        <div className="rounded-3xl border border-cyan-500/25 bg-[#030611]/95 backdrop-blur-2xl shadow-2xl shadow-cyan-950/40 overflow-hidden font-mono text-xs sm:text-sm">
+        <div className="rounded-none border border-white/15 bg-[#151623] shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
           {/* Terminal Window Header Bar with Operator Live Feed */}
           <div className="px-4 py-2.5 bg-[#080e1e] border-b border-cyan-500/20 flex items-center justify-between">
             <div className="flex items-center gap-3">

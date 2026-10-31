@@ -16,40 +16,58 @@ interface PoseConfig {
 
 const SECTION_POSES: Record<string, PoseConfig> = {
   hero: {
-    src: "/avatar/avatar-hud.webp",
+    src: "/avatar/avatar_smart_engineer.png",
     label: "Centro de Mando",
     status: "EN LÍNEA",
+    badgeColor: "border-[#bc7155]/50 text-[#bc7155]",
+  },
+  cinematica: {
+    src: "/avatar/avatar_datacenter_tech.png",
+    label: "Telemetría Cinemática",
+    status: "SCROLL MOTION",
     badgeColor: "border-cyan-500/50 text-cyan-300",
   },
   especialidades: {
-    src: "/avatar/avatar-specialties.webp",
+    src: "/avatar/avatar_ai_architect.png",
     label: "Especialidades 5G & AI",
     status: "ESPECIALISTA",
     badgeColor: "border-blue-500/50 text-blue-300",
   },
-  trayectoria: {
-    src: "/avatar/avatar-hero.webp",
+  experiencia: {
+    src: "/avatar/avatar_smart_engineer.png",
     label: "Trayectoria & Experiencia",
     status: "7+ AÑOS CORE",
     badgeColor: "border-indigo-500/50 text-indigo-300",
   },
+  trayectoria: {
+    src: "/avatar/avatar_smart_engineer.png",
+    label: "Trayectoria & Experiencia",
+    status: "7+ AÑOS CORE",
+    badgeColor: "border-indigo-500/50 text-indigo-300",
+  },
+  habilidades: {
+    src: "/avatar/avatar_ai_architect.png",
+    label: "Stack & Habilidades",
+    status: "HARDWARE & SOFTWARE",
+    badgeColor: "border-cyan-500/50 text-cyan-300",
+  },
   skills: {
-    src: "/avatar/avatar-hero.webp",
+    src: "/avatar/avatar_ai_architect.png",
     label: "Stack & Habilidades",
     status: "HARDWARE & SOFTWARE",
     badgeColor: "border-cyan-500/50 text-cyan-300",
   },
   consola: {
-    src: "/avatar/avatar-terminal.webp",
+    src: "/avatar/avatar_datacenter_tech.png",
     label: "Terminal Interactiva",
     status: "MODO OPERADOR",
     badgeColor: "border-emerald-500/50 text-emerald-300",
   },
   contacto: {
-    src: "/avatar/avatar-contact.webp",
+    src: "/avatar/avatar_neutral_pose.png",
     label: "Contacto & Alianzas",
     status: "DISPONIBLE",
-    badgeColor: "border-amber-500/50 text-amber-300",
+    badgeColor: "border-[#bc7155]/50 text-[#bc7155]",
   },
 };
 
@@ -60,7 +78,7 @@ export function AvatarHUDWidget() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "especialidades", "trayectoria", "skills", "consola", "contacto"];
+      const sections = ["hero", "cinematica", "especialidades", "experiencia", "trayectoria", "habilidades", "skills", "consola", "contacto"];
       const scrollPosition = window.scrollY + 250;
 
       for (let i = sections.length - 1; i >= 0; i--) {

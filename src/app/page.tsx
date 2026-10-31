@@ -1,8 +1,8 @@
 import React from "react";
-import { CyberBackground } from "@/components/ui/CyberBackground";
 import { Navbar } from "@/components/navbar/Navbar";
-import { HeroSection } from "@/components/hero/HeroSection";
-import { BentoSection } from "@/components/bento/BentoSection";
+import { HeroEditorial } from "@/components/hero/HeroEditorial";
+import { ScrollMotionExperience } from "@/components/motion/ScrollMotionExperience";
+import { DomainShowcaseAnimated } from "@/components/showcase/DomainShowcaseAnimated";
 import { InteractiveTerminal } from "@/components/terminal/InteractiveTerminal";
 import { TimelineSection } from "@/components/experience/TimelineSection";
 import { SkillsMatrixSection } from "@/components/skills/SkillsMatrixSection";
@@ -11,29 +11,29 @@ import { AvatarHUDWidget } from "@/components/avatar/AvatarHUDWidget";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#030712] text-zinc-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
-      {/* Cyber animated background */}
-      <CyberBackground />
-
-      {/* Floating glass navbar */}
+    <main className="relative min-h-screen bg-[#fbfbfd] text-[#000d10] flex flex-col selection:bg-[#bc7155]/20 selection:text-[#bc7155]">
+      {/* Floating Pill Navbar */}
       <Navbar />
 
-      {/* Hero section with telemetry badge and dynamic switcher */}
-      <HeroSection />
+      {/* Hyer Aviation Architectural Hero */}
+      <HeroEditorial />
 
-      {/* Bento grid with the 3 core pillars */}
-      <BentoSection />
+      {/* Cinematic Scroll-Motion Video Scrubbing Section */}
+      <ScrollMotionExperience />
 
-      {/* Interactive terminal console */}
+      {/* 4-Domain Kinetic Visual Showcase (2K Assets + Clay Ember Card) */}
+      <DomainShowcaseAnimated />
+
+      {/* High-Contrast Dark Console (Midnight Hull #0f0f1c) */}
       <InteractiveTerminal />
 
-      {/* Experience and career telemetry timeline */}
+      {/* Professional Experience & Telecom Field Timeline */}
       <TimelineSection />
 
-      {/* Skills matrix & Academic credentials */}
+      {/* Skills Matrix & Technical Credentials */}
       <SkillsMatrixSection />
 
-      {/* Contact CTAs & Footer */}
+      {/* Deep Ink Footer Terminal (#000d10) */}
       <ContactFooter />
 
       {/* Reactive Multi-Pose Holographic HUD Assistant */}
