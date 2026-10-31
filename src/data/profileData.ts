@@ -71,7 +71,7 @@ export const PROFILE_DATA = {
       title: "Automatización & Agentes con Inteligencia Artificial",
       subtitle: "Desarrollo Asistido por IA & Servidores",
       description: "Construcción de aplicaciones web/móviles y flujos automatizados utilizando agentes inteligentes para optimizar procesos comerciales, gestión de datos y soporte técnico.",
-      tags: ["Google Antigravity", "OpenCode", "Claude Code", "Dify AI Workflows", "Python / Next.js"],
+      tags: ["Google Antigravity", "OpenCode", "Claude Code", "Codex", "MySQL / PostgreSQL", "Python / Next.js"],
       stats: "Flujos de trabajo aumentados por modelos de lenguaje y agentes"
     }
   ],
@@ -87,9 +87,9 @@ export const PROFILE_DATA = {
         "Implemento proyectos de domótica y automatización de espacios residenciales y corporativos.",
         "Integro soluciones avanzadas de videovigilancia CCTV y control de acceso seguro.",
         "Desarrollo aplicaciones y servidores dedicados a la monitorización y gestión de procesos.",
-        "Implemento agentes de IA con Antigravity, OpenCode, Claude Code y Dify para automatizar ventas, gestión y rutinas de domótica."
+        "Utilizo Antigravity, OpenCode, Claude Code y Codex en el desarrollo asistido por IA de aplicaciones y automatizaciones para ventas, redes sociales y rutinas de domótica. También gestión y desarrollo de bases de datos en MySQL, PostgreSQL y MariaDB."
       ],
-      techStack: ["Domótica", "CCTV", "IoT", "Antigravity", "Dify", "Python", "Next.js"]
+      techStack: ["Domótica", "CCTV", "IoT", "Antigravity", "OpenCode", "Codex", "MySQL", "PostgreSQL", "MariaDB", "Python", "Next.js"]
     },
     {
       id: "entel",
@@ -194,7 +194,7 @@ export const PROFILE_DATA = {
       title: "Automatización & Agentes con IA",
       category: "ai",
       description: "Aceleración de procesos y desarrollo de aplicaciones impulsadas por modelos de frontera.",
-      tags: ["Google Antigravity", "Dify Workflows", "OpenCode", "Claude Code", "Python", "Desarrollo Web / Next.js"]
+      tags: ["Google Antigravity", "OpenCode", "Claude Code", "Codex", "Dify Workflows", "MySQL", "PostgreSQL", "MariaDB", "Python", "Next.js"]
     },
     {
       title: "Herramientas de Diagnóstico & Consola",
@@ -206,7 +206,7 @@ export const PROFILE_DATA = {
   terminalCommands: {
     help: "Comandos disponibles: 'status', 'skills', 'experience', 'pillars', 'contact', 'cv', 'clear'",
     status: "STATUS: ONLINE ● Operacional | Ubicación: Santiago, Chile | Buscando: Nuevos Retos Profesionales en Telecomunicaciones, IoT y Automatización.",
-    skills: "SKILLS: [Telecom 5G/LTE/RF] [Transmisión Microondas & Fibra] [Energía AC/DC & UPS] [Domótica & CCTV Ablu Tech] [Agentes IA & Python]",
+    skills: "SKILLS: [Telecom 5G/LTE/RF] [Transmisión MMOO & Fibra] [Energía AC/DC & UPS] [Domótica & CCTV Ablu Tech] [Agentes IA: Antigravity, OpenCode, Claude, Codex] [Bases de Datos: MySQL, PostgreSQL, MariaDB]",
     pillars: "PILARES: 1. Telecomunicaciones Críticas | 2. Domótica & IoT (Ablu Tech) | 3. Desarrollo y Automatización con IA",
     experience: "TRAYECTORIA: Entel (2023-Hoy) | Ablu Tech (2025-Hoy) | WISECOM (2022) | Telrad (2018-2022) | CelPlan (2017-2018)",
     contact: "CONTACTO: WhatsApp: +56 9 6552 9637 | Email: ing.rondon2015@gmail.com | LinkedIn: https://www.linkedin.com/in/ingeniero-abrahan-rondon/ | Web: https://rondontech.com",

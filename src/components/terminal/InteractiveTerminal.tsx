@@ -124,7 +124,7 @@ export function InteractiveTerminal() {
           {
             id: `res-${Date.now()}-5`,
             type: "output",
-            text: "• Software & IA: Google Antigravity, Claude Code, Dify Workflows, Python, Next.js, APIs & Webhooks.",
+            text: "• Software, IA & Bases de Datos: Google Antigravity, OpenCode, Claude Code, Codex, Dify, Python, Next.js, MySQL, PostgreSQL, MariaDB.",
           },
         ];
         break;

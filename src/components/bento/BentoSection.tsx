@@ -236,7 +236,7 @@ export function BentoSection() {
 
                   <div className="space-y-2">
                     <div className="p-2.5 rounded-xl bg-indigo-950/30 border border-indigo-500/20 flex items-center justify-between">
-                      <span className="text-zinc-200">1. Antigravity, OpenCode & Claude</span>
+                      <span className="text-zinc-200">1. Antigravity, OpenCode, Claude & Codex</span>
                       <span className="text-[10px] text-cyan-300">Desarrollo y Lógica</span>
                     </div>
                     <div className="p-2.5 rounded-xl bg-purple-950/30 border border-purple-500/20 flex items-center justify-between">
@@ -244,8 +244,8 @@ export function BentoSection() {
                       <span className="text-[10px] text-purple-300">Orquestación</span>
                     </div>
                     <div className="p-2.5 rounded-xl bg-blue-950/30 border border-blue-500/20 flex items-center justify-between">
-                      <span className="text-zinc-200">3. Servidores & APIs Ablu Tech</span>
-                      <span className="text-[10px] text-blue-300">Automatización</span>
+                      <span className="text-zinc-200">3. MySQL, Postgres & Servidores</span>
+                      <span className="text-[10px] text-blue-300">Bases de Datos & APIs</span>
                     </div>
                   </div>
                 </div>
