@@ -71,7 +71,7 @@ export const PROFILE_DATA = {
       title: "Automatización & Agentes con Inteligencia Artificial",
       subtitle: "Desarrollo Asistido por IA & Servidores",
       description: "Construcción de aplicaciones web/móviles y flujos automatizados utilizando agentes inteligentes para optimizar procesos comerciales, gestión de datos y soporte técnico.",
-      tags: ["Google Antigravity", "Claude Code / Codex", "Dify AI Workflows", "Python / Next.js", "Automatización de Procesos"],
+      tags: ["Google Antigravity", "OpenCode", "Claude Code", "Dify AI Workflows", "Python / Next.js"],
       stats: "Flujos de trabajo aumentados por modelos de lenguaje y agentes"
     }
   ],
@@ -87,7 +87,7 @@ export const PROFILE_DATA = {
         "Implemento proyectos de domótica y automatización de espacios residenciales y corporativos.",
         "Integro soluciones avanzadas de videovigilancia CCTV y control de acceso seguro.",
         "Desarrollo aplicaciones y servidores dedicados a la monitorización y gestión de procesos.",
-        "Implemento agentes de IA con Antigravity, Claude Code y Dify para automatizar ventas, gestión y rutinas de domótica."
+        "Implemento agentes de IA con Antigravity, OpenCode, Claude Code y Dify para automatizar ventas, gestión y rutinas de domótica."
       ],
       techStack: ["Domótica", "CCTV", "IoT", "Antigravity", "Dify", "Python", "Next.js"]
     },
@@ -194,7 +194,7 @@ export const PROFILE_DATA = {
       title: "Automatización & Agentes con IA",
       category: "ai",
       description: "Aceleración de procesos y desarrollo de aplicaciones impulsadas por modelos de frontera.",
-      tags: ["Google Antigravity", "Dify Workflows", "Claude Code / Codex", "Python", "Desarrollo Web / Next.js", "APIs & Webhooks"]
+      tags: ["Google Antigravity", "Dify Workflows", "OpenCode", "Claude Code", "Python", "Desarrollo Web / Next.js"]
     },
     {
       title: "Herramientas de Diagnóstico & Consola",

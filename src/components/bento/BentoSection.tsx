@@ -236,7 +236,7 @@ export function BentoSection() {
 
                   <div className="space-y-2">
                     <div className="p-2.5 rounded-xl bg-indigo-950/30 border border-indigo-500/20 flex items-center justify-between">
-                      <span className="text-zinc-200">1. Antigravity & Claude Code</span>
+                      <span className="text-zinc-200">1. Antigravity, OpenCode & Claude</span>
                       <span className="text-[10px] text-cyan-300">Desarrollo y Lógica</span>
                     </div>
                     <div className="p-2.5 rounded-xl bg-purple-950/30 border border-purple-500/20 flex items-center justify-between">
