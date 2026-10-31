@@ -29,7 +29,7 @@ export const PROFILE_DATA = {
   title: "Ingeniero en Electrónica & Automatización",
   headline: "Telecomunicaciones 5G/RF | Domótica & IoT | Agentes & Automatización con IA",
   location: "Santiago, Chile",
-  email: "ing.rondon2015@gmail.com",
+  email: "arondon@ablutech.com",
   phone: "+56 9 6552 9637",
   whatsappUrl: "https://wa.me/56965529637?text=Hola%20Abrahan,%20vi%20tu%20perfil%20en%20rondontech.com%20y%20me%20gustar%C3%ADa%20conversar.",
   linkedin: "https://www.linkedin.com/in/ingeniero-abrahan-rondon/",
@@ -209,7 +209,7 @@ export const PROFILE_DATA = {
     skills: "SKILLS: [Telecom 5G/LTE/RF] [Transmisión MMOO & Fibra] [Energía AC/DC & UPS] [Domótica & CCTV Ablu Tech] [Agentes IA: Antigravity, OpenCode, Claude, Codex] [Bases de Datos: MySQL, PostgreSQL, MariaDB]",
     pillars: "PILARES: 1. Telecomunicaciones Críticas | 2. Domótica & IoT (Ablu Tech) | 3. Desarrollo y Automatización con IA",
     experience: "TRAYECTORIA: Entel (2023-Hoy) | Ablu Tech (2025-Hoy) | WISECOM (2022) | Telrad (2018-2022) | CelPlan (2017-2018)",
-    contact: "CONTACTO: WhatsApp: +56 9 6552 9637 | Email: ing.rondon2015@gmail.com | LinkedIn: https://www.linkedin.com/in/ingeniero-abrahan-rondon/ | Web: https://rondontech.com",
+    contact: "CONTACTO: WhatsApp: +56 9 6552 9637 | Email: arondon@ablutech.com | LinkedIn: https://www.linkedin.com/in/ingeniero-abrahan-rondon/ | Web: https://rondontech.com",
     cv: "DESCARGA: Iniciando descarga del archivo CV_Abrahan_Rondon.pdf ..."
   }
 };

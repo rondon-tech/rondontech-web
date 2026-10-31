@@ -138,14 +138,6 @@ export function ContactFooter() {
             >
               LinkedIn <ArrowUpRight className="w-3.5 h-3.5 text-[#bc7155]" />
             </a>
-            <a
-              href="https://github.com/rondon-tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors flex items-center gap-1"
-            >
-              GitHub <ArrowUpRight className="w-3.5 h-3.5 text-[#bc7155]" />
-            </a>
             <span>Santiago, Chile · 2026</span>
           </div>
         </div>
