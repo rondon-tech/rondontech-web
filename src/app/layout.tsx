@@ -59,10 +59,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/brand/rondontech-logo-full.webp",
+        url: "/media/hero-orbital-poster.jpg",
         width: 1024,
-        height: 764,
-        alt: "RondonTech Brand Official Emblem",
+        height: 571,
+        alt: "RondonTech — Beyond Infrastructure Orbital Presentation",
       },
     ],
   },
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Abrahan Rondon | Ingeniero en Electrónica & Telecomunicaciones",
     description: "Telecomunicaciones 5G/RF, IoT y Automatización con IA.",
-    images: ["/brand/rondontech-logo-full.webp"],
+    images: ["/media/hero-orbital-poster.jpg"],
   },
 };
 
