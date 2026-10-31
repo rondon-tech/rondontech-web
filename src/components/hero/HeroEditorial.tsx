@@ -14,14 +14,19 @@ import {
   Globe,
   Cpu,
   ShieldCheck,
+  Maximize2,
+  X,
 } from "lucide-react";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 
 export function HeroEditorial() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const profileVideoRef = useRef<HTMLVideoElement>(null);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const [isProfileVideoPlaying, setIsProfileVideoPlaying] = useState(true);
+  const [isCinemaModalOpen, setIsCinemaModalOpen] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -31,6 +36,29 @@ export function HeroEditorial() {
     mediaQuery.addEventListener("change", handler);
     return () => mediaQuery.removeEventListener("change", handler);
   }, []);
+
+  // Escape key listener for cinema modal
+  useEffect(() => {
+    if (!isCinemaModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsCinemaModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isCinemaModalOpen]);
+
+  const toggleProfileVideoPlay = () => {
+    if (!profileVideoRef.current) return;
+    if (profileVideoRef.current.paused) {
+      profileVideoRef.current.play().catch(() => {});
+      setIsProfileVideoPlaying(true);
+    } else {
+      profileVideoRef.current.pause();
+      setIsProfileVideoPlaying(false);
+    }
+  };
 
   const toggleAudio = () => {
     if (!videoRef.current) return;
@@ -265,20 +293,58 @@ export function HeroEditorial() {
                 <div className="absolute -top-12 -right-12 w-44 h-44 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-cyan-500/15 transition-colors" />
 
                 <div className="flex flex-col sm:flex-row items-center sm:items-stretch gap-4 sm:gap-5">
-                  {/* High-Impact Portrait Frame (3:4 Ratio, Over 3x area) */}
-                  <div className="relative w-36 sm:w-40 md:w-44 h-52 sm:h-60 md:h-64 shrink-0 rounded-2xl overflow-hidden border border-cyan-400/40 shadow-[0_0_30px_rgba(34,211,238,0.22)] bg-[#000d10] group-hover:border-cyan-400/60 transition-colors">
-                    <Image
-                      src="/avatar/avatar-portrait.webp"
-                      alt="Abrahan Rondon Arteaga - Ingeniero en Electrónica y Telecomunicaciones"
-                      fill
-                      sizes="(max-width: 640px) 160px, 220px"
-                      className="object-cover object-top"
-                      priority
+                  {/* High-Impact Living Video Portrait Frame (3:4 Ratio) */}
+                  <div className="relative w-36 sm:w-44 md:w-48 h-56 sm:h-64 md:h-72 shrink-0 rounded-2xl overflow-hidden border border-cyan-400/40 shadow-[0_0_35px_rgba(34,211,238,0.25)] bg-[#000d10] group-hover:border-cyan-400/60 transition-all duration-300">
+                    {/* Corner Telemetry Reticles */}
+                    <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t-2 border-l-2 border-cyan-400/80 z-10 pointer-events-none" />
+                    <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t-2 border-r-2 border-cyan-400/80 z-10 pointer-events-none" />
+                    <div className="absolute bottom-1.5 left-1.5 w-2.5 h-2.5 border-b-2 border-l-2 border-cyan-400/80 z-10 pointer-events-none" />
+                    <div className="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 border-b-2 border-r-2 border-cyan-400/80 z-10 pointer-events-none" />
+
+                    {/* Living Profile Video */}
+                    <video
+                      ref={profileVideoRef}
+                      src="/media/profile-video-3x4.mp4"
+                      poster="/avatar/avatar-portrait.webp"
+                      autoPlay={!prefersReducedMotion}
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      className="w-full h-full object-cover object-center"
                     />
-                    {/* Live Status Indicator Pill over Photo */}
-                    <div className="absolute bottom-2 inset-x-2 flex items-center justify-center gap-1.5 px-2 py-1 rounded-full bg-[#020510]/85 backdrop-blur-md border border-cyan-400/30 text-[10px] font-mono text-cyan-300 font-semibold shadow-md">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="tracking-wider uppercase">ONLINE · ACTIVO</span>
+
+                    {/* Live Status Indicator Pill (Top Left) */}
+                    <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#020510]/85 backdrop-blur-md border border-cyan-400/30 text-[9px] font-mono text-cyan-300 font-semibold shadow-md pointer-events-none">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="tracking-wider uppercase">LIVE FEED</span>
+                    </div>
+
+                    {/* Interactive Overlay Controls (Bottom Pill) */}
+                    <div className="absolute bottom-2.5 inset-x-2 z-10 flex items-center justify-between gap-1 px-2.5 py-1 rounded-full bg-[#020510]/85 backdrop-blur-md border border-cyan-400/35 text-[10px] font-mono text-cyan-300 shadow-lg">
+                      <button
+                        type="button"
+                        onClick={toggleProfileVideoPlay}
+                        className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-semibold"
+                        title={isProfileVideoPlaying ? "Pausar video" : "Reproducir video"}
+                      >
+                        {isProfileVideoPlaying ? (
+                          <Pause className="w-3 h-3 text-cyan-400" />
+                        ) : (
+                          <Play className="w-3 h-3 text-cyan-400" />
+                        )}
+                        <span>{isProfileVideoPlaying ? "PAUSA" : "PLAY"}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setIsCinemaModalOpen(true)}
+                        className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-semibold text-cyan-300"
+                        title="Ver toma panorámica completa 16:9 con audio"
+                      >
+                        <Maximize2 className="w-3 h-3 text-cyan-400" />
+                        <span>16:9 HD</span>
+                      </button>
                     </div>
                   </div>
 
@@ -388,6 +454,56 @@ export function HeroEditorial() {
           </div>
         </div>
       </div>
+
+      {/* 16:9 Cinema Widescreen Modal */}
+      {isCinemaModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-fade-in"
+          onClick={() => setIsCinemaModalOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-4xl rounded-2xl sm:rounded-3xl border border-cyan-400/40 bg-[#050b18] shadow-[0_24px_80px_rgba(0,0,0,0.95)] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-[#020510]">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-mono text-xs text-cyan-300 font-semibold tracking-wider uppercase">
+                  TRANSMISIÓN CINEMÁTICA // 16:9 WIDESCREEN
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsCinemaModalOpen(false)}
+                className="p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                title="Cerrar ventana (Esc)"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Video Container 16:9 */}
+            <div className="relative aspect-video w-full bg-black">
+              <video
+                src="/media/profile-video-full.mp4"
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-5 py-3 border-t border-white/10 bg-[#020510] flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span>ABRAHAN RONDON ARTEAGA · PERFIL OFICIAL</span>
+              <span className="text-cyan-300">rondontech.com</span>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
