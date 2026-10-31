@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, ArrowRight, ShieldCheck, Radio, Cpu, Sparkles, MessageSquare, Download } from "lucide-react";
+import { Terminal, ArrowRight, MessageSquare, Download } from "lucide-react";
 import { PROFILE_DATA } from "@/data/profileData";
 import confetti from "canvas-confetti";
+import { HeroAvatarHolo } from "./HeroAvatarHolo";
 
 const ROLES = [
   "Telecomunicaciones 5G/RF & Redes Móviles",
@@ -39,114 +40,129 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 px-4 sm:px-8 z-10 overflow-hidden">
-      <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
-        {/* Telemetry Status Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 backdrop-blur-md mb-8 shadow-sm shadow-cyan-500/20"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-wider text-cyan-300 uppercase">
-            {PROFILE_DATA.status} // SANTIAGO, CL
-          </span>
-        </motion.div>
-
-        {/* Main Name Heading with Cyber Gradient */}
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6"
-        >
-          <span className="text-zinc-300">Abrahan</span>{" "}
-          <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent text-glow-cyan">
-            Rondon
-          </span>
-        </motion.h1>
-
-        {/* Dynamic Rotating Specialty */}
-        <div className="h-10 sm:h-12 flex items-center justify-center mb-6">
-          <AnimatePresence mode="wait">
+    <section id="hero" className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 px-4 sm:px-8 z-10 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Personal Brand & Strategic Value */}
+          <div className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
+            {/* Telemetry Status Badge */}
             <motion.div
-              key={currentRoleIndex}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 backdrop-blur-md mb-6 shadow-sm shadow-cyan-500/20"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-wider text-cyan-300 uppercase">
+                {PROFILE_DATA.status} // SANTIAGO, CL
+              </span>
+            </motion.div>
+
+            {/* Main Name Heading with Cyber Gradient */}
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-4"
+            >
+              <span className="text-zinc-300">Abrahan</span>{" "}
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent text-glow-cyan">
+                Rondon
+              </span>
+            </motion.h1>
+
+            {/* Dynamic Rotating Specialty */}
+            <div className="h-10 sm:h-12 flex items-center justify-center lg:justify-start mb-6">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentRoleIndex}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.4 }}
+                  className="font-mono text-base sm:text-xl md:text-2xl text-cyan-400 font-semibold flex items-center gap-2"
+                >
+                  <span className="text-blue-500">&gt;</span>
+                  <span>{ROLES[currentRoleIndex]}</span>
+                  <span className="inline-block w-2 h-5 bg-cyan-400 animate-pulse ml-0.5" />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Value Proposition Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="max-w-xl text-sm sm:text-base text-zinc-400 leading-relaxed mb-8"
+            >
+              Ingeniero en Electrónica mención Control y TSU en Informática. Conectando la{" "}
+              <strong className="text-white font-semibold">infraestructura crítica de telecomunicaciones (5G/RF/Transmisión)</strong> con la{" "}
+              <strong className="text-cyan-300 font-semibold">seguridad electrónica IoT en Ablu Tech</strong> y la vanguardia de la{" "}
+              <strong className="text-blue-400 font-semibold">automatización mediante agentes de IA</strong>.
+            </motion.p>
+
+            {/* Interactive Action Buttons */}
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4 }}
-              className="font-mono text-base sm:text-2xl text-cyan-400 font-semibold flex items-center gap-2"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 mb-8"
             >
-              <span className="text-blue-500">&gt;</span>
-              <span>{ROLES[currentRoleIndex]}</span>
-              <span className="inline-block w-2 h-5 bg-cyan-400 animate-pulse ml-0.5" />
+              <a
+                href="#consola"
+                className="group px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 shadow-lg shadow-cyan-500/25 flex items-center gap-2 hover:scale-105 active:scale-95"
+              >
+                <Terminal className="w-4 h-4" />
+                <span>Abrir Terminal</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+
+              <a
+                href={PROFILE_DATA.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-medium border border-cyan-500/30 bg-[#091122]/70 text-cyan-300 hover:bg-cyan-950/60 hover:border-cyan-400/60 transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-400" />
+                <span>WhatsApp</span>
+              </a>
+
+              <button
+                onClick={triggerDownloadCV}
+                className="px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-medium border border-zinc-700 bg-zinc-900/60 text-zinc-300 hover:border-zinc-500 hover:text-white transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <Download className="w-4 h-4 text-cyan-400" />
+                <span>Descargar CV</span>
+              </button>
             </motion.div>
-          </AnimatePresence>
+          </div>
+
+          {/* Right Column: Holographic 2.5D Interactive Avatar */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-5 flex justify-center items-center"
+          >
+            <HeroAvatarHolo />
+          </motion.div>
         </div>
-
-        {/* Value Proposition Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="max-w-2xl text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed mb-10"
-        >
-          Ingeniero en Electrónica mención Control y TSU en Informática. Conectando la{" "}
-          <strong className="text-white font-semibold">infraestructura crítica de telecomunicaciones (5G/RF/Transmisión)</strong> con la{" "}
-          <strong className="text-cyan-300 font-semibold">seguridad electrónica IoT en Ablu Tech</strong> y la vanguardia de la{" "}
-          <strong className="text-blue-400 font-semibold">automatización mediante agentes de IA</strong>.
-        </motion.p>
-
-        {/* Interactive Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-3.5 mb-16"
-        >
-          <a
-            href="#consola"
-            className="group px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 shadow-lg shadow-cyan-500/25 flex items-center gap-2 hover:scale-105 active:scale-95"
-          >
-            <Terminal className="w-4 h-4" />
-            <span>Abrir Terminal Interactiva</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-
-          <a
-            href={PROFILE_DATA.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-medium border border-cyan-500/30 bg-[#091122]/70 text-cyan-300 hover:bg-cyan-950/60 hover:border-cyan-400/60 transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95"
-          >
-            <MessageSquare className="w-4 h-4 text-emerald-400" />
-            <span>WhatsApp Directo</span>
-          </a>
-
-          <button
-            onClick={triggerDownloadCV}
-            className="px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-medium border border-zinc-700 bg-zinc-900/60 text-zinc-300 hover:border-zinc-500 hover:text-white transition-all duration-300 flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer"
-          >
-            <Download className="w-4 h-4 text-cyan-400" />
-            <span>Descargar CV</span>
-          </button>
-        </motion.div>
 
         {/* Telemetry Metrics Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="w-full grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-4xl"
+          className="w-full grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-12"
         >
           {PROFILE_DATA.telemetryMetrics.map((metric, i) => (
             <div
               key={i}
-              className="glass-panel p-4 rounded-2xl border border-cyan-500/15 bg-[#050a17]/60 text-left relative overflow-hidden group"
+              className="glass-panel p-4 rounded-2xl border border-cyan-500/15 bg-[#050a17]/60 text-left relative overflow-hidden group hover:border-cyan-500/30 transition-all"
             >
               <div className="absolute top-0 right-0 w-16 h-16 bg-cyan-500/5 rounded-full blur-xl group-hover:bg-cyan-500/10 transition-colors" />
               <div className="font-mono text-[10px] sm:text-xs text-zinc-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">

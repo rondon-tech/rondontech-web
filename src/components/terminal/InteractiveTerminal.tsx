@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { Terminal, CornerDownLeft, Sparkles, Copy, Check, RefreshCw } from "lucide-react";
 import confetti from "canvas-confetti";
 import { PROFILE_DATA } from "@/data/profileData";
@@ -305,17 +306,35 @@ export function InteractiveTerminal() {
 
         {/* Terminal Window */}
         <div className="rounded-3xl border border-cyan-500/25 bg-[#030611]/95 backdrop-blur-2xl shadow-2xl shadow-cyan-950/40 overflow-hidden font-mono text-xs sm:text-sm">
-          {/* Terminal Window Header Bar */}
-          <div className="px-4 py-3 bg-[#080e1e] border-b border-cyan-500/20 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
-              <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
-              <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
-              <span className="text-xs text-zinc-400 ml-2 font-mono">rondontech-shell — bash</span>
+          {/* Terminal Window Header Bar with Operator Live Feed */}
+          <div className="px-4 py-2.5 bg-[#080e1e] border-b border-cyan-500/20 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
+              </div>
+              <div className="flex items-center gap-2 pl-2 border-l border-zinc-800">
+                <div className="relative w-6 h-6 rounded-full overflow-hidden border border-cyan-400/80 bg-black flex-shrink-0">
+                  <Image
+                    src="/avatar/avatar-terminal.webp"
+                    alt="Operator Abrahan Rondon"
+                    width={40}
+                    height={40}
+                    className="object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-cyan-500/20 mix-blend-overlay pointer-events-none" />
+                </div>
+                <span className="text-xs text-zinc-300 font-mono font-medium hidden sm:inline">
+                  OPERATOR: ABRAHAN RONDON
+                </span>
+                <span className="text-[10px] text-cyan-400 font-mono sm:hidden">OPERATOR ACTIVE</span>
+              </div>
             </div>
             <div className="flex items-center gap-2 text-[11px] text-cyan-400/80">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>SSH: CONNECTED (PORT 22)</span>
+              <span className="hidden sm:inline">SSH: CONNECTED (PORT 22)</span>
+              <span className="sm:hidden">ONLINE</span>
             </div>
           </div>
 

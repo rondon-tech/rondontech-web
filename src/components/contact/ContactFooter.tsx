@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { MessageSquare, Mail, Download, Copy, Check, Radio, ExternalLink, ArrowUpRight } from "lucide-react";
 import confetti from "canvas-confetti";
 import { PROFILE_DATA } from "@/data/profileData";
@@ -36,6 +37,22 @@ export function ContactFooter() {
         {/* Main CTA Box */}
         <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-cyan-500/30 bg-gradient-to-b from-[#060e22]/90 to-[#02050f]/90 text-center relative overflow-hidden mb-16 shadow-2xl shadow-cyan-950/40">
           <div className="absolute top-0 right-1/2 translate-x-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Contact Avatar Hologram Badge */}
+          <div className="flex justify-center mb-6">
+            <div className="relative">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-cyan-400/80 p-1 bg-gradient-to-b from-cyan-950 via-[#030611] to-blue-950 shadow-[0_0_25px_rgba(0,240,255,0.3)] overflow-hidden flex items-end justify-center">
+                <Image
+                  src="/avatar/avatar-contact.webp"
+                  alt="Abrahan Rondon - Contacto"
+                  width={140}
+                  height={140}
+                  className="w-full h-full object-contain object-bottom filter contrast-105"
+                />
+              </div>
+              <span className="absolute bottom-0 right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#030712] animate-pulse" />
+            </div>
+          </div>
 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-950/40 text-emerald-300 font-mono text-xs tracking-wider uppercase mb-5">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />

@@ -7,6 +7,7 @@ import { InteractiveTerminal } from "@/components/terminal/InteractiveTerminal";
 import { TimelineSection } from "@/components/experience/TimelineSection";
 import { SkillsMatrixSection } from "@/components/skills/SkillsMatrixSection";
 import { ContactFooter } from "@/components/contact/ContactFooter";
+import { AvatarHUDWidget } from "@/components/avatar/AvatarHUDWidget";
 
 export default function Home() {
   return (
@@ -34,6 +35,9 @@ export default function Home() {
 
       {/* Contact CTAs & Footer */}
       <ContactFooter />
+
+      {/* Reactive Multi-Pose Holographic HUD Assistant */}
+      <AvatarHUDWidget />
     </main>
   );
 }
