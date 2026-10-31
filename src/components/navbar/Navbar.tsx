@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import confetti from "canvas-confetti";
-import { Terminal, Download, Radio, Menu, X, ArrowUpRight } from "lucide-react";
+import { Terminal, Download, Menu, X, ArrowUpRight } from "lucide-react";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,9 +29,16 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto">
         <div className="rounded-full px-3.5 py-2 sm:px-6 sm:py-3 flex items-center justify-between border border-[#d5d3d4] bg-white/90 backdrop-blur-xl shadow-lg shadow-black/5 transition-all">
           {/* Logo / Brand */}
-          <a href="#" className="flex items-center gap-2 group shrink-0">
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#000d10] flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-105">
-              <Radio className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+          <a href="#" className="flex items-center gap-2.5 group shrink-0" aria-label="RondonTech Home">
+            <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden bg-[#000d10] border border-[#000d10]/20 shadow-md shadow-cyan-500/10 transition-all duration-300 group-hover:scale-110 group-hover:border-cyan-400 group-hover:shadow-cyan-400/30">
+              <Image
+                src="/brand/rondontech-emblem-circle.webp"
+                alt="RondonTech Emblem"
+                fill
+                sizes="32px"
+                className="object-cover"
+                priority
+              />
             </div>
             <div className="flex items-center gap-1.5">
               <span className="font-mono text-xs sm:text-sm font-bold tracking-tight text-[#000d10]">

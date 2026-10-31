@@ -110,10 +110,21 @@ export function ContactFooter() {
         {/* Bottom Editorial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-8 border-t border-white/10 items-end">
           {/* Brand mark */}
-          <div className="md:col-span-6 space-y-2">
-            <span className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white block break-words">
-              RONDONTECH<span className="text-[#bc7155]">.</span>
-            </span>
+          <div className="md:col-span-6 space-y-3">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border border-cyan-400/50 shadow-lg shadow-cyan-500/30 shrink-0 bg-[#000d10] group">
+                <Image
+                  src="/brand/rondontech-emblem-circle.webp"
+                  alt="RondonTech Official Logo"
+                  fill
+                  sizes="56px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <span className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white block break-words">
+                RONDONTECH<span className="text-[#bc7155]">.</span>
+              </span>
+            </div>
             <p className="font-mono text-xs text-zinc-400 max-w-sm">
               Plataforma profesional y portafolio de ingeniería de Abrahan Rondon.
               Telecomunicaciones 5G, Centros de Datos, Domótica Inmótica y Software Cloud.

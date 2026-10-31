@@ -21,7 +21,12 @@ export function InteractiveTerminal() {
     {
       id: "init-1",
       type: "system",
-      text: "INICIALIZANDO RONDONTECH KERNEL v2.6 ... [OK]",
+      text: "INICIALIZANDO RONDONTECH KERNEL v3.1 ... [OK]",
+    },
+    {
+      id: "init-logo",
+      type: "system",
+      text: "SELLO OFICIAL: RondonTech Cyber-Aerospace R-Logo cargado [VERIFICADO]",
     },
     {
       id: "init-2",
@@ -332,8 +337,16 @@ export function InteractiveTerminal() {
               </div>
             </div>
             <div className="flex items-center gap-2 text-[11px] text-cyan-400/80">
+              <div className="relative w-5 h-5 rounded-full overflow-hidden border border-cyan-400/60 shadow-sm shadow-cyan-400/30 shrink-0 bg-black">
+                <Image
+                  src="/brand/rondontech-emblem-circle.webp"
+                  alt="RondonTech Emblem"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="hidden sm:inline">SSH: CONNECTED (PORT 22)</span>
+              <span className="hidden sm:inline">RONDONTECH KERNEL // PORT 22</span>
               <span className="sm:hidden">ONLINE</span>
             </div>
           </div>

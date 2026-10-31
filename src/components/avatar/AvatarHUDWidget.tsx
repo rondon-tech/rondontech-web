@@ -153,8 +153,10 @@ export function AvatarHUDWidget() {
           >
             <div className="flex items-center justify-between border-b border-zinc-800 pb-2 mb-3">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-xs font-bold text-cyan-300">ACCIONES RÁPIDAS</span>
+                <div className="relative w-4 h-4 rounded-full overflow-hidden border border-cyan-400/60 shadow-sm shadow-cyan-400/30 shrink-0 bg-black">
+                  <Image src="/brand/rondontech-emblem-circle.webp" alt="RondonTech" fill className="object-cover" />
+                </div>
+                <span className="text-xs font-bold text-cyan-300">RONDONTECH ASSISTANT</span>
               </div>
               <button
                 onClick={() => setIsOpen(false)}

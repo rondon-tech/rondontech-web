@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Play, Pause, Activity, Cpu, Wifi, ShieldCheck, ChevronDown } from "lucide-react";
 
@@ -166,10 +167,17 @@ export function ScrollMotionExperience() {
 
         {/* Top HUD: Editorial Status & Timecode */}
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 sm:pb-4">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
-            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/80">
-              CINEMATIC SCROLL // SEED 2026
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border border-cyan-400/50 shadow-md shadow-cyan-400/30 shrink-0 bg-[#000d10]">
+              <Image
+                src="/brand/rondontech-emblem-circle.webp"
+                alt="RondonTech Emblem"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/90 font-semibold">
+              RONDONTECH // CINEMATIC SCROLL
             </span>
           </div>
 

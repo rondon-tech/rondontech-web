@@ -35,9 +35,12 @@ export function HeroEditorial() {
         </div>
         <div className="flex items-center gap-4 font-mono text-[10px] sm:text-xs text-zinc-600">
           <span className="hidden md:inline">DISPONIBILIDAD: PROYECTOS CRÍTICOS & CONSULTORÍA</span>
-          <span className="px-2.5 py-1 rounded-full bg-[#000d10]/5 text-[#000d10] font-bold border border-[#d5d3d4]">
-            RONDONTECH v3.1
-          </span>
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#000d10]/5 text-[#000d10] font-bold border border-[#d5d3d4]">
+            <div className="relative w-4 h-4 rounded-full overflow-hidden shrink-0 border border-cyan-500/40 shadow-sm shadow-cyan-500/20">
+              <Image src="/brand/rondontech-emblem-circle.webp" alt="RondonTech Emblem" fill className="object-cover" />
+            </div>
+            <span>RONDONTECH v3.1</span>
+          </div>
         </div>
       </div>
 
@@ -157,19 +160,40 @@ export function HeroEditorial() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#000d10]/70 via-transparent to-transparent pointer-events-none" />
               
-              {/* Overlay Tag in image */}
+              {/* Overlay Tag in image with Official Brand Seal */}
               <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="font-mono text-[11px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30">
-                  ABRAHAN RONDON ARTEAGA
-                </span>
-                <p className="font-mono text-xs text-white/90 mt-1">
-                  Ingeniero Titulado · Registro Colegiado
-                </p>
+                <div className="flex items-center gap-2.5">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-cyan-400/70 shadow-lg shadow-cyan-500/40 shrink-0 bg-[#000d10]">
+                    <Image
+                      src="/brand/rondontech-emblem-circle.webp"
+                      alt="RondonTech Official Seal"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 inline-block truncate">
+                      ABRAHAN RONDON ARTEAGA
+                    </span>
+                    <p className="font-mono text-[11px] text-white/90 mt-0.5 truncate">
+                      Ingeniero Titulado · Registro Colegiado
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Micro details beneath portrait */}
             <div className="mt-4 pt-4 border-t border-[#d5d3d4] space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-zinc-600">MARCA & SELLO</span>
+                <span className="text-[#000d10] font-semibold flex items-center gap-1.5">
+                  <span className="relative w-3.5 h-3.5 rounded-full overflow-hidden inline-block shrink-0">
+                    <Image src="/brand/rondontech-emblem-circle.webp" alt="RondonTech" fill className="object-cover" />
+                  </span>
+                  RondonTech®
+                </span>
+              </div>
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="text-zinc-600">UBICACIÓN</span>
                 <span className="text-[#000d10] font-semibold flex items-center gap-1">
