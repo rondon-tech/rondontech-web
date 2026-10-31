@@ -44,12 +44,27 @@ export function HeroEditorial() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full min-w-0">
         {/* Left Column: Massive Editorial Typography */}
         <div className="lg:col-span-8 space-y-6 sm:space-y-8 w-full min-w-0">
-          {/* Hero Wordmark with signature Hyer stop */}
-          <div className="space-y-1">
-            <h1 className="text-[#000d10] uppercase tracking-tight leading-[0.92] break-words text-[32px] min-[370px]:text-[40px] sm:text-6xl md:text-7xl lg:text-[110px] xl:text-[150px] 2xl:text-[180px] font-extrabold">
-              RONDONTECH<span className="text-[#bc7155]">.</span>
-            </h1>
-            <div className="h-1.5 w-20 sm:w-24 bg-[#bc7155] rounded-full mt-2" />
+          {/* Hero Wordmark with signature Hyer stop & Kinetic Optical Flare */}
+          <div className="space-y-2">
+            <div className="relative inline-block">
+              <h1 className="text-[#000d10] uppercase tracking-tight leading-[0.92] break-words text-[32px] min-[370px]:text-[40px] sm:text-6xl md:text-7xl lg:text-[110px] xl:text-[150px] 2xl:text-[180px] font-extrabold select-none">
+                RONDONTECH<span className="text-[#bc7155]">.</span>
+              </h1>
+            </div>
+
+            {/* Kinetic Optical Flare Rail */}
+            <div className="flare-track h-2 w-32 sm:w-52 rounded-full relative overflow-visible mt-2">
+              {/* Underlying Architectural Rail Track */}
+              <div className="absolute inset-0 bg-[#bc7155] rounded-full opacity-90 shadow-sm shadow-[#bc7155]/20" />
+              
+              {/* Kinetic Optical Flare Beam Engine */}
+              <span className="flare" aria-hidden="true">
+                <b>
+                  <i></i>
+                  <em></em>
+                </b>
+              </span>
+            </div>
           </div>
 
           {/* Secondary Hero Headline (60-63px) */}

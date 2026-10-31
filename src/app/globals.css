@@ -217,3 +217,95 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #8e8e95;
 }
+
+/* ==========================================================================
+   Kinetic Flare Light Engine (Hyer Flare)
+   ========================================================================== */
+.flare-track {
+  position: relative;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+
+.flare {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flare b {
+  display: block;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  animation: flare-travel 6.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.flare i {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffffff 45%, #bc7155 60%, transparent);
+  filter: blur(0.5px);
+  animation: flare-bloom 6.4s ease-in-out infinite;
+}
+
+.flare em {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 14px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(188, 113, 85, 0.8) 50%, transparent 80%);
+  filter: blur(2.5px);
+  box-shadow: 0 0 10px rgba(188, 113, 85, 0.6);
+  animation: flare-bloom 6.4s ease-in-out infinite;
+}
+
+@keyframes flare-travel {
+  0%   { translate: -50px 0; }
+  50%  { translate:  50px 0; }
+  100% { translate: -50px 0; }
+}
+
+@keyframes flare-bloom {
+  0%, 100% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scaleX(0.4) scaleY(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scaleX(1) scaleY(1);
+  }
+}
+
+@media (min-width: 640px) {
+  @keyframes flare-travel {
+    0%   { translate: -80px 0; }
+    50%  { translate:  80px 0; }
+    100% { translate: -80px 0; }
+  }
+  .flare i {
+    width: 110px;
+  }
+  .flare em {
+    width: 30px;
+    height: 18px;
+    filter: blur(3px);
+  }
+}
