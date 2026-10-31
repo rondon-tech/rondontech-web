@@ -2,8 +2,8 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Play, Pause, Activity, Cpu, Wifi, ShieldCheck, ChevronDown } from "lucide-react";
+import { motion, useScroll } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 interface SceneInfo {
   start: number;
@@ -21,7 +21,7 @@ const SCENES: SceneInfo[] = [
     start: 0,
     end: 0.33,
     number: "01",
-    tag: "CRITICAL INFRASTRUCTURE",
+    tag: "CRITICAL STRUCTURE",
     title: "Data Centers, Redes de Fibra & Respaldo Crítico.",
     desc: "Auditoría, montaje y puesta en marcha de infraestructura de alta disponibilidad. Racks de telecomunicaciones, distribución de energía AC/DC, sistemas UPS y supervisión en salas de conmutación.",
     kpis: [
@@ -49,7 +49,7 @@ const SCENES: SceneInfo[] = [
     start: 0.67,
     end: 1.0,
     number: "03",
-    tag: "SMART SPACES & INMÓTICA",
+    tag: "SMART SPACE E INMÓTICA",
     title: "Ablu Tech: Inmótica, CCTV Inteligente & Control.",
     desc: "Transformación de espacios residenciales y corporativos en entornos autónomos. Telemetría climática, videovigilancia IP con analítica de IA, control biométrico y automatización centralizada bajo estándares abiertos.",
     kpis: [
@@ -64,12 +64,10 @@ const SCENES: SceneInfo[] = [
 export function ScrollMotionExperience() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [activeSceneIndex, setActiveSceneIndex] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Bind scroll progress inside the container (250vh track)
+  // Bind scroll progress inside the container (280vh track)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -77,18 +75,24 @@ export function ScrollMotionExperience() {
 
   const duration = 10.0; // 10 seconds total video duration
 
+  // Pre-warm video decoder on mount so scroll seeking is instant without lag
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0.001;
+    }
+  }, []);
+
   // Update video frame smoothly based on scroll using requestAnimationFrame throttling
   useEffect(() => {
     let animationFrameId: number;
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      if (videoRef.current && !isPlaying && isLoaded) {
+      if (videoRef.current) {
         cancelAnimationFrame(animationFrameId);
         animationFrameId = requestAnimationFrame(() => {
           if (!videoRef.current) return;
           // Map 0.0 - 1.0 to video duration
           const targetTime = Math.min(Math.max(latest * duration, 0), duration);
-          // Only update if difference > 0.04s to avoid mobile GPU micro-stutter
-          if (Math.abs(videoRef.current.currentTime - targetTime) > 0.04) {
+          if (Math.abs(videoRef.current.currentTime - targetTime) > 0.03) {
             videoRef.current.currentTime = targetTime;
             setCurrentTime(targetTime);
           }
@@ -109,30 +113,7 @@ export function ScrollMotionExperience() {
       unsubscribe();
       cancelAnimationFrame(animationFrameId);
     };
-  }, [scrollYProgress, isPlaying, isLoaded]);
-
-  // Video time update listener when playing manually
-  const handleTimeUpdate = () => {
-    if (videoRef.current && isPlaying) {
-      const time = videoRef.current.currentTime;
-      setCurrentTime(time);
-      const ratio = time / duration;
-      if (ratio < 0.33) setActiveSceneIndex(0);
-      else if (ratio < 0.67) setActiveSceneIndex(1);
-      else setActiveSceneIndex(2);
-    }
-  };
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current.play();
-      setIsPlaying(true);
-    }
-  };
+  }, [scrollYProgress, duration]);
 
   const currentScene = SCENES[activeSceneIndex];
 
@@ -140,7 +121,7 @@ export function ScrollMotionExperience() {
     <section
       ref={containerRef}
       id="cinematica"
-      className="relative w-full max-w-full min-w-0 h-[130vh] sm:h-[190vh] bg-[#000d10] text-white"
+      className="relative w-full max-w-full min-w-0 h-[260vh] sm:h-[300vh] bg-[#000d10] text-white"
     >
       {/* Sticky Fullscreen Presentation */}
       <div className="sticky top-0 h-[100dvh] w-full max-w-full min-w-0 overflow-hidden flex flex-col justify-between px-4 pb-3 pt-20 sm:p-8 lg:p-12 z-20">
@@ -152,10 +133,7 @@ export function ScrollMotionExperience() {
             src="/media/showcase-scroll-motion.mp4"
             playsInline
             muted
-            preload="metadata"
-            onLoadedData={() => setIsLoaded(true)}
-            onTimeUpdate={handleTimeUpdate}
-            onEnded={() => setIsPlaying(false)}
+            preload="auto"
             className="w-full h-full object-cover opacity-80"
           />
           {/* Editorial Gradient Overlays */}
@@ -181,28 +159,18 @@ export function ScrollMotionExperience() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-6">
+          <div className="flex items-center gap-3 sm:gap-4">
             {/* Scrubber timecode */}
             <div className="font-mono text-[11px] sm:text-xs tracking-wider text-white/90 bg-white/5 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/10">
               <span className="text-cyan-400">TCR:</span> 00:0{Math.floor(currentTime)}:
               {Math.floor((currentTime % 1) * 100).toString().padStart(2, "0")} / 00:10:00
             </div>
 
-            {/* Manual Play/Pause override */}
-            <button
-              onClick={togglePlay}
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-mono font-semibold bg-white text-[#000d10] hover:bg-zinc-200 transition-colors cursor-pointer"
-            >
-              {isPlaying ? (
-                <>
-                  <Pause className="w-3.5 h-3.5" /> <span className="hidden xs:inline">Pausar</span>
-                </>
-              ) : (
-                <>
-                  <Play className="w-3.5 h-3.5 fill-current" /> <span className="hidden xs:inline">Reproducir</span>
-                </>
-              )}
-            </button>
+            {/* Scroll-Drive Live Telemetry Pill */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:py-1.5 rounded-full bg-cyan-400/10 border border-cyan-400/30 font-mono text-[11px] sm:text-xs text-cyan-300 font-semibold shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span>SCROLL DRIVE</span>
+            </div>
           </div>
         </div>
 
@@ -292,8 +260,16 @@ export function ScrollMotionExperience() {
               <button
                 key={scene.number}
                 onClick={() => {
+                  if (containerRef.current) {
+                    const rect = containerRef.current.getBoundingClientRect();
+                    const targetScrollY =
+                      window.scrollY +
+                      rect.top +
+                      (i * 0.33 + 0.05) * (rect.height - window.innerHeight);
+                    window.scrollTo({ top: targetScrollY, behavior: "smooth" });
+                  }
                   if (videoRef.current) {
-                    const targetT = (i * 3.33) + 0.1;
+                    const targetT = i * 3.33 + 0.1;
                     videoRef.current.currentTime = targetT;
                     setCurrentTime(targetT);
                     setActiveSceneIndex(i);
