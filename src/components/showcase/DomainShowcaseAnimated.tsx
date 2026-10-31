@@ -66,20 +66,20 @@ const DOMAINS: DomainItem[] = [
     id: "smart-building",
     number: "03",
     title: "Smart Buildings & Domótica Inmótica.",
-    subtitle: "Fundador & Director de Operaciones en Ablu Tech SpA",
+    subtitle: "Fundador & Director de Operaciones en Ablu Tech Ltda.",
     tagline: "El bloque exclusivo de automatización y seguridad integrada",
     description:
-      "Creación e integración de soluciones tecnológicas avanzadas para residencias de alto estándar y edificios comerciales. Control de iluminación inteligente, videovigilancia IP con analítica de IA, accesos biométricos y climatización unificada.",
+      "Creación e integración de soluciones tecnológicas avanzadas en ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA (RUT: 78.539.015-6) para residencias de alto estándar y edificios corporativos. Control de iluminación inteligente, videovigilancia IP con analítica de IA, accesos biométricos y climatización unificada.",
     image: "/media/smart-building-iot.webp",
     isFeaturedClay: true, // The iconic Clay Ember #bc7155 card
     metrics: [
-      { label: "Firma Tecnológica", val: "Ablu Tech SpA" },
-      { label: "Proyectos Activos", val: "+80 Residencias" },
+      { label: "Razón Social", val: "Ablu Tech Ltda." },
+      { label: "RUT Sociedad", val: "78.539.015-6" },
       { label: "Ecosistemas", val: "Matter / Zigbee" },
     ],
     tags: ["Ablu Tech", "CCTV AI", "Control Climático", "Audio Multiroom", "Inmótica"],
-    clientOrOrg: "Ablu Tech SpA (ablutech.com)",
-    ctaText: "Visitar Ablu Tech SpA",
+    clientOrOrg: "Ablu Tech Ltda. (ablutech.com)",
+    ctaText: "Visitar Ablu Tech (ablutech.com)",
     ctaHref: "https://ablutech.com",
   },
   {

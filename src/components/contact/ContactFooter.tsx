@@ -128,7 +128,7 @@ export function ContactFooter() {
               rel="noopener noreferrer"
               className="hover:text-white transition-colors flex items-center gap-1"
             >
-              Ablu Tech SpA <ArrowUpRight className="w-3.5 h-3.5 text-[#bc7155]" />
+              Ablu Tech Ltda. <ArrowUpRight className="w-3.5 h-3.5 text-[#bc7155]" />
             </a>
             <a
               href="https://linkedin.com/in/abrahan-rondon"

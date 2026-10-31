@@ -52,7 +52,7 @@ const SCENES: SceneInfo[] = [
     title: "Ablu Tech: Inmótica, CCTV Inteligente & Control.",
     desc: "Transformación de espacios residenciales y corporativos en ecosistemas inteligentes. Telemetría climática, videovigilancia IP analítica y automatización centralizada de accesos y energía.",
     kpis: [
-      { label: "Empresa", value: "Ablu Tech SpA" },
+      { label: "Empresa", value: "Ablu Tech Ltda." },
       { label: "Protocolos", value: "Zigbee / Matter" },
       { label: "Seguridad", value: "CCTV AI Analitycs" },
     ],

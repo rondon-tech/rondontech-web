@@ -77,7 +77,7 @@ export function HeroEditorial() {
           <p className="font-body-editorial text-zinc-700 max-w-2xl text-base sm:text-lg sm:leading-relaxed">
             Soluciones de alta fidelidad que conectan el terreno físico con el cómputo cognitivo.
             Especialista en redes celulares <strong>5G/RF</strong>, salas de datos de alta disponibilidad,
-            domótica e inmótica corporativa en <strong>Ablu Tech SpA</strong>, y automatización con <strong>Agentes de IA Autónomos</strong>.
+            domótica e inmótica corporativa en <strong>Ablu Tech Ltda.</strong>, y automatización con <strong>Agentes de IA Autónomos</strong>.
           </p>
 
           {/* Full Pill CTAs (1000px border radius) */}

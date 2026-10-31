@@ -170,7 +170,7 @@ export function InteractiveTerminal() {
           {
             id: `res-${Date.now()}-3`,
             type: "output",
-            text: "• Ablu Tech (2025 - Presente): Soluciones de domótica, CCTV y automatizaciones con IA.",
+            text: "• Ablu Tech Ltda. (2025 - Presente): ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA (RUT: 78.539.015-6). Soluciones de domótica, CCTV y automatizaciones con IA.",
           },
           {
             id: `res-${Date.now()}-4`,

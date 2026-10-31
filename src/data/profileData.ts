@@ -38,12 +38,12 @@ export const PROFILE_DATA = {
   status: "DISPONIBLE PARA NUEVOS RETOS",
   summary: [
     "Ingeniero en Electrónica mención Control y TSU en Informática con más de 10 años de trayectoria en operaciones de terreno, telecomunicaciones móviles (5G/LTE/RF), enlaces de microondas y fibra óptica para los principales operadores de Chile y Latinoamérica.",
-    "Fundador de Ablu Tech, donde desarrollo en paralelo soluciones de domótica, videovigilancia inteligente (CCTV), control de acceso y automatizaciones asistidas por Inteligencia Artificial (Antigravity, Claude Code, Dify y agentes autónomos) para empresas y clientes residenciales."
+    "Fundador de Ablu Tech Ltda. (ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA · RUT: 78.539.015-6), donde desarrollo en paralelo soluciones de domótica, videovigilancia inteligente (CCTV), control de acceso y automatizaciones asistidas por Inteligencia Artificial (Antigravity, Claude Code, Dify y agentes autónomos) para empresas y clientes residenciales."
   ],
   telemetryMetrics: [
     { label: "Experiencia en Telecom & TI", value: "+10 Años" },
     { label: "Redes Móviles Operadas", value: "5G / LTE / UMTS / GSM" },
-    { label: "Proyectos IoT & Domótica", value: "Ablu Tech" },
+    { label: "Proyectos IoT & Domótica", value: "Ablu Tech Ltda." },
     { label: "Automatización & IA", value: "Antigravity & Dify" }
   ],
   pillars: [
@@ -79,10 +79,10 @@ export const PROFILE_DATA = {
     {
       id: "ablutech",
       role: "Desarrollo e Implementación de Soluciones Tecnológicas",
-      organization: "Ablu Tech",
+      organization: "Ablu Tech Ltda.",
       dates: "Enero 2025 - Actualidad",
       location: "Santiago, Chile",
-      context: "Actividad independiente orientada a proyectos de domótica, seguridad electrónica, aplicaciones y automatización empresarial con IA.",
+      context: "Actividad independiente orientada a proyectos de domótica, seguridad electrónica, aplicaciones y automatización empresarial con IA en ABLU TECH SERVICIOS DE AUTOMATIZACIÓN Y SEGURIDAD LIMITADA (RUT: 78.539.015-6).",
       bullets: [
         "Implemento proyectos de domótica y automatización de espacios residenciales y corporativos.",
         "Integro soluciones avanzadas de videovigilancia CCTV y control de acceso seguro.",
@@ -208,7 +208,7 @@ export const PROFILE_DATA = {
     status: "STATUS: ONLINE ● Operacional | Ubicación: Santiago, Chile | Buscando: Nuevos Retos Profesionales en Telecomunicaciones, IoT y Automatización.",
     skills: "SKILLS: [Telecom 5G/LTE/RF] [Transmisión MMOO & Fibra] [Energía AC/DC & UPS] [Domótica & CCTV Ablu Tech] [Agentes IA: Antigravity, OpenCode, Claude, Codex] [Bases de Datos: MySQL, PostgreSQL, MariaDB]",
     pillars: "PILARES: 1. Telecomunicaciones Críticas | 2. Domótica & IoT (Ablu Tech) | 3. Desarrollo y Automatización con IA",
-    experience: "TRAYECTORIA: Entel (2023-Hoy) | Ablu Tech (2025-Hoy) | WISECOM (2022) | Telrad (2018-2022) | CelPlan (2017-2018)",
+    experience: "TRAYECTORIA: Entel (2023-Hoy) | Ablu Tech Ltda. (2025-Hoy, RUT: 78.539.015-6) | WISECOM (2022) | Telrad (2018-2022) | CelPlan (2017-2018)",
     contact: "CONTACTO: WhatsApp: +56 9 6552 9637 | Email: arondon@ablutech.com | LinkedIn: https://www.linkedin.com/in/ingeniero-abrahan-rondon/ | Web: https://rondontech.com",
     cv: "DESCARGA: Iniciando descarga del archivo CV_Abrahan_Rondon.pdf ..."
   }
