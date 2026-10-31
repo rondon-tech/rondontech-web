@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Radio, Shield, Cpu, Activity, ExternalLink, Zap, Network, Server, ArrowUpRight } from "lucide-react";
 import { PROFILE_DATA } from "@/data/profileData";
@@ -66,6 +67,37 @@ export function BentoSection() {
               <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-6">
                 {telecom.description}
               </p>
+
+              {/* Real Telecom Field Imagery Showcase */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="relative rounded-2xl overflow-hidden border border-cyan-500/30 group/img h-32 sm:h-36 bg-[#030611]">
+                  <Image
+                    src="/images/telecom-rooftop-site.webp"
+                    alt="Estación Base y Antenas en Azoteas de Santiago"
+                    fill
+                    className="object-cover group-hover/img:scale-105 transition-transform duration-500 filter brightness-95 contrast-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2.5">
+                    <span className="font-mono text-[10px] text-cyan-300 font-bold tracking-tight">
+                      ● SITIO AZOTEA SANTIAGO
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative rounded-2xl overflow-hidden border border-cyan-500/30 group/img h-32 sm:h-36 bg-[#030611]">
+                  <Image
+                    src="/images/ericsson-antennas-rooftop.webp"
+                    alt="Equipamiento Ericsson 3G/4G/5G"
+                    fill
+                    className="object-cover group-hover/img:scale-105 transition-transform duration-500 filter brightness-95 contrast-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2.5">
+                    <span className="font-mono text-[10px] text-emerald-400 font-bold tracking-tight">
+                      ● ERICSSON 5G/4G RAN
+                    </span>
+                  </div>
+                </div>
+              </div>
 
               {/* Signal & Carrier Status Visualizer */}
               <div className="p-4 rounded-2xl bg-[#030611]/80 border border-cyan-500/20 mb-6 font-mono text-xs">
@@ -138,9 +170,25 @@ export function BentoSection() {
               <p className="font-mono text-xs text-blue-400/80 mb-4 font-medium">
                 {iot.subtitle}
               </p>
-              <p className="text-sm text-zinc-300 leading-relaxed mb-6">
+              <p className="text-sm text-zinc-300 leading-relaxed mb-5">
                 {iot.description}
               </p>
+
+              {/* Real Project Visual: Ablu Tech Luxury Living Room */}
+              <div className="relative rounded-2xl overflow-hidden border border-blue-500/30 group/img h-44 sm:h-48 mb-5 bg-[#030611]">
+                <Image
+                  src="/images/ablutech_domotica.webp"
+                  alt="Ablu Tech - Domótica y Espacios Inteligentes"
+                  fill
+                  className="object-cover group-hover/img:scale-105 transition-transform duration-500 filter brightness-95"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent flex flex-col justify-end p-3">
+                  <span className="font-mono text-[10px] text-blue-300 font-bold flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                    PROYECTOS RESIDENCIALES & CORPORATIVOS
+                  </span>
+                </div>
+              </div>
 
               {/* IoT Live Monitoring Card */}
               <div className="p-4 rounded-2xl bg-[#030611]/80 border border-blue-500/20 mb-6 font-mono text-xs space-y-2">
@@ -223,28 +271,42 @@ export function BentoSection() {
                 </div>
               </div>
 
-              {/* AI Agent Flow Node Visualizer */}
-              <div className="md:col-span-5">
-                <div className="p-5 rounded-2xl bg-[#030611]/90 border border-indigo-500/25 font-mono text-xs space-y-3">
+              {/* AI Agent Flow Node Visualizer with High-Tech Graphic */}
+              <div className="md:col-span-5 space-y-4">
+                <div className="relative rounded-2xl overflow-hidden border border-indigo-500/30 group/img h-40 sm:h-44 bg-[#030611]">
+                  <Image
+                    src="/images/ablutech_soporte.webp"
+                    alt="Ablu Tech Neural Processor & Agentic IA"
+                    fill
+                    className="object-cover group-hover/img:scale-105 transition-transform duration-500 filter brightness-95"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#060c1d] via-transparent to-transparent flex items-end p-3">
+                    <span className="font-mono text-[10px] text-cyan-300 font-bold">
+                      ● NEURAL ENGINE & MULTI-AGENT PLATFORM
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-[#030611]/90 border border-indigo-500/25 font-mono text-xs space-y-2">
                   <div className="text-zinc-400 text-[11px] flex items-center justify-between pb-2 border-b border-zinc-800">
                     <span className="flex items-center gap-1.5 text-indigo-300 font-bold">
                       <Network className="w-3.5 h-3.5 text-indigo-400" />
-                      FLUJO DE AGENTES IA
+                      ORQUESTACIÓN DE MODELOS
                     </span>
                     <span className="text-emerald-400">ACTIVE</span>
                   </div>
 
-                  <div className="space-y-2">
-                    <div className="p-2.5 rounded-xl bg-indigo-950/30 border border-indigo-500/20 flex items-center justify-between">
+                  <div className="space-y-1.5">
+                    <div className="p-2 rounded-xl bg-indigo-950/30 border border-indigo-500/20 flex items-center justify-between text-[11px]">
                       <span className="text-zinc-200">1. Antigravity, OpenCode, Claude & Codex</span>
                       <span className="text-[10px] text-cyan-300">Desarrollo y Lógica</span>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-purple-950/30 border border-purple-500/20 flex items-center justify-between">
+                    <div className="p-2 rounded-xl bg-purple-950/30 border border-purple-500/20 flex items-center justify-between text-[11px]">
                       <span className="text-zinc-200">2. Dify Workflows & LLMs</span>
                       <span className="text-[10px] text-purple-300">Orquestación</span>
                     </div>
-                    <div className="p-2.5 rounded-xl bg-blue-950/30 border border-blue-500/20 flex items-center justify-between">
-                      <span className="text-zinc-200">3. MySQL, Postgres & Servidores</span>
+                    <div className="p-2 rounded-xl bg-blue-950/30 border border-blue-500/20 flex items-center justify-between text-[11px]">
+                      <span className="text-zinc-200">3. MySQL, Postgres & MariaDB</span>
                       <span className="text-[10px] text-blue-300">Bases de Datos & APIs</span>
                     </div>
                   </div>

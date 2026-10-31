@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Briefcase, Calendar, MapPin, ChevronDown, ChevronUp, Radio, Cpu, CheckCircle2 } from "lucide-react";
 import { PROFILE_DATA } from "@/data/profileData";
@@ -13,7 +14,7 @@ export function TimelineSection() {
   };
 
   return (
-    <section id="experiencia" className="py-20 px-4 sm:px-8 relative z-10">
+    <section id="trayectoria" className="py-20 px-4 sm:px-8 relative z-10">
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
@@ -99,7 +100,7 @@ export function TimelineSection() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="pt-4 border-t border-cyan-500/15 space-y-2.5"
+                      className="pt-4 border-t border-cyan-500/15 space-y-4"
                     >
                       <div className="font-mono text-xs text-cyan-400 uppercase tracking-wider mb-2">
                         // Actividades & Responsabilidades Clave:
@@ -111,8 +112,114 @@ export function TimelineSection() {
                         </div>
                       ))}
 
+                      {/* Real Field Photos for Entel */}
+                      {item.id === "entel" && (
+                        <div className="pt-3 border-t border-cyan-500/10">
+                          <div className="font-mono text-[11px] text-cyan-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                            Evidencia en Terreno (Red Entel Santiago):
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <div className="relative h-28 rounded-xl overflow-hidden border border-cyan-500/25 bg-[#030611] group/img">
+                              <Image
+                                src="/images/telecom-rooftop-site.webp"
+                                alt="Azotea Estación Base Entel Santiago"
+                                fill
+                                className="object-cover group-hover/img:scale-105 transition-transform duration-300 filter contrast-105"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2">
+                                <span className="font-mono text-[9px] text-cyan-300 font-bold">
+                                  ● SITIO AZOTEA STGO
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="relative h-28 rounded-xl overflow-hidden border border-cyan-500/25 bg-[#030611] group/img">
+                              <Image
+                                src="/images/ericsson-antennas-rooftop.webp"
+                                alt="Antenas y Radios Ericsson 5G/4G"
+                                fill
+                                className="object-cover group-hover/img:scale-105 transition-transform duration-300 filter contrast-105"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2">
+                                <span className="font-mono text-[9px] text-emerald-300 font-bold">
+                                  ● ERICSSON 5G RAN
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="relative h-28 rounded-xl overflow-hidden border border-cyan-500/25 bg-[#030611] group/img">
+                              <Image
+                                src="/images/telecom-energy-generator.webp"
+                                alt="Respaldo de Energía y Generadores"
+                                fill
+                                className="object-cover group-hover/img:scale-105 transition-transform duration-300 filter contrast-105"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2">
+                                <span className="font-mono text-[9px] text-yellow-300 font-bold">
+                                  ● ENERGÍA & GENERADORES
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Real Project Photos for Ablu Tech */}
+                      {item.id === "ablutech" && (
+                        <div className="pt-3 border-t border-cyan-500/10">
+                          <div className="font-mono text-[11px] text-blue-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                            Proyectos Destacados Ablu Tech:
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <div className="relative h-28 rounded-xl overflow-hidden border border-blue-500/25 bg-[#030611] group/img">
+                              <Image
+                                src="/images/ablutech_domotica.webp"
+                                alt="Domótica Residencial Inteligente"
+                                fill
+                                className="object-cover group-hover/img:scale-105 transition-transform duration-300"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2">
+                                <span className="font-mono text-[9px] text-blue-300 font-bold">
+                                  ● DOMÓTICA RESIDENCIAL
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="relative h-28 rounded-xl overflow-hidden border border-blue-500/25 bg-[#030611] group/img">
+                              <Image
+                                src="/images/ablutech_cctv.webp"
+                                alt="CCTV y Control de Acceso"
+                                fill
+                                className="object-cover group-hover/img:scale-105 transition-transform duration-300"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2">
+                                <span className="font-mono text-[9px] text-cyan-300 font-bold">
+                                  ● CCTV & ACCESO IP
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="relative h-28 rounded-xl overflow-hidden border border-blue-500/25 bg-[#030611] group/img">
+                              <Image
+                                src="/images/ablutech_iot.webp"
+                                alt="Infraestructura IoT y Servidores"
+                                fill
+                                className="object-cover group-hover/img:scale-105 transition-transform duration-300"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-2">
+                                <span className="font-mono text-[9px] text-emerald-300 font-bold">
+                                  ● SERVIDORES & IOT
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       {item.techStack && (
-                        <div className="pt-4 flex flex-wrap gap-2">
+                        <div className="pt-2 flex flex-wrap gap-2">
                           {item.techStack.map((tech, tIdx) => (
                             <span
                               key={tIdx}
