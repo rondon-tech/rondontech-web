@@ -11,6 +11,9 @@ import {
   VolumeX,
   Play,
   Pause,
+  Globe,
+  Cpu,
+  ShieldCheck,
 } from "lucide-react";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 
@@ -199,9 +202,9 @@ export function HeroEditorial() {
           {/* Luminous Top Horizon Hairline */}
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full min-w-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full min-w-0">
             {/* Left Column: Kinetic Flare + Value Proposition + Pill CTAs */}
-            <div className="lg:col-span-8 space-y-5 sm:space-y-6 w-full min-w-0">
+            <div className="lg:col-span-7 space-y-5 sm:space-y-6 w-full min-w-0">
               <div className="flex flex-wrap items-center gap-3">
                 {/* Signature Kinetic Optical Flare Rail */}
                 <div className="flare-track h-1.5 w-24 sm:w-36 rounded-full relative overflow-visible">
@@ -255,55 +258,86 @@ export function HeroEditorial() {
             </div>
 
             {/* Right Column: Aerospace Executive Identity Credential */}
-            <div className="lg:col-span-4 w-full min-w-0">
-              <div className="rounded-2xl border border-white/12 bg-white/[0.04] hover:bg-white/[0.06] transition-colors p-4 sm:p-5 space-y-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="relative w-16 h-20 sm:w-20 sm:h-24 rounded-xl overflow-hidden border border-cyan-400/40 shadow-lg shadow-cyan-500/20 shrink-0 bg-[#000d10]">
+            <div className="lg:col-span-5 w-full min-w-0">
+              <div className="relative rounded-2xl sm:rounded-3xl border border-white/15 bg-gradient-to-b from-[#081226]/90 via-[#050b18]/95 to-[#020510]/98 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] p-4 sm:p-5 sm:py-6 overflow-hidden group hover:border-cyan-400/40 transition-all duration-500">
+                {/* Luminous hairline and ambient radial flare */}
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent pointer-events-none" />
+                <div className="absolute -top-12 -right-12 w-44 h-44 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-cyan-500/15 transition-colors" />
+
+                <div className="flex flex-col sm:flex-row items-center sm:items-stretch gap-4 sm:gap-5">
+                  {/* High-Impact Portrait Frame (3:4 Ratio, Over 3x area) */}
+                  <div className="relative w-36 sm:w-40 md:w-44 h-52 sm:h-60 md:h-64 shrink-0 rounded-2xl overflow-hidden border border-cyan-400/40 shadow-[0_0_30px_rgba(34,211,238,0.22)] bg-[#000d10] group-hover:border-cyan-400/60 transition-colors">
                     <Image
                       src="/avatar/avatar-portrait.webp"
                       alt="Abrahan Rondon Arteaga - Ingeniero en Electrónica y Telecomunicaciones"
                       fill
-                      sizes="80px"
+                      sizes="(max-width: 640px) 160px, 220px"
                       className="object-cover object-top"
+                      priority
                     />
-                  </div>
-
-                  <div className="min-w-0 space-y-1">
-                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-cyan-400/10 border border-cyan-400/30 font-mono text-[10px] text-cyan-300 font-semibold">
-                      <span className="relative w-3.5 h-3.5 rounded-full overflow-hidden inline-block shrink-0">
-                        <Image
-                          src="/brand/rondontech-emblem-circle.webp"
-                          alt="RondonTech Seal"
-                          fill
-                          sizes="14px"
-                          className="object-cover"
-                        />
-                      </span>
-                      <span>RondonTech® Official</span>
+                    {/* Live Status Indicator Pill over Photo */}
+                    <div className="absolute bottom-2 inset-x-2 flex items-center justify-center gap-1.5 px-2 py-1 rounded-full bg-[#020510]/85 backdrop-blur-md border border-cyan-400/30 text-[10px] font-mono text-cyan-300 font-semibold shadow-md">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="tracking-wider uppercase">ONLINE · ACTIVO</span>
                     </div>
-                    <h2 className="font-mono text-xs sm:text-sm font-bold text-white tracking-tight truncate">
-                      ABRAHAN RONDON ARTEAGA
-                    </h2>
-                    <p className="font-mono text-[11px] text-zinc-300 leading-snug">
-                      Ingeniero Titulado · Registro Colegiado
-                    </p>
                   </div>
-                </div>
 
-                <div className="pt-3 border-t border-white/10 space-y-1.5 text-[11px] sm:text-xs font-mono">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-zinc-400">UBICACIÓN</span>
-                    <span className="text-white font-semibold flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-[#bc7155]" /> Santiago de Chile
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-zinc-400">DOMINIO WEB</span>
-                    <span className="text-cyan-300 font-semibold">rondontech.com</span>
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-zinc-400">ENFOQUE</span>
-                    <span className="text-[#e89578] font-semibold">5G, Infraestructura & AI</span>
+                  {/* Identity Credentials Column */}
+                  <div className="flex-1 min-w-0 flex flex-col justify-between py-1 text-center sm:text-left">
+                    <div>
+                      {/* Official Seal Badge */}
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/30 font-mono text-[10px] sm:text-[11px] text-cyan-300 font-semibold mb-2">
+                        <span className="relative w-3.5 h-3.5 rounded-full overflow-hidden inline-block shrink-0">
+                          <Image
+                            src="/brand/rondontech-emblem-circle.webp"
+                            alt="RondonTech Seal"
+                            fill
+                            sizes="14px"
+                            className="object-cover"
+                          />
+                        </span>
+                        <span>RondonTech® Official</span>
+                      </div>
+
+                      {/* Full Name */}
+                      <h2 className="font-mono text-base sm:text-lg font-bold text-white tracking-tight leading-snug">
+                        ABRAHAN RONDON ARTEAGA
+                      </h2>
+
+                      {/* Profession and Degree */}
+                      <p className="font-mono text-xs text-zinc-300 leading-snug mt-1">
+                        Ingeniero en Electrónica mención Control
+                      </p>
+                      <div className="inline-flex items-center gap-1 font-mono text-[11px] text-zinc-400 mt-1">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span>Registro Colegiado & Titulado</span>
+                      </div>
+                    </div>
+
+                    {/* Cyber-Telemetry Data Block */}
+                    <div className="pt-3 mt-3 border-t border-white/10 space-y-2 text-[11px] sm:text-xs font-mono">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-zinc-400">UBICACIÓN</span>
+                        <span className="text-white font-semibold flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5 text-[#bc7155]" /> Santiago de Chile
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-zinc-400">DOMINIO WEB</span>
+                        <a
+                          href="https://rondontech.com"
+                          className="text-cyan-300 hover:text-cyan-200 font-semibold flex items-center gap-1 transition-colors"
+                        >
+                          <Globe className="w-3.5 h-3.5 text-cyan-400" /> rondontech.com
+                        </a>
+                      </div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-zinc-400">ENFOQUE</span>
+                        <span className="text-[#e89578] font-semibold flex items-center gap-1">
+                          <Cpu className="w-3.5 h-3.5 text-[#e89578]" /> 5G, Infraestructura & AI
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
