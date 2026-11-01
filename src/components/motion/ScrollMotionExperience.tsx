@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 interface SceneInfo {
@@ -176,73 +176,75 @@ export function ScrollMotionExperience() {
 
         {/* Center / Left: Dynamic Editorial Scene Card */}
         <div className="relative z-10 max-w-2xl my-auto py-4 sm:py-8">
-          <motion.div
-            key={currentScene.number}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="space-y-4 sm:space-y-6"
-          >
-            {/* Scene tag & index */}
-            <div className="flex items-center gap-2.5 sm:gap-3">
-              <span className="font-mono text-xl sm:text-2xl font-bold text-white/40">
-                {currentScene.number}
-              </span>
-              <div className="h-px w-6 sm:w-8 bg-white/20" />
-              <span
-                className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border font-semibold"
-                style={{
-                  borderColor: `${currentScene.accentColor}60`,
-                  color: currentScene.accentColor,
-                  backgroundColor: `${currentScene.accentColor}15`,
-                }}
-              >
-                {currentScene.tag}
-              </span>
-            </div>
-
-            {/* Headline in Hyer Aviation style */}
-            <h3 className="font-display-63 text-white tracking-tight">
-              {currentScene.title}
-            </h3>
-
-            {/* Body with crisp contrast */}
-            <p className="font-body-editorial text-zinc-200 max-w-xl text-sm sm:text-base leading-relaxed">
-              {currentScene.desc}
-            </p>
-
-            {/* Technical KPIs */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10 max-w-lg">
-              {currentScene.kpis.map((kpi, idx) => (
-                <div key={idx} className="space-y-0.5 sm:space-y-1">
-                  <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-white/60">
-                    {kpi.label}
-                  </div>
-                  <div className="font-mono text-xs sm:text-base font-bold text-white">
-                    {kpi.value}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Direct jump to Especialidades when reaching Scene 03 */}
-            {activeSceneIndex === 2 && (
-              <motion.div
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="pt-2"
-              >
-                <a
-                  href="#especialidades"
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-mono font-semibold bg-cyan-400 text-[#000d10] hover:bg-cyan-300 transition-all shadow-md shadow-cyan-400/20 cursor-pointer"
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentScene.number}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="space-y-4 sm:space-y-6"
+            >
+              {/* Scene tag & index */}
+              <div className="flex items-center gap-2.5 sm:gap-3">
+                <span className="font-mono text-xl sm:text-2xl font-bold text-white/40">
+                  {currentScene.number}
+                </span>
+                <div className="h-px w-6 sm:w-8 bg-white/20" />
+                <span
+                  className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border font-semibold"
+                  style={{
+                    borderColor: `${currentScene.accentColor}60`,
+                    color: currentScene.accentColor,
+                    backgroundColor: `${currentScene.accentColor}15`,
+                  }}
                 >
-                  <span>Continuar a Especialidades</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </a>
-              </motion.div>
-            )}
-          </motion.div>
+                  {currentScene.tag}
+                </span>
+              </div>
+
+              {/* Headline in Hyer Aviation style */}
+              <h3 className="font-display-63 text-white tracking-tight">
+                {currentScene.title}
+              </h3>
+
+              {/* Body with crisp contrast */}
+              <p className="font-body-editorial text-zinc-200 max-w-xl text-sm sm:text-base leading-relaxed">
+                {currentScene.desc}
+              </p>
+
+              {/* Technical KPIs */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10 max-w-lg">
+                {currentScene.kpis.map((kpi, idx) => (
+                  <div key={idx} className="space-y-0.5 sm:space-y-1">
+                    <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-white/60">
+                      {kpi.label}
+                    </div>
+                    <div className="font-mono text-xs sm:text-base font-bold text-white">
+                      {kpi.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Direct jump to Especialidades when reaching Scene 03 */}
+              {activeSceneIndex === 2 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="pt-2"
+                >
+                  <a
+                    href="#especialidades"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-mono font-semibold bg-cyan-400 text-[#000d10] hover:bg-cyan-300 transition-all shadow-md shadow-cyan-400/20 cursor-pointer"
+                  >
+                    <span>Continuar a Especialidades</span>
+                    <ChevronDown className="w-3.5 h-3.5" />
+                  </a>
+                </motion.div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Bottom Bar: Timeline Progress & Scene Switcher */}

@@ -1,9 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Radio, Server, Home, Bot, ExternalLink, ShieldCheck, Zap, ArrowRight, Layers } from "lucide-react";
+import {
+  ShieldCheck,
+  ArrowRight,
+  Play,
+  Pause,
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle2,
+  Cpu,
+  Radio,
+  Server,
+  Layers,
+} from "lucide-react";
 
 interface DomainItem {
   id: string;
@@ -25,6 +37,7 @@ interface DomainItem {
     registry: string;
     status: string;
   };
+  highlightFeatures?: string[];
 }
 
 const DOMAINS: DomainItem[] = [
@@ -47,6 +60,11 @@ const DOMAINS: DomainItem[] = [
     clientOrOrg: "Entel / Insytel / Telefónica",
     ctaText: "Ver Trayectoria Telecom",
     ctaHref: "#experiencia",
+    highlightFeatures: [
+      "Auditorías en torres arriostradas y autosoportadas",
+      "Certificación de barrido de líneas (VSWR / Return Loss)",
+      "Puesta en marcha de radiobases 5G en banda n78 / n28",
+    ],
   },
   {
     id: "datacenter",
@@ -67,6 +85,11 @@ const DOMAINS: DomainItem[] = [
     clientOrOrg: "Infraestructura Nacional",
     ctaText: "Explorar Infraestructura",
     ctaHref: "#experiencia",
+    highlightFeatures: [
+      "Distribución de tableros de transferencia automática (TTA)",
+      "Mediciones reflectométricas OTDR e inserción óptica",
+      "Monitoreo ambiental y supresión de incendios FM200",
+    ],
   },
   {
     id: "smart-building",
@@ -93,6 +116,11 @@ const DOMAINS: DomainItem[] = [
       registry: "Registro de Empresas y Sociedades · Ministerio de Economía de Chile",
       status: "Empresa Constituida & Certificada",
     },
+    highlightFeatures: [
+      "Integración de automatización cableada e inalámbrica Zigbee/Matter",
+      "Analítica perimetral con detección de intrusos por IA en CCTV",
+      "Control de accesos corporativos y cerraduras inteligentes RFID/Biometría",
+    ],
   },
   {
     id: "ai-software",
@@ -113,17 +141,50 @@ const DOMAINS: DomainItem[] = [
     clientOrOrg: "RondonTech Soluciones",
     ctaText: "Probar Consola Interactiva",
     ctaHref: "#consola",
+    highlightFeatures: [
+      "Orquestación de pipelines autónomos con agentes de DeepMind",
+      "APIs asíncronas de telemetría y webhooks de alta concurrencia",
+      "Despliegues Edge Serverless con latencias menores a 25ms",
+    ],
   },
 ];
 
 export function DomainShowcaseAnimated() {
-  const [activeId, setActiveId] = useState<string>("smart-building");
-  const activeDomain = DOMAINS.find((d) => d.id === activeId) || DOMAINS[0];
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
+  const activeDomain = DOMAINS[currentIndex];
+
+  // 3-second autoplay cycle
+  useEffect(() => {
+    if (!isPlaying || isHovered) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % DOMAINS.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [isPlaying, isHovered, currentIndex]);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % DOMAINS.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + DOMAINS.length) % DOMAINS.length);
+  };
+
+  const togglePlay = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
   return (
-    <section id="especialidades" className="py-16 sm:py-24 px-4 sm:px-8 w-full max-w-7xl mx-auto min-w-0 overflow-hidden">
+    <section
+      id="especialidades"
+      className="py-16 sm:py-24 px-4 sm:px-8 w-full max-w-7xl mx-auto min-w-0 overflow-hidden"
+    >
       {/* Editorial Header */}
-      <div className="space-y-4 mb-12 sm:mb-16 w-full min-w-0">
+      <div className="space-y-4 mb-8 sm:mb-12 w-full min-w-0">
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#bc7155] shrink-0" />
           <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
@@ -141,32 +202,91 @@ export function DomainShowcaseAnimated() {
         </div>
       </div>
 
-      {/* Pill Selector (1000px border radius, mobile horizontal scroll) */}
-      <div className="w-full max-w-full min-w-0 flex flex-nowrap sm:flex-wrap items-center gap-2 sm:gap-3 mb-8 pb-3 border-b border-[#d5d3d4] overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        {DOMAINS.map((domain) => {
-          const isActive = domain.id === activeId;
-          return (
-            <button
-              key={domain.id}
-              onClick={() => setActiveId(domain.id)}
-              className={`relative px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
-                isActive
-                  ? domain.isFeaturedClay
-                    ? "bg-[#bc7155] text-white shadow-md shadow-[#bc7155]/30"
-                    : "bg-[#000d10] text-white"
-                  : "bg-white text-[#000d10] border border-[#d5d3d4] hover:border-[#000d10]"
-              }`}
-            >
-              <span className="font-mono text-[11px] sm:text-xs opacity-75">{domain.number}</span>
-              <span>{domain.title.split(".")[0]}</span>
-              {domain.isFeaturedClay && (
-                <span className="text-[9px] sm:text-[10px] uppercase font-mono px-1.5 py-0.5 rounded-full bg-white/25 ml-0.5">
-                  Destacado
+      {/* Pill Selector & Playback HUD Bar */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6 pb-3 border-b border-[#d5d3d4]">
+        {/* Category Pill Selector */}
+        <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          {DOMAINS.map((domain, idx) => {
+            const isActive = idx === currentIndex;
+            return (
+              <button
+                key={domain.id}
+                onClick={() => setCurrentIndex(idx)}
+                className={`relative px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
+                  isActive
+                    ? domain.isFeaturedClay
+                      ? "bg-[#bc7155] text-white shadow-md shadow-[#bc7155]/30 font-bold"
+                      : "bg-[#000d10] text-white font-bold"
+                    : "bg-white text-[#000d10] border border-[#d5d3d4] hover:border-[#000d10]"
+                }`}
+              >
+                <span className="font-mono text-[11px] sm:text-xs opacity-75">{domain.number}</span>
+                <span>{domain.title.split(".")[0]}</span>
+                {domain.isFeaturedClay && (
+                  <span className="text-[9px] sm:text-[10px] uppercase font-mono px-1.5 py-0.5 rounded-full bg-white/25 ml-0.5">
+                    Destacado
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Playback Controls Toolbar */}
+        <div className="flex items-center gap-2 shrink-0 self-end md:self-auto bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#d5d3d4] shadow-sm">
+          {/* Previous Arrow */}
+          <button
+            onClick={handlePrev}
+            aria-label="Especialidad anterior"
+            className="p-1.5 rounded-full hover:bg-black/5 text-[#000d10] transition-colors cursor-pointer"
+            title="Especialidad anterior"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          {/* Play / Pause Toggle Button */}
+          <button
+            onClick={togglePlay}
+            aria-label={isPlaying ? "Pausar carrusel" : "Reanudar carrusel"}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+              isPlaying
+                ? "bg-emerald-500/10 text-emerald-800 border border-emerald-500/30"
+                : "bg-amber-500/10 text-amber-800 border border-amber-500/30"
+            }`}
+            title={isPlaying ? "Pausar carrusel automático (3s)" : "Reanudar carrusel"}
+          >
+            {isPlaying ? (
+              <>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-              )}
-            </button>
-          );
-        })}
+                <Pause className="w-3 h-3 text-emerald-700" />
+                <span>3s AUTO</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3 h-3 text-amber-700 fill-amber-700" />
+                <span>PAUSADO</span>
+              </>
+            )}
+          </button>
+
+          {/* Next Arrow */}
+          <button
+            onClick={handleNext}
+            aria-label="Siguiente especialidad"
+            className="p-1.5 rounded-full hover:bg-black/5 text-[#000d10] transition-colors cursor-pointer"
+            title="Siguiente especialidad"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+
+          {/* Slide Indicator */}
+          <div className="font-mono text-xs font-bold text-[#000d10]/80 pl-1 border-l border-black/10">
+            0{currentIndex + 1} <span className="opacity-40">/</span> 04
+          </div>
+        </div>
       </div>
 
       {/* Kinetic Domain Stage */}
@@ -176,80 +296,170 @@ export function DomainShowcaseAnimated() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          className={`w-full max-w-full min-w-0 grid grid-cols-1 lg:grid-cols-12 rounded-none overflow-hidden transition-colors duration-300 ${
+          transition={{ duration: 0.28, ease: "easeOut" }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className={`w-full max-w-full min-w-0 grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden transition-colors duration-300 shadow-xl ${
             activeDomain.isFeaturedClay
-              ? "bg-[#bc7155] text-white"
+              ? "bg-[#bc7155] text-white border border-[#bc7155]"
               : "bg-white text-[#000d10] border border-[#d5d3d4]"
           }`}
         >
-          {/* Left Column: Visual Showcase (2K Image with Pan Zoom) */}
-          <div className="lg:col-span-7 relative min-h-[260px] sm:min-h-[420px] lg:min-h-[580px] w-full overflow-hidden group">
-            <Image
-              src={activeDomain.image}
-              alt={activeDomain.title}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 60vw"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-            />
-            {/* Subtle Gradient Shade */}
-            <div
-              className={`absolute inset-0 pointer-events-none ${
-                activeDomain.isFeaturedClay
-                  ? "bg-gradient-to-t from-[#bc7155] via-transparent to-transparent opacity-60"
-                  : "bg-gradient-to-t from-[#000d10]/40 via-transparent to-transparent opacity-40"
-              }`}
-            />
+          {/* Left Column: Visual Showcase (UNCROPPED 16:9 Image Frame + Technical Deck) */}
+          <div className="lg:col-span-7 p-4 sm:p-6 lg:p-8 flex flex-col justify-between space-y-4 sm:space-y-6">
+            {/* 16:9 Widescreen Image Container - ZERO CROP */}
+            <div className="relative w-full aspect-[16/9] overflow-hidden rounded-xl bg-black/30 border border-current/15 group shadow-md">
+              <Image
+                src={activeDomain.image}
+                alt={activeDomain.title}
+                fill
+                priority
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 58vw"
+                className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+              />
 
-            {/* Floating Top Badge */}
-            <div className="absolute top-3 sm:top-6 left-3 sm:left-6 z-10 max-w-[85%]">
-              <span
-                className={`font-mono text-[10px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full backdrop-blur-md truncate inline-block ${
+              {/* Gradient Vignette */}
+              <div
+                className={`absolute inset-0 pointer-events-none ${
                   activeDomain.isFeaturedClay
-                    ? "bg-white/20 text-white border border-white/30"
-                    : "bg-[#000d10]/80 text-white border border-white/20"
+                    ? "bg-gradient-to-t from-[#bc7155]/80 via-transparent to-black/20"
+                    : "bg-gradient-to-t from-black/60 via-transparent to-black/20"
                 }`}
-              >
-                {activeDomain.clientOrOrg}
-              </span>
+              />
+
+              {/* Floating Top Client / Organization Badge */}
+              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 max-w-[85%]">
+                <span
+                  className={`font-mono text-[10px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1 rounded-full backdrop-blur-md truncate inline-block ${
+                    activeDomain.isFeaturedClay
+                      ? "bg-white/25 text-white border border-white/30 font-semibold"
+                      : "bg-[#000d10]/85 text-white border border-white/20 font-semibold"
+                  }`}
+                >
+                  {activeDomain.clientOrOrg}
+                </span>
+              </div>
+
+              {/* Top Right: Resolution Pill */}
+              <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
+                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/60 text-white/90 border border-white/20 backdrop-blur-md">
+                  16:9 COMPLETO // 2K ULTRA CRISP
+                </span>
+              </div>
+
+              {/* Bottom Overlay Title on Image for Quick Context */}
+              <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-10 flex items-center justify-between">
+                <div className="font-mono text-xs sm:text-sm font-bold text-white drop-shadow-md">
+                  {activeDomain.subtitle}
+                </div>
+              </div>
             </div>
 
-            {/* Bottom Caption Pill */}
-            <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 z-10 flex items-center justify-between">
-              <span
-                className={`font-mono text-[9px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full backdrop-blur-md hidden sm:inline-block ${
-                  activeDomain.isFeaturedClay
-                    ? "bg-white/20 text-white border border-white/20"
-                    : "bg-white/90 text-[#000d10] border border-[#d5d3d4]"
-                }`}
-              >
-                RESOLUCIÓN 2K ULTRA CRISP // HIGH-RES ASSET
-              </span>
+            {/* Slide Progress Bar (fills during 3 seconds) */}
+            <div className="w-full space-y-1">
+              <div className="flex items-center justify-between font-mono text-[10px] opacity-75">
+                <span>CICLO AUTOMÁTICO</span>
+                <span>{isPlaying && !isHovered ? "REPRODUCIENDO" : isHovered ? "PAUSA POR HOVER" : "PAUSADO"}</span>
+              </div>
+              <div className="w-full h-1.5 bg-black/10 rounded-full overflow-hidden">
+                <motion.div
+                  key={`${currentIndex}-${isPlaying}-${isHovered}`}
+                  initial={{ width: "0%" }}
+                  animate={{
+                    width: isPlaying && !isHovered ? "100%" : "0%",
+                  }}
+                  transition={{
+                    duration: 3,
+                    ease: "linear",
+                  }}
+                  className={`h-full rounded-full ${
+                    activeDomain.isFeaturedClay
+                      ? "bg-white shadow-sm shadow-white/50"
+                      : "bg-[#bc7155] shadow-sm shadow-[#bc7155]/50"
+                  }`}
+                />
+              </div>
             </div>
+
+            {/* Official Verified Company Seal for Ablu Tech OR Key Highlights */}
+            {activeDomain.verifiedSeal ? (
+              <div className="rounded-xl border border-white/30 bg-black/25 backdrop-blur-md p-3.5 sm:p-4 space-y-2 text-white shadow-inner">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider font-semibold text-emerald-300">
+                      {activeDomain.verifiedSeal.status}
+                    </span>
+                  </div>
+                  <span className="font-mono text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded bg-white/20 text-white border border-white/30">
+                    RUT: {activeDomain.verifiedSeal.rut}
+                  </span>
+                </div>
+                <div className="font-mono text-xs sm:text-sm font-bold text-white tracking-tight leading-snug break-words">
+                  {activeDomain.verifiedSeal.companyName}
+                </div>
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-white/80 font-mono">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span className="truncate">{activeDomain.verifiedSeal.registry}</span>
+                </div>
+              </div>
+            ) : (
+              activeDomain.highlightFeatures && (
+                <div
+                  className={`rounded-xl border p-3.5 sm:p-4 space-y-2 text-xs sm:text-sm ${
+                    activeDomain.isFeaturedClay
+                      ? "border-white/20 bg-white/10 text-white"
+                      : "border-[#d5d3d4] bg-[#000d10]/[0.02] text-zinc-700"
+                  }`}
+                >
+                  <div className="font-mono text-[10px] uppercase tracking-wider font-semibold opacity-70">
+                    Capacidades Clave Verificadas
+                  </div>
+                  <ul className="space-y-1.5">
+                    {activeDomain.highlightFeatures.map((feat, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <CheckCircle2
+                          className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${
+                            activeDomain.isFeaturedClay ? "text-white" : "text-[#bc7155]"
+                          }`}
+                        />
+                        <span className="leading-snug text-xs sm:text-[13px]">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            )}
           </div>
 
           {/* Right Column: Editorial Technical Breakdown */}
-          <div className="lg:col-span-5 p-5 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6 sm:space-y-8 w-full min-w-0">
-            <div className="space-y-4 sm:space-y-6 w-full min-w-0">
+          <div className="lg:col-span-5 p-5 sm:p-8 lg:p-10 flex flex-col justify-between space-y-5 sm:space-y-6 w-full min-w-0 border-t lg:border-t-0 lg:border-l border-current/15">
+            <div className="space-y-4 sm:space-y-5 w-full min-w-0">
               {/* Header Number & Subtitle */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 border-b pb-3 sm:pb-4 border-current/15">
+              <div className="flex items-center justify-between gap-2 border-b pb-3 border-current/15">
                 <span className="font-mono text-2xl sm:text-3xl font-bold opacity-50">
                   {activeDomain.number}
                 </span>
-                <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest opacity-90 break-words">
+                <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest opacity-90 break-words text-right">
                   {activeDomain.subtitle}
                 </span>
               </div>
 
               {/* Title in Hyer Style */}
-              <h3 className={`text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight break-words ${activeDomain.isFeaturedClay ? "text-white" : "text-[#000d10]"}`}>
+              <h3
+                className={`text-2xl sm:text-3xl font-bold tracking-tight break-words leading-tight ${
+                  activeDomain.isFeaturedClay ? "text-white" : "text-[#000d10]"
+                }`}
+              >
                 {activeDomain.title}
               </h3>
 
               {/* Tagline */}
               <p
-                className={`text-xs sm:text-sm md:text-base font-semibold break-words ${
+                className={`text-xs sm:text-sm font-semibold break-words leading-snug ${
                   activeDomain.isFeaturedClay ? "text-white/95" : "text-[#bc7155]"
                 }`}
               >
@@ -258,48 +468,29 @@ export function DomainShowcaseAnimated() {
 
               {/* Description Body - 100% High Contrast */}
               <p
-                className={`font-body-editorial text-sm sm:text-base break-words leading-relaxed ${
+                className={`font-body-editorial text-xs sm:text-sm md:text-[15px] break-words leading-relaxed ${
                   activeDomain.isFeaturedClay ? "!text-white text-white/95" : "text-zinc-700"
                 }`}
               >
                 {activeDomain.description}
               </p>
 
-              {/* Official Verified Company Seal for Ablu Tech */}
-              {activeDomain.verifiedSeal && (
-                <div className="rounded-2xl border border-white/25 bg-black/25 backdrop-blur-md p-3.5 sm:p-4 space-y-2 text-white shadow-inner">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                      </span>
-                      <span className="font-mono text-[10px] uppercase tracking-wider font-semibold text-emerald-300">
-                        {activeDomain.verifiedSeal.status}
-                      </span>
-                    </div>
-                    <span className="font-mono text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded bg-white/20 text-white border border-white/30">
-                      RUT: {activeDomain.verifiedSeal.rut}
-                    </span>
-                  </div>
-                  <div className="font-mono text-xs sm:text-sm font-bold text-white tracking-tight leading-snug break-words">
-                    {activeDomain.verifiedSeal.companyName}
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-white/80 font-mono">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span className="truncate">{activeDomain.verifiedSeal.registry}</span>
-                  </div>
-                </div>
-              )}
-
               {/* Metrics Grid */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 border-t border-current/15 w-full min-w-0">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-3 border-t border-current/15 w-full min-w-0">
                 {activeDomain.metrics.map((m, i) => (
-                  <div key={i} className="space-y-1 min-w-0">
-                    <div className={`font-mono text-[9px] sm:text-[11px] uppercase tracking-wider truncate ${activeDomain.isFeaturedClay ? "text-white/80" : "text-zinc-500"}`}>
+                  <div key={i} className="space-y-0.5 min-w-0">
+                    <div
+                      className={`font-mono text-[9px] sm:text-[10px] uppercase tracking-wider truncate ${
+                        activeDomain.isFeaturedClay ? "text-white/80" : "text-zinc-500"
+                      }`}
+                    >
                       {m.label}
                     </div>
-                    <div className={`font-mono text-xs sm:text-base font-bold break-words ${activeDomain.isFeaturedClay ? "text-white" : "text-[#000d10]"}`}>
+                    <div
+                      className={`font-mono text-xs sm:text-sm font-bold break-words leading-tight ${
+                        activeDomain.isFeaturedClay ? "text-white" : "text-[#000d10]"
+                      }`}
+                    >
                       {m.val}
                     </div>
                   </div>
@@ -307,11 +498,11 @@ export function DomainShowcaseAnimated() {
               </div>
 
               {/* Tag Badges */}
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
+              <div className="flex flex-wrap gap-1.5 pt-1">
                 {activeDomain.tags.map((tag) => (
                   <span
                     key={tag}
-                    className={`font-mono text-[9px] sm:text-[11px] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full ${
+                    className={`font-mono text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full ${
                       activeDomain.isFeaturedClay
                         ? "bg-white/20 text-white border border-white/30"
                         : "bg-[#000d10]/5 text-[#000d10] border border-[#d5d3d4]"
@@ -324,7 +515,7 @@ export function DomainShowcaseAnimated() {
             </div>
 
             {/* Action Pill Button (1000px) */}
-            <div className="pt-4 sm:pt-6 border-t border-current/15">
+            <div className="pt-4 border-t border-current/15">
               <a
                 href={activeDomain.ctaHref}
                 target={activeDomain.ctaHref.startsWith("http") ? "_blank" : undefined}
