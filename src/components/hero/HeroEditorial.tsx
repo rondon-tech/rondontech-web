@@ -19,9 +19,11 @@ import { ScrambleText } from "@/components/ui/ScrambleText";
 
 export function HeroEditorial() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const profileVideoRef = useRef<HTMLVideoElement>(null);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const [isProfilePlaying, setIsProfilePlaying] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -31,6 +33,32 @@ export function HeroEditorial() {
     mediaQuery.addEventListener("change", handler);
     return () => mediaQuery.removeEventListener("change", handler);
   }, []);
+
+  const handleProfileMouseEnter = () => {
+    setIsProfilePlaying(true);
+    if (profileVideoRef.current) {
+      profileVideoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleProfileMouseLeave = () => {
+    setIsProfilePlaying(false);
+    if (profileVideoRef.current) {
+      profileVideoRef.current.pause();
+      profileVideoRef.current.currentTime = 0;
+    }
+  };
+
+  const handleProfileClick = () => {
+    if (!profileVideoRef.current) return;
+    if (profileVideoRef.current.paused) {
+      profileVideoRef.current.play().catch(() => {});
+      setIsProfilePlaying(true);
+    } else {
+      profileVideoRef.current.pause();
+      setIsProfilePlaying(false);
+    }
+  };
 
   const toggleAudio = () => {
     if (!videoRef.current) return;
@@ -264,18 +292,57 @@ export function HeroEditorial() {
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent pointer-events-none z-10" />
                 <div className="absolute -top-12 -right-12 w-44 h-44 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-cyan-500/15 transition-colors" />
 
-                {/* Top Header: 16:9 Clean Widescreen Video Frame */}
-                <div className="relative aspect-video w-full overflow-hidden bg-[#000d10]">
+                {/* Top Header: 16:9 Clean Widescreen Video Frame with Hover/Tap Living Portrait */}
+                <div
+                  className="relative aspect-video w-full overflow-hidden bg-[#000d10] cursor-pointer group/video select-none"
+                  onMouseEnter={handleProfileMouseEnter}
+                  onMouseLeave={handleProfileMouseLeave}
+                  onClick={handleProfileClick}
+                >
+                  {/* Static High-Res Executive Image Poster */}
+                  <Image
+                    src="/media/profile-video-poster.webp"
+                    alt="Abrahan Rondon - Executive Portrait"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    className={`object-cover object-center transition-opacity duration-500 ease-out ${
+                      isProfilePlaying ? "opacity-0" : "opacity-100"
+                    }`}
+                  />
+
+                  {/* Living Video Layer */}
                   <video
+                    ref={profileVideoRef}
                     src="/media/profile-video-16x9.mp4"
-                    poster="/media/profile-video-poster.webp"
-                    autoPlay
                     muted
                     loop
                     playsInline
                     preload="auto"
-                    className="w-full h-full object-cover object-center"
+                    className={`w-full h-full object-cover object-center transition-opacity duration-500 ease-out ${
+                      isProfilePlaying ? "opacity-100" : "opacity-0 pointer-events-none"
+                    }`}
                   />
+
+                  {/* Subtle Ambient Vignette Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#020510]/80 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Interactive Telemetry Micro-Pill Indicator */}
+                  <div className="absolute bottom-2.5 right-2.5 z-10 pointer-events-none">
+                    {isProfilePlaying ? (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 backdrop-blur-md font-mono text-[9px] sm:text-[10px] text-cyan-200 font-semibold shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                        <span>VIDEO ACTIVO</span>
+                      </div>
+                    ) : (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md font-mono text-[9px] sm:text-[10px] text-white/90 group-hover/video:border-cyan-400/50 group-hover/video:text-cyan-200 transition-colors shadow-sm">
+                        <Play className="w-2.5 h-2.5 fill-current" />
+                        <span className="hidden sm:inline">PASA EL MOUSE PARA REPRODUCIR</span>
+                        <span className="sm:hidden">TOCAR PARA REPRODUCIR</span>
+                      </div>
+                    )}
+                  </div>
+
                   {/* Bottom Glowing Horizon Hairline */}
                   <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent pointer-events-none" />
                 </div>

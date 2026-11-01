@@ -37,6 +37,10 @@ body {
 }
 
 /* Hyer Architectural Display Typography - Mobile Fluid Safe */
+.font-orbitron {
+  font-family: var(--font-orbitron), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 .font-display-hero {
   font-size: clamp(32px, 8.5vw, 187px);
   letter-spacing: -0.025em;

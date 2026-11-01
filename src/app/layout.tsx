@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
 });
 
 export const viewport: Viewport = {
@@ -80,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
+    <html lang="es" className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} scroll-smooth`}>
       <body className="min-h-screen bg-[#fbfbfd] text-[#000d10] antialiased selection:bg-[#bc7155]/25 selection:text-[#000d10]">
         {children}
       </body>

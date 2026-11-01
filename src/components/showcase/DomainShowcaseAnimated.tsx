@@ -156,12 +156,12 @@ export function DomainShowcaseAnimated() {
 
   const activeDomain = DOMAINS[currentIndex];
 
-  // 3-second autoplay cycle
+  // 6-second autoplay cycle for comfortable reading
   useEffect(() => {
     if (!isPlaying || isHovered) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % DOMAINS.length);
-    }, 3000);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, [isPlaying, isHovered, currentIndex]);
@@ -253,7 +253,7 @@ export function DomainShowcaseAnimated() {
                 ? "bg-emerald-500/10 text-emerald-800 border border-emerald-500/30"
                 : "bg-amber-500/10 text-amber-800 border border-amber-500/30"
             }`}
-            title={isPlaying ? "Pausar carrusel automático (3s)" : "Reanudar carrusel"}
+            title={isPlaying ? "Pausar carrusel automático (6s)" : "Reanudar carrusel"}
           >
             {isPlaying ? (
               <>
@@ -262,7 +262,7 @@ export function DomainShowcaseAnimated() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
                 <Pause className="w-3 h-3 text-emerald-700" />
-                <span>3s AUTO</span>
+                <span>6s AUTO</span>
               </>
             ) : (
               <>
@@ -355,7 +355,7 @@ export function DomainShowcaseAnimated() {
               </div>
             </div>
 
-            {/* Slide Progress Bar (fills during 3 seconds) */}
+            {/* Slide Progress Bar (fills during 6 seconds) */}
             <div className="w-full space-y-1">
               <div className="flex items-center justify-between font-mono text-[10px] opacity-75">
                 <span>CICLO AUTOMÁTICO</span>
@@ -369,7 +369,7 @@ export function DomainShowcaseAnimated() {
                     width: isPlaying && !isHovered ? "100%" : "0%",
                   }}
                   transition={{
-                    duration: 3,
+                    duration: 6,
                     ease: "linear",
                   }}
                   className={`h-full rounded-full ${

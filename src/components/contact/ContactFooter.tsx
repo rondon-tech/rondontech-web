@@ -109,30 +109,42 @@ export function ContactFooter() {
 
         {/* Bottom Editorial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-8 border-t border-white/10 items-end">
-          {/* Brand mark */}
-          <div className="md:col-span-6 space-y-3">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border border-cyan-400/50 shadow-lg shadow-cyan-500/30 shrink-0 bg-[#000d10] group">
+          {/* Brand mark - Exact BannerLogo.jpg Aerospace Typography */}
+          <div className="md:col-span-7 space-y-3">
+            <a href="#hero" className="inline-flex items-center gap-3.5 sm:gap-4.5 group select-none cursor-pointer">
+              {/* Emblem with Cyan Orbital Halo */}
+              <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border border-cyan-400/60 shadow-lg shadow-cyan-500/40 shrink-0 bg-[#000d10] group-hover:scale-105 transition-transform duration-300">
                 <Image
                   src="/brand/rondontech-emblem-circle.webp"
-                  alt="RondonTech Official Logo"
+                  alt="RondonTech Emblem"
                   fill
                   sizes="56px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover"
                 />
               </div>
-              <span className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white block break-words">
-                RONDONTECH<span className="text-[#bc7155]">.</span>
-              </span>
-            </div>
-            <p className="font-mono text-xs text-zinc-400 max-w-sm">
+
+              {/* Exact BannerLogo Brand Typography: RONDON (White) + TECH (Cyan) + BEYOND INFRASTRUCTURE */}
+              <div className="space-y-1">
+                <div className="font-orbitron text-2xl sm:text-3xl md:text-4xl font-black tracking-[0.08em] leading-none flex items-center">
+                  <span className="text-white group-hover:text-zinc-100 transition-colors">RONDON</span>
+                  <span className="text-cyan-400 drop-shadow-[0_0_18px_rgba(0,240,255,0.7)] group-hover:text-cyan-300 transition-colors">
+                    TECH
+                  </span>
+                </div>
+                <div className="font-mono text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.28em] text-zinc-400 uppercase font-semibold">
+                  BEYOND INFRASTRUCTURE
+                </div>
+              </div>
+            </a>
+
+            <p className="font-mono text-xs text-zinc-400 max-w-md pt-1">
               Plataforma profesional y portafolio de ingeniería de Abrahan Rondon.
               Telecomunicaciones 5G, Centros de Datos, Domótica Inmótica y Software Cloud.
             </p>
           </div>
 
           {/* Quick links & metadata */}
-          <div className="md:col-span-6 flex flex-wrap items-center justify-start md:justify-end gap-5 font-mono text-xs text-zinc-400">
+          <div className="md:col-span-5 flex flex-wrap items-center justify-start md:justify-end gap-5 font-mono text-xs text-zinc-400">
             <a
               href="https://ablutech.com"
               target="_blank"
