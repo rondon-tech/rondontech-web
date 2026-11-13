@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Layers, GraduationCap, Award, CheckCircle, Terminal, Cpu, Radio, Shield, Zap } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import { PROFILE_DATA } from "@/data/profileData";
 
 export function SkillsMatrixSection() {

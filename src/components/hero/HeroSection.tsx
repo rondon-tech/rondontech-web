@@ -57,7 +57,7 @@ export function HeroSection() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
               <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-wider text-cyan-300 uppercase">
-                {PROFILE_DATA.status} // SANTIAGO, CL
+                {`${PROFILE_DATA.status} // SANTIAGO, CL`}
               </span>
             </motion.div>
 

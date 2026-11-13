@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Radio, Shield, Cpu, Activity, ExternalLink, Zap, Network, Server, ArrowUpRight } from "lucide-react";
+import { Radio, Shield, Cpu, Activity, Zap, Network, ArrowUpRight } from "lucide-react";
 import { PROFILE_DATA } from "@/data/profileData";
 
 export function BentoSection() {

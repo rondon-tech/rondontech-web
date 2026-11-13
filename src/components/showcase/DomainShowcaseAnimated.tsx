@@ -10,12 +10,16 @@ import {
   Pause,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   CheckCircle2,
   Cpu,
-  Radio,
-  Server,
-  Layers,
 } from "lucide-react";
+import {
+  HARNESS_TELEMETRY,
+  RONDONTECH_ADAPTER_TELEMETRY,
+} from "@/data/harnessTelemetry";
+import { HarnessArchitectureInspector } from "./HarnessArchitectureInspector";
 
 interface DomainItem {
   id: string;
@@ -153,24 +157,35 @@ export function DomainShowcaseAnimated() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isHarnessOpen, setIsHarnessOpen] = useState<boolean>(false);
 
   const activeDomain = DOMAINS[currentIndex];
+  const isInspectorActive = isHarnessOpen && activeDomain.id === "ai-software";
 
-  // 6-second autoplay cycle for comfortable reading
+  // 6-second autoplay cycle for comfortable reading (pauses on hover or open Harness² inspector)
   useEffect(() => {
-    if (!isPlaying || isHovered) return;
+    if (!isPlaying || isHovered || isInspectorActive) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % DOMAINS.length);
     }, 6000);
 
     return () => clearInterval(timer);
-  }, [isPlaying, isHovered, currentIndex]);
+  }, [isPlaying, isHovered, isInspectorActive, currentIndex]);
+
+  const handleSelectDomain = (idx: number) => {
+    setCurrentIndex(idx);
+    if (DOMAINS[idx]?.id !== "ai-software") {
+      setIsHarnessOpen(false);
+    }
+  };
 
   const handleNext = () => {
+    setIsHarnessOpen(false);
     setCurrentIndex((prev) => (prev + 1) % DOMAINS.length);
   };
 
   const handlePrev = () => {
+    setIsHarnessOpen(false);
     setCurrentIndex((prev) => (prev - 1 + DOMAINS.length) % DOMAINS.length);
   };
 
@@ -211,7 +226,9 @@ export function DomainShowcaseAnimated() {
             return (
               <button
                 key={domain.id}
-                onClick={() => setCurrentIndex(idx)}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => handleSelectDomain(idx)}
                 className={`relative px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
                   isActive
                     ? domain.isFeaturedClay
@@ -236,6 +253,7 @@ export function DomainShowcaseAnimated() {
         <div className="flex items-center gap-2 shrink-0 self-end md:self-auto bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#d5d3d4] shadow-sm">
           {/* Previous Arrow */}
           <button
+            type="button"
             onClick={handlePrev}
             aria-label="Especialidad anterior"
             className="p-1.5 rounded-full hover:bg-black/5 text-[#000d10] transition-colors cursor-pointer"
@@ -246,6 +264,7 @@ export function DomainShowcaseAnimated() {
 
           {/* Play / Pause Toggle Button */}
           <button
+            type="button"
             onClick={togglePlay}
             aria-label={isPlaying ? "Pausar carrusel" : "Reanudar carrusel"}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full font-mono text-[11px] font-semibold transition-all cursor-pointer ${
@@ -274,6 +293,7 @@ export function DomainShowcaseAnimated() {
 
           {/* Next Arrow */}
           <button
+            type="button"
             onClick={handleNext}
             aria-label="Siguiente especialidad"
             className="p-1.5 rounded-full hover:bg-black/5 text-[#000d10] transition-colors cursor-pointer"
@@ -299,12 +319,13 @@ export function DomainShowcaseAnimated() {
           transition={{ duration: 0.28, ease: "easeOut" }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`w-full max-w-full min-w-0 grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden transition-colors duration-300 shadow-xl ${
+          className={`w-full max-w-full min-w-0 rounded-2xl overflow-hidden transition-colors duration-300 shadow-xl ${
             activeDomain.isFeaturedClay
               ? "bg-[#bc7155] text-white border border-[#bc7155]"
               : "bg-white text-[#000d10] border border-[#d5d3d4]"
           }`}
         >
+          <div className="grid grid-cols-1 lg:grid-cols-12 w-full min-w-0">
           {/* Left Column: Visual Showcase (UNCROPPED 16:9 Image Frame + Technical Deck) */}
           <div className="lg:col-span-7 p-4 sm:p-6 lg:p-8 flex flex-col justify-between space-y-4 sm:space-y-6">
             {/* 16:9 Widescreen Image Container - ZERO CROP */}
@@ -359,14 +380,25 @@ export function DomainShowcaseAnimated() {
             <div className="w-full space-y-1">
               <div className="flex items-center justify-between font-mono text-[10px] opacity-75">
                 <span>CICLO AUTOMÁTICO</span>
-                <span>{isPlaying && !isHovered ? "REPRODUCIENDO" : isHovered ? "PAUSA POR HOVER" : "PAUSADO"}</span>
+                <span>
+                  {isInspectorActive
+                    ? "INSPECTOR ACTIVO"
+                    : isPlaying && !isHovered
+                    ? "REPRODUCIENDO"
+                    : isHovered
+                    ? "PAUSA POR HOVER"
+                    : "PAUSADO"}
+                </span>
               </div>
               <div className="w-full h-1.5 bg-black/10 rounded-full overflow-hidden">
                 <motion.div
-                  key={`${currentIndex}-${isPlaying}-${isHovered}`}
+                  key={`${currentIndex}-${isPlaying}-${isHovered}-${isInspectorActive}`}
                   initial={{ width: "0%" }}
                   animate={{
-                    width: isPlaying && !isHovered ? "100%" : "0%",
+                    width:
+                      isPlaying && !isHovered && !isInspectorActive
+                        ? "100%"
+                        : "0%",
                   }}
                   transition={{
                     duration: 6,
@@ -401,9 +433,9 @@ export function DomainShowcaseAnimated() {
                 <div className="font-mono text-xs sm:text-sm font-bold text-white tracking-tight leading-snug break-words">
                   {activeDomain.verifiedSeal.companyName}
                 </div>
-                <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-white/80 font-mono">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span className="truncate">{activeDomain.verifiedSeal.registry}</span>
+                <div className="flex items-start gap-1.5 text-[10px] sm:text-[11px] text-white/80 font-mono">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                  <span className="break-words leading-snug">{activeDomain.verifiedSeal.registry}</span>
                 </div>
               </div>
             ) : (
@@ -514,6 +546,58 @@ export function DomainShowcaseAnimated() {
               </div>
             </div>
 
+            {/* Slide 04: Harness² Recursive Architecture Trigger */}
+            {activeDomain.id === "ai-software" && (
+              <div className="rounded-xl bg-[#0f0f1c] text-white border border-cyan-400/30 p-3.5 space-y-2.5 shadow-sm min-w-0">
+                <div className="flex flex-wrap items-center justify-between gap-2 min-w-0">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="relative flex h-2 w-2 shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-cyan-300 font-semibold break-words">
+                      Harness² · {RONDONTECH_ADAPTER_TELEMETRY.paperRef}
+                    </span>
+                  </div>
+                  <span className="font-mono text-[10px] text-emerald-300 shrink-0">
+                    {RONDONTECH_ADAPTER_TELEMETRY.totalExecutions} execs · $
+                    {RONDONTECH_ADAPTER_TELEMETRY.totalUsdCost.toFixed(2)}
+                  </span>
+                </div>
+                <div className="font-mono text-[11px] text-zinc-300 leading-snug break-words">
+                  2 ejecuciones reales ({RONDONTECH_ADAPTER_TELEMETRY.domain} +{" "}
+                  {HARNESS_TELEMETRY.domain}):{" "}
+                  <span className="text-emerald-300">
+                    {RONDONTECH_ADAPTER_TELEMETRY.editedComponentPath}
+                  </span>{" "}
+                  &amp;{" "}
+                  <span className="text-cyan-300">
+                    {HARNESS_TELEMETRY.editedComponentPath}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsHarnessOpen((prev) => !prev)}
+                  aria-expanded={isHarnessOpen}
+                  className="w-full inline-flex items-center justify-between gap-2 px-3.5 py-2 rounded-full bg-cyan-400 hover:bg-cyan-300 text-[#000d10] font-mono text-xs font-bold transition-colors cursor-pointer"
+                >
+                  <span className="inline-flex items-center gap-1.5 min-w-0 text-left">
+                    <Cpu className="w-3.5 h-3.5 shrink-0" />
+                    <span className="break-words">
+                      {isHarnessOpen
+                        ? "Ocultar Inspector Harness²"
+                        : "Inspeccionar Arquitectura Harness²"}
+                    </span>
+                  </span>
+                  {isHarnessOpen ? (
+                    <ChevronUp className="w-4 h-4 shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 shrink-0" />
+                  )}
+                </button>
+              </div>
+            )}
+
             {/* Action Pill Button (1000px) */}
             <div className="pt-4 border-t border-current/15">
               <a
@@ -531,6 +615,24 @@ export function DomainShowcaseAnimated() {
               </a>
             </div>
           </div>
+          </div>
+
+          {/* Expandable Harness² Recursive Agent Architecture Panel (Slide 04) */}
+          <AnimatePresence initial={false}>
+            {isInspectorActive && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
+                className="overflow-hidden"
+              >
+                <HarnessArchitectureInspector
+                  onClose={() => setIsHarnessOpen(false)}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </AnimatePresence>
     </section>

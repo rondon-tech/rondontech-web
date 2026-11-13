@@ -53,20 +53,20 @@ export function Navbar() {
           {/* Desktop Nav Items */}
           <nav className="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-zinc-300">
             <a href="#cinematica" className="hover:text-cyan-300 transition-colors">
-              // Cinemática
+              {"// Cinemática"}
             </a>
             <a href="#especialidades" className="hover:text-cyan-300 transition-colors">
-              // Especialidades
+              {"// Especialidades"}
             </a>
             <a href="#experiencia" className="hover:text-cyan-300 transition-colors">
-              // Trayectoria
+              {"// Trayectoria"}
             </a>
             <a href="#consola" className="hover:text-cyan-300 transition-colors flex items-center gap-1">
               <Terminal className="w-3.5 h-3.5 text-[#bc7155]" />
               Consola
             </a>
             <a href="#habilidades" className="hover:text-cyan-300 transition-colors">
-              // Skills
+              {"// Skills"}
             </a>
           </nav>
 
@@ -106,21 +106,21 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
             >
-              // Cinemática
+              {"// Cinemática"}
             </a>
             <a
               href="#especialidades"
               onClick={() => setMobileMenuOpen(false)}
               className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
             >
-              // Especialidades
+              {"// Especialidades"}
             </a>
             <a
               href="#experiencia"
               onClick={() => setMobileMenuOpen(false)}
               className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
             >
-              // Trayectoria
+              {"// Trayectoria"}
             </a>
             <a
               href="#consola"
@@ -135,7 +135,7 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
             >
-              // Skills
+              {"// Skills"}
             </a>
             <button
               onClick={() => {

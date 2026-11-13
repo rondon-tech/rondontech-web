@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { MessageSquare, Mail, Download, Copy, Check, Radio, ExternalLink, ArrowUpRight } from "lucide-react";
+import { MessageSquare, Download, Copy, Check, ArrowUpRight } from "lucide-react";
 import confetti from "canvas-confetti";
 import { PROFILE_DATA } from "@/data/profileData";
 

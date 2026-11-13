@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin, ChevronDown, ChevronUp, Radio, Cpu, CheckCircle2 } from "lucide-react";
+import { Calendar, MapPin, ChevronDown, ChevronUp, Radio, CheckCircle2 } from "lucide-react";
 import { PROFILE_DATA } from "@/data/profileData";
 
 export function TimelineSection() {
@@ -106,7 +106,7 @@ export function TimelineSection() {
                       className="pt-4 border-t border-cyan-500/15 space-y-4"
                     >
                       <div className="font-mono text-xs text-cyan-400 uppercase tracking-wider mb-2">
-                        // Actividades & Responsabilidades Clave:
+                        {"// Actividades & Responsabilidades Clave:"}
                       </div>
                       {item.bullets.map((b, bIdx) => (
                         <div key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300 leading-relaxed">

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, MessageSquare, Download, X, ChevronUp, Radio, Sparkles } from "lucide-react";
+import { Terminal, MessageSquare, Download, X, ChevronUp } from "lucide-react";
 import confetti from "canvas-confetti";
 import { PROFILE_DATA } from "@/data/profileData";
 

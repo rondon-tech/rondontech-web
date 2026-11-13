@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 interface ScrambleTextProps {
   text: string;
@@ -24,7 +24,7 @@ export function ScrambleText({
   const elementRef = useRef<HTMLSpanElement>(null);
   const isAnimatingRef = useRef<boolean>(false);
 
-  const startScramble = () => {
+  const startScramble = useCallback(() => {
     if (isAnimatingRef.current) return;
     isAnimatingRef.current = true;
 
@@ -61,15 +61,16 @@ export function ScrambleText({
     };
 
     requestAnimationFrame(frame);
-  };
+  }, [durationMs, text]);
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true);
-            setTimeout(() => {
+            timeoutId = setTimeout(() => {
               startScramble();
             }, delayMs);
           }
@@ -82,8 +83,11 @@ export function ScrambleText({
       observer.observe(elementRef.current);
     }
 
-    return () => observer.disconnect();
-  }, [hasAnimated, delayMs, text]);
+    return () => {
+      observer.disconnect();
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [hasAnimated, delayMs, startScramble]);
 
   return (
     <span

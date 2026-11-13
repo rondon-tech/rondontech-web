@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Radio, Cpu, Sparkles, ShieldCheck } from "lucide-react";
+import { Radio, Sparkles, ShieldCheck } from "lucide-react";
 
 export function HeroAvatarHolo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,8 +18,6 @@ export function HeroAvatarHolo() {
 
   const rotateX = useTransform(smoothY, [-0.5, 0.5], [14, -14]);
   const rotateY = useTransform(smoothX, [-0.5, 0.5], [-14, 14]);
-  const holoGlowX = useTransform(smoothX, [-0.5, 0.5], ["30%", "70%"]);
-  const holoGlowY = useTransform(smoothY, [-0.5, 0.5], ["30%", "70%"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
