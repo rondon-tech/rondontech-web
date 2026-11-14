@@ -14,6 +14,8 @@ export interface EducationItem {
   institution: string;
   dates: string;
   details: string;
+  logoSrc?: string;
+  logoAlt?: string;
 }
 
 export interface SkillCategory {
@@ -156,13 +158,17 @@ export const PROFILE_DATA = {
       degree: "Ingeniero en Electrónica mención Control",
       institution: "Universidad Nacional Experimental Politécnica de la Fuerza Armada (UNEFA)",
       dates: "2010 - 2015",
-      details: "Especialización en sistemas de control automático, instrumentación, líneas de transmisión, circuitos eléctricos de potencia, puesta a tierra y gestión de proyectos de ingeniería."
+      details: "Especialización en sistemas de control automático, instrumentación, líneas de transmisión, circuitos eléctricos de potencia, puesta a tierra y gestión de proyectos de ingeniería.",
+      logoSrc: "/images/unefa-logo.webp",
+      logoAlt: "Escudo oficial de la UNEFA"
     },
     {
       degree: "Técnico Superior Universitario en Informática",
       institution: "Instituto Universitario de Tecnología Dr. Cristóbal Mendoza",
       dates: "2004 - 2007",
-      details: "Formación en arquitectura de software, bases de datos relacionales, redes locales LAN, desarrollo web y sistemas operativos."
+      details: "Formación en arquitectura de software, bases de datos relacionales, redes locales LAN, desarrollo web y sistemas operativos.",
+      logoSrc: "/images/iutcm-logo.webp",
+      logoAlt: "Logotipo oficial del Instituto Universitario de Tecnología Dr. Cristóbal Mendoza"
     }
   ],
   skillsCategories: [

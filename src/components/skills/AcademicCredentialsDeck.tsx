@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { GraduationCap } from "lucide-react";
 
 export interface AcademicCredentialItem {
@@ -8,6 +9,8 @@ export interface AcademicCredentialItem {
   institution: string;
   dates: string;
   details: string;
+  logoSrc?: string;
+  logoAlt?: string;
 }
 
 export interface AcademicCredentialsDeckProps {
@@ -77,12 +80,28 @@ export function AcademicCredentialsDeck({
                   </span>
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug break-words">
-                  {edu.degree}
-                </h3>
+                <div className="flex items-start gap-3.5 sm:gap-4 min-w-0">
+                  {edu.logoSrc && (
+                    <div className="w-24 h-14 sm:w-28 sm:h-16 rounded-xl bg-white border border-white/25 p-2 shadow-sm shrink-0 relative overflow-hidden">
+                      <Image
+                        src={edu.logoSrc}
+                        alt={edu.logoAlt || edu.institution}
+                        fill
+                        sizes="(max-width: 640px) 96px, 112px"
+                        className="object-contain p-1.5"
+                      />
+                    </div>
+                  )}
 
-                <div className="font-mono text-xs text-zinc-300 leading-relaxed break-words">
-                  {edu.institution}
+                  <div className="space-y-1.5 min-w-0 flex-1">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight leading-snug break-words">
+                      {edu.degree}
+                    </h3>
+
+                    <div className="font-mono text-xs text-zinc-300 leading-relaxed break-words">
+                      {edu.institution}
+                    </div>
+                  </div>
                 </div>
               </div>
 

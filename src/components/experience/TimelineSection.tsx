@@ -65,6 +65,103 @@ const ABLUTECH_GALLERY: FieldGalleryItem[] = [
   },
 ];
 
+const WISECOM_GALLERY: FieldGalleryItem[] = [
+  {
+    src: "/images/wisecom-tss-survey.webp",
+    alt: "Levantamiento Técnico TSS en Sitio Telecom",
+    label: "● SURVEY TSS CAMPO",
+    badgeClassName: "text-sky-300",
+  },
+  {
+    src: "/images/wisecom-rf-engineering.webp",
+    alt: "Ingeniería de Detalle RF 5G y Sectorización",
+    label: "● INGENIERÍA RF 5G",
+    badgeClassName: "text-cyan-300",
+  },
+  {
+    src: "/images/wisecom-civil-links.webp",
+    alt: "Proyección de Enlaces MMOO, Fibra y Obras Civiles",
+    label: "● ENLACES & OBRA CIVIL",
+    badgeClassName: "text-emerald-300",
+  },
+];
+
+const TELRAD_GALLERY: FieldGalleryItem[] = [
+  {
+    src: "/images/telrad-ericsson-baseband.webp",
+    alt: "Comisionamiento Ericsson Baseband 6630 y RBS 6000",
+    label: "● ERICSSON BASEBAND",
+    badgeClassName: "text-sky-300",
+  },
+  {
+    src: "/images/telrad-sitemaster-measurements.webp",
+    alt: "Mediciones RF con SiteMaster y Potencia Óptica",
+    label: "● SITEMASTER & ÓPTICA",
+    badgeClassName: "text-cyan-300",
+  },
+  {
+    src: "/images/telrad-power-mmoo.webp",
+    alt: "Rectificadores Eltek/Eaton y Enlaces Microondas Aviat/Huawei",
+    label: "● ENERGÍA & MMOO",
+    badgeClassName: "text-amber-300",
+  },
+];
+
+const CELPLAN_GALLERY: FieldGalleryItem[] = [
+  {
+    src: "/images/celplan-crew-leadership.webp",
+    alt: "Liderazgo de Cuadrilla de Instalaciones Telecom en Terreno",
+    label: "● LIDERAZGO CUADRILLA",
+    badgeClassName: "text-sky-300",
+  },
+  {
+    src: "/images/celplan-nokia-huawei-bts.webp",
+    alt: "Montaje e Integración de Radiobases Nokia y Huawei BTS",
+    label: "● NOKIA & HUAWEI BTS",
+    badgeClassName: "text-cyan-300",
+  },
+  {
+    src: "/images/celplan-tower-radiants.webp",
+    alt: "Maniobras en Altura y Sistemas Radiantes en Torre",
+    label: "● SISTEMAS RADIANTES",
+    badgeClassName: "text-emerald-300",
+  },
+];
+
+interface RoleGalleryConfig {
+  items: FieldGalleryItem[];
+  title: string;
+  accent: "ember" | "telemetry";
+}
+
+const ROLE_GALLERIES: Record<string, RoleGalleryConfig> = {
+  ablutech: {
+    items: ABLUTECH_GALLERY,
+    title: "Proyectos Destacados Ablu Tech",
+    accent: "ember",
+  },
+  entel: {
+    items: ENTEL_GALLERY,
+    title: "Evidencia en Terreno (Red Entel Santiago)",
+    accent: "ember",
+  },
+  wisecom: {
+    items: WISECOM_GALLERY,
+    title: "Evidencia en Terreno (Ingeniería TSSR WOM)",
+    accent: "telemetry",
+  },
+  telrad: {
+    items: TELRAD_GALLERY,
+    title: "Evidencia en Terreno (RAN & Transmisión Telrad)",
+    accent: "telemetry",
+  },
+  celplan: {
+    items: CELPLAN_GALLERY,
+    title: "Evidencia en Terreno (Instalaciones & Sistemas Radiantes)",
+    accent: "telemetry",
+  },
+};
+
 function matchesFilter(item: ExperienceItem, filter: TimelineFilter): boolean {
   switch (filter) {
     case "current":
@@ -264,6 +361,7 @@ export function TimelineSection() {
           {filteredExperience.map((item) => {
             const isCurrent = CURRENT_ROLE_IDS.has(item.id);
             const isExpanded = expandedIds.includes(item.id);
+            const roleGallery = ROLE_GALLERIES[item.id];
 
             return (
               <motion.article
@@ -338,18 +436,11 @@ export function TimelineSection() {
                     isExpanded={isExpanded}
                     onToggle={() => toggleExpand(item.id)}
                   >
-                    {item.id === "entel" && (
+                    {roleGallery && (
                       <FieldGalleryLightbox
-                        items={ENTEL_GALLERY}
-                        title="Evidencia en Terreno (Red Entel Santiago)"
-                        accent="ember"
-                      />
-                    )}
-                    {item.id === "ablutech" && (
-                      <FieldGalleryLightbox
-                        items={ABLUTECH_GALLERY}
-                        title="Proyectos Destacados Ablu Tech"
-                        accent="ember"
+                        items={roleGallery.items}
+                        title={roleGallery.title}
+                        accent={roleGallery.accent}
                       />
                     )}
                   </SpotlightTimelineCard>
