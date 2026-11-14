@@ -203,6 +203,7 @@ export function HeroEditorial() {
             alt="RondonTech — Beyond Infrastructure Orbital Presentation"
             fill
             priority
+            fetchPriority="high"
             sizes="100vw"
             className="object-contain sm:object-cover object-center select-none"
           />
@@ -259,13 +260,22 @@ export function HeroEditorial() {
                 </span>
               </div>
 
-              {/* High-Contrast Editorial Value Proposition */}
-              <p className="font-body-editorial text-zinc-200 max-w-2xl text-sm sm:text-base lg:text-lg leading-relaxed">
-                Soluciones de alta fidelidad que conectan el terreno físico con el cómputo cognitivo.
-                Especialista en redes celulares <strong className="text-white font-semibold">5G/RF</strong>, salas de datos de alta disponibilidad,
-                domótica e inmótica corporativa en <strong className="text-[#e89578] font-semibold">Ablu Tech Ltda.</strong>, y automatización con{" "}
-                <strong className="text-cyan-300 font-semibold">Agentes de IA Autónomos</strong>.
-              </p>
+              {/* Executive Positioning Headline + Outcome-Focused Value Proposition */}
+              <div className="space-y-3 w-full min-w-0">
+                <h2 className="text-xl sm:text-2xl lg:text-[28px] font-bold tracking-tight text-white leading-[1.2]">
+                  Ingeniería Crítica 5G &amp; Datacenter,{" "}
+                  <span className="text-[#e89578]">Inmótica</span> y{" "}
+                  <span className="text-cyan-300">Agentes de IA Autónomos</span>
+                </h2>
+
+                <p className="font-body-editorial text-zinc-200 max-w-2xl text-sm sm:text-base lg:text-[17px] leading-relaxed">
+                  Más de 10 años asegurando continuidad operacional en redes celulares{" "}
+                  <strong className="text-white font-semibold">5G/LTE/RF</strong>, enlaces MMOO/fibra y energía crítica;
+                  liderando soluciones llave en mano de domótica, inmótica y automatización empresarial con{" "}
+                  <strong className="text-[#e89578] font-semibold">Ablu Tech Ltda.</strong> y orquestación de{" "}
+                  <strong className="text-cyan-300 font-semibold">Agentes de IA</strong>.
+                </p>
+              </div>
 
               {/* Full Pill CTAs (1000px border radius) */}
               <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-3.5 pt-1">
@@ -273,7 +283,7 @@ export function HeroEditorial() {
                   href="#cinematica"
                   className="inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-[#000d10] hover:bg-cyan-50 px-6 py-3.5 text-sm sm:text-base font-bold transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-cyan-500/15 w-full sm:w-auto"
                 >
-                  <span>Explorar Secuencia Cinemática</span>
+                  <span>Explorar Arquitectura &amp; Casos</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
 
@@ -290,8 +300,31 @@ export function HeroEditorial() {
                   href="#contacto"
                   className="btn-pill-ghost-light !py-3.5 !px-6 !text-sm sm:!text-base w-full sm:w-auto"
                 >
-                  <span>Iniciar Contacto</span>
+                  <span>Conversemos</span>
                 </a>
+              </div>
+
+              {/* Restrained Institutional Trust Strip */}
+              <div className="pt-3 border-t border-white/10 space-y-2 w-full min-w-0">
+                <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-zinc-400 font-medium">
+                  Operación y Respaldo en:
+                </p>
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 w-full min-w-0">
+                  {[
+                    "Entel Chile",
+                    "Ericsson / Huawei RAN",
+                    "WOM & Movistar",
+                    "Ablu Tech Ltda. · RUT 78.539.015-6",
+                    "Google Antigravity",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/12 font-mono text-[10px] sm:text-[11px] text-zinc-300 max-w-full"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -314,7 +347,6 @@ export function HeroEditorial() {
                     src="/media/profile-video-poster.webp"
                     alt="Abrahan Rondon - Executive Portrait"
                     fill
-                    priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                     className={`object-cover object-center transition-opacity duration-500 ease-out ${
                       isProfilePlaying ? "opacity-0" : "opacity-100"
@@ -325,10 +357,12 @@ export function HeroEditorial() {
                   <video
                     ref={profileVideoRef}
                     src="/media/profile-video-16x9.mp4"
+                    width={640}
+                    height={360}
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="none"
                     className={`w-full h-full object-cover object-center transition-opacity duration-500 ease-out ${
                       isProfilePlaying ? "opacity-100" : "opacity-0 pointer-events-none"
                     }`}

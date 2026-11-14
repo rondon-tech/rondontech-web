@@ -25,16 +25,24 @@ export default function Home() {
       <DomainShowcaseAnimated />
 
       {/* High-Contrast Dark Console (Midnight Hull #0f0f1c) */}
-      <InteractiveTerminal />
+      <div className="deferred-section">
+        <InteractiveTerminal />
+      </div>
 
       {/* Professional Experience & Telecom Field Timeline */}
-      <TimelineSection />
+      <div className="deferred-section">
+        <TimelineSection />
+      </div>
 
       {/* Skills Matrix & Technical Credentials */}
-      <SkillsMatrixSection />
+      <div className="deferred-section">
+        <SkillsMatrixSection />
+      </div>
 
       {/* Deep Ink Footer Terminal (#000d10) */}
-      <ContactFooter />
+      <div className="deferred-section">
+        <ContactFooter />
+      </div>
 
       {/* Reactive Multi-Pose Holographic HUD Assistant */}
       <AvatarHUDWidget />

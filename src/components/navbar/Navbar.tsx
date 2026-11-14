@@ -1,12 +1,113 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
 import { Terminal, Download, Menu, X, ArrowUpRight } from "lucide-react";
 
+const SCROLLSPY_SECTION_IDS = [
+  "cinematica",
+  "especialidades",
+  "experiencia",
+  "consola",
+  "habilidades",
+] as const;
+
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const activeHrefRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    for (const id of SCROLLSPY_SECTION_IDS) {
+      const section = document.getElementById(id);
+      if (section && !section.hasAttribute("tabindex")) {
+        section.setAttribute("tabindex", "-1");
+      }
+    }
+
+    const applyActiveHref = (activeHref: string | null, toggleTargetClass: boolean) => {
+      activeHrefRef.current = activeHref;
+      const links = document.querySelectorAll<HTMLAnchorElement>(
+        'header [data-scrollspy-link="true"]'
+      );
+      links.forEach((link) => {
+        const isMatch = activeHref !== null && link.getAttribute("href") === activeHref;
+        if (toggleTargetClass) {
+          link.classList.toggle("target-current", isMatch);
+        }
+        if (isMatch) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    if (typeof CSS !== "undefined" && CSS.supports("scroll-target-group: auto")) {
+      const syncAriaCurrent = () => {
+        let currentLink: HTMLAnchorElement | null = null;
+        try {
+          currentLink = document.querySelector<HTMLAnchorElement>(
+            ".nav-scrollspy a:target-current"
+          );
+        } catch {
+          currentLink = null;
+        }
+        applyActiveHref(currentLink?.getAttribute("href") ?? null, false);
+      };
+
+      syncAriaCurrent();
+      document.addEventListener("scrollend", syncAriaCurrent, { passive: true });
+      return () => {
+        document.removeEventListener("scrollend", syncAriaCurrent);
+      };
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) {
+          applyActiveHref(`#${visible.target.id}`, true);
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    for (const id of SCROLLSPY_SECTION_IDS) {
+      const section = document.getElementById(id);
+      if (section) {
+        observer.observe(section);
+      }
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mobileMenuOpen || !activeHrefRef.current) {
+      return;
+    }
+
+    const toggleTargetClass = !(
+      typeof CSS !== "undefined" && CSS.supports("scroll-target-group: auto")
+    );
+    const mobileLinks = document.querySelectorAll<HTMLAnchorElement>(
+      'header [data-mobile-scrollspy] a[data-scrollspy-link="true"]'
+    );
+    mobileLinks.forEach((link) => {
+      const isMatch = link.getAttribute("href") === activeHrefRef.current;
+      if (toggleTargetClass) {
+        link.classList.toggle("target-current", isMatch);
+      }
+      if (isMatch) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }, [mobileMenuOpen]);
 
   const triggerDownloadCV = () => {
     confetti({
@@ -51,22 +152,22 @@ export function Navbar() {
           </a>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-zinc-300">
-            <a href="#cinematica" className="hover:text-cyan-300 transition-colors">
-              {"// Cinemática"}
+          <nav className="nav-scrollspy hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-zinc-300">
+            <a href="#cinematica" data-scrollspy-link="true" className="nav-scrollspy-link relative py-1 hover:text-cyan-300 transition-colors">
+              {"// Arquitectura"}
             </a>
-            <a href="#especialidades" className="hover:text-cyan-300 transition-colors">
+            <a href="#especialidades" data-scrollspy-link="true" className="nav-scrollspy-link relative py-1 hover:text-cyan-300 transition-colors">
               {"// Especialidades"}
             </a>
-            <a href="#experiencia" className="hover:text-cyan-300 transition-colors">
+            <a href="#experiencia" data-scrollspy-link="true" className="nav-scrollspy-link relative py-1 hover:text-cyan-300 transition-colors">
               {"// Trayectoria"}
             </a>
-            <a href="#consola" className="hover:text-cyan-300 transition-colors flex items-center gap-1">
+            <a href="#consola" data-scrollspy-link="true" className="nav-scrollspy-link relative py-1 hover:text-cyan-300 transition-colors flex items-center gap-1">
               <Terminal className="w-3.5 h-3.5 text-[#bc7155]" />
               Consola
             </a>
-            <a href="#habilidades" className="hover:text-cyan-300 transition-colors">
-              {"// Skills"}
+            <a href="#habilidades" data-scrollspy-link="true" className="nav-scrollspy-link relative py-1 hover:text-cyan-300 transition-colors">
+              {"// Capacidades"}
             </a>
           </nav>
 
@@ -100,42 +201,50 @@ export function Navbar() {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-2 p-5 rounded-3xl border border-white/15 bg-[#060d1e]/95 backdrop-blur-2xl shadow-2xl shadow-black/60 flex flex-col gap-2.5 font-mono text-xs uppercase tracking-wider text-zinc-200">
+          <div
+            data-mobile-scrollspy
+            className="md:hidden mt-2 p-5 rounded-3xl border border-white/15 bg-[#060d1e]/95 backdrop-blur-2xl shadow-2xl shadow-black/60 flex flex-col gap-2.5 font-mono text-xs uppercase tracking-wider text-zinc-200"
+          >
             <a
               href="#cinematica"
+              data-scrollspy-link="true"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
+              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 aria-[current=true]:bg-white/10 aria-[current=true]:text-cyan-300 aria-[current=true]:font-bold transition-colors"
             >
-              {"// Cinemática"}
+              {"// Arquitectura"}
             </a>
             <a
               href="#especialidades"
+              data-scrollspy-link="true"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
+              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 aria-[current=true]:bg-white/10 aria-[current=true]:text-cyan-300 aria-[current=true]:font-bold transition-colors"
             >
               {"// Especialidades"}
             </a>
             <a
               href="#experiencia"
+              data-scrollspy-link="true"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
+              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 aria-[current=true]:bg-white/10 aria-[current=true]:text-cyan-300 aria-[current=true]:font-bold transition-colors"
             >
               {"// Trayectoria"}
             </a>
             <a
               href="#consola"
+              data-scrollspy-link="true"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors flex items-center gap-2"
+              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 aria-[current=true]:bg-white/10 aria-[current=true]:text-cyan-300 aria-[current=true]:font-bold transition-colors flex items-center gap-2"
             >
               <Terminal className="w-3.5 h-3.5 text-[#bc7155]" />
               Consola
             </a>
             <a
               href="#habilidades"
+              data-scrollspy-link="true"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 transition-colors"
+              className="py-2.5 px-3 rounded-full hover:bg-white/10 hover:text-cyan-300 aria-[current=true]:bg-white/10 aria-[current=true]:text-cyan-300 aria-[current=true]:font-bold transition-colors"
             >
-              {"// Skills"}
+              {"// Capacidades"}
             </a>
             <button
               onClick={() => {

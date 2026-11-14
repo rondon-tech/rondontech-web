@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 
@@ -26,21 +25,19 @@ export function FieldGalleryLightbox({
   className = "",
 }: FieldGalleryLightboxProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const triggerRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const lastOpenedIndexRef = useRef<number | null>(null);
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const captionId = useId();
 
   const isOpen = activeIndex !== null && items.length > 0;
   const currentItem =
     activeIndex !== null && items[activeIndex] ? items[activeIndex] : null;
 
   const closeLightbox = useCallback(() => {
-    setActiveIndex(null);
-    const returnIndex = lastOpenedIndexRef.current;
-    if (returnIndex !== null) {
-      requestAnimationFrame(() => {
-        triggerRefs.current[returnIndex]?.focus();
-      });
+    const dialog = dialogRef.current;
+    if (dialog?.open) {
+      dialog.close();
+    } else {
+      setActiveIndex(null);
     }
   }, []);
 
@@ -59,19 +56,59 @@ export function FieldGalleryLightbox({
   }, [items.length]);
 
   useEffect(() => {
-    if (!isOpen) {
+    const dialog = dialogRef.current;
+    if (!dialog) {
       return;
     }
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
+    dialog.setAttribute("closedby", "any");
+
+    if ("closedBy" in HTMLDialogElement.prototype) {
+      return;
+    }
+
+    let pointerDownOutside = false;
+    const isOutside = (event: PointerEvent) => {
+      const rect = dialog.getBoundingClientRect();
+      return (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+      );
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      pointerDownOutside = event.target === dialog && isOutside(event);
+    };
+
+    const handlePointerUp = (event: PointerEvent) => {
+      if (pointerDownOutside && event.target === dialog && isOutside(event)) {
+        dialog.close();
+      }
+      pointerDownOutside = false;
+    };
+
+    dialog.addEventListener("pointerdown", handlePointerDown);
+    dialog.addEventListener("pointerup", handlePointerUp);
+    return () => {
+      dialog.removeEventListener("pointerdown", handlePointerDown);
+      dialog.removeEventListener("pointerup", handlePointerUp);
+    };
+  }, []);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog || !isOpen) {
+      return;
+    }
+
+    if (!dialog.open) {
+      dialog.showModal();
+    }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeLightbox();
-      } else if (event.key === "ArrowLeft") {
+      if (event.key === "ArrowLeft") {
         event.preventDefault();
         showPrev();
       } else if (event.key === "ArrowRight") {
@@ -80,12 +117,11 @@ export function FieldGalleryLightbox({
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    dialog.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
+      dialog.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, closeLightbox, showPrev, showNext]);
+  }, [isOpen, showPrev, showNext]);
 
   if (items.length === 0) {
     return null;
@@ -112,14 +148,8 @@ export function FieldGalleryLightbox({
         {items.map((item, idx) => (
           <button
             key={item.src}
-            ref={(el) => {
-              triggerRefs.current[idx] = el;
-            }}
             type="button"
-            onClick={() => {
-              lastOpenedIndexRef.current = idx;
-              setActiveIndex(idx);
-            }}
+            onClick={() => setActiveIndex(idx)}
             aria-label={`Ampliar imagen: ${item.alt}`}
             className="group/thumb relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-[#d5d3d4] bg-[#0f0f1c] text-left cursor-pointer transition-[border-color,box-shadow] duration-200 hover:border-[#000d10]/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284c7] focus-visible:ring-offset-2"
           >
@@ -152,94 +182,86 @@ export function FieldGalleryLightbox({
         ))}
       </div>
 
-      {isOpen &&
-        currentItem &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={currentItem.alt}
-            onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                closeLightbox();
-              }
-            }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#000d10]/88 backdrop-blur-sm p-4 sm:p-8"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl rounded-2xl bg-[#0f0f1c] border border-white/15 shadow-2xl overflow-hidden"
-            >
-              <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-white/10 bg-[#151623]">
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="px-2.5 py-1 rounded-md bg-white/10 border border-white/15 font-mono text-xs font-bold text-white tabular-nums shrink-0">
-                    {counterText}
-                  </span>
-                  <span
-                    className={`font-mono text-xs font-semibold uppercase tracking-wider truncate ${
-                      currentItem.badgeClassName ?? "text-sky-300"
-                    }`}
-                  >
-                    {currentItem.label}
-                  </span>
-                </div>
-
-                <button
-                  ref={closeButtonRef}
-                  type="button"
-                  onClick={closeLightbox}
-                  aria-label="Cerrar visor"
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      <dialog
+        ref={dialogRef}
+        aria-labelledby={captionId}
+        onClose={() => {
+          if (dialogRef.current) {
+            dialogRef.current.returnValue = "";
+          }
+          setActiveIndex(null);
+        }}
+        className="m-auto w-[min(100%-2rem,64rem)] max-h-[90dvh] rounded-2xl bg-transparent p-0 border-0 backdrop:bg-[#000d10]/88 backdrop:backdrop-blur-sm open:flex open:flex-col"
+      >
+        {currentItem && (
+          <div className="relative w-full rounded-2xl bg-[#0f0f1c] border border-white/15 shadow-2xl overflow-hidden flex flex-col max-h-[90dvh]">
+            <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-white/10 bg-[#151623]">
+              <div className="flex items-center gap-3 min-w-0">
+                <span className="px-2.5 py-1 rounded-md bg-white/10 border border-white/15 font-mono text-xs font-bold text-white tabular-nums shrink-0">
+                  {counterText}
+                </span>
+                <span
+                  className={`font-mono text-xs font-semibold uppercase tracking-wider truncate ${
+                    currentItem.badgeClassName ?? "text-sky-300"
+                  }`}
                 >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="relative w-full aspect-[16/9] max-h-[72vh] bg-[#000d10]">
-                <Image
-                  src={currentItem.src}
-                  alt={currentItem.alt}
-                  fill
-                  sizes="90vw"
-                  className="object-contain p-2 sm:p-4"
-                  priority
-                />
-
-                {items.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      onClick={showPrev}
-                      aria-label="Imagen anterior"
-                      className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#000d10]/80 hover:bg-[#000d10] text-white border border-white/20 shadow-lg transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={showNext}
-                      aria-label="Siguiente imagen"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#000d10]/80 hover:bg-[#000d10] text-white border border-white/20 shadow-lg transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </>
-                )}
-              </div>
-
-              <div className="px-4 sm:px-6 py-3.5 border-t border-white/10 bg-[#151623] flex flex-wrap items-center justify-between gap-2">
-                <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed">
-                  {currentItem.alt}
-                </p>
-                <span className="font-mono text-[11px] text-zinc-400">
-                  ESC cerrar · ← → navegar
+                  {currentItem.label}
                 </span>
               </div>
+
+              <button
+                type="button"
+                onClick={closeLightbox}
+                aria-label="Cerrar visor"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                <X className="w-4 h-4" />
+              </button>
             </div>
-          </div>,
-          document.body,
+
+            <div className="relative w-full aspect-[16/9] max-h-[72vh] bg-[#000d10]">
+              <Image
+                src={currentItem.src}
+                alt={currentItem.alt}
+                fill
+                sizes="90vw"
+                className="object-contain p-2 sm:p-4"
+                priority
+              />
+
+              {items.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={showPrev}
+                    aria-label="Imagen anterior"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#000d10]/80 hover:bg-[#000d10] text-white border border-white/20 shadow-lg transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={showNext}
+                    aria-label="Siguiente imagen"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#000d10]/80 hover:bg-[#000d10] text-white border border-white/20 shadow-lg transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
+            </div>
+
+            <div className="px-4 sm:px-6 py-3.5 border-t border-white/10 bg-[#151623] flex flex-wrap items-center justify-between gap-2">
+              <p id={captionId} className="text-xs sm:text-sm text-zinc-200 leading-relaxed">
+                {currentItem.alt}
+              </p>
+              <span className="font-mono text-[11px] text-zinc-400">
+                ESC cerrar · ← → navegar
+              </span>
+            </div>
+          </div>
         )}
+      </dialog>
     </div>
   );
 }

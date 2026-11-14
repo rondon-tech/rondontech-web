@@ -2,12 +2,52 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { MessageSquare, Download, Copy, Check, ArrowUpRight } from "lucide-react";
+import { MessageSquare, Download, Copy, Check, ArrowUpRight, Clock } from "lucide-react";
 import confetti from "canvas-confetti";
 import { PROFILE_DATA } from "@/data/profileData";
 
+interface InquiryTrack {
+  id: "telecom" | "inmotica" | "ai-cloud";
+  label: string;
+  slaNote: string;
+  whatsappGreeting: string;
+}
+
+const INQUIRY_TRACKS: InquiryTrack[] = [
+  {
+    id: "telecom",
+    label: "Rol Senior / Telecom 5G",
+    slaNote: "SLA estimado: respuesta directa en < 2h hábiles · Roles senior, RAN 5G, MMOO e infraestructura crítica.",
+    whatsappGreeting:
+      "Hola Abrahan, vi tu perfil en rondontech.com y me gustaría conversar sobre un Rol Senior o consultoría en Telecomunicaciones 5G / Infraestructura Crítica.",
+  },
+  {
+    id: "inmotica",
+    label: "Proyecto Inmótica / Ablu Tech",
+    slaNote: "SLA estimado: respuesta en < 4h hábiles · Levantamiento técnico y solución llave en mano con Ablu Tech Ltda.",
+    whatsappGreeting:
+      "Hola Abrahan, vi tu perfil en rondontech.com y quiero evaluar un proyecto de Inmótica, Domótica o Seguridad Electrónica con Ablu Tech.",
+  },
+  {
+    id: "ai-cloud",
+    label: "Agentes IA & Software Cloud",
+    slaNote: "SLA estimado: respuesta en < 4h hábiles · Arquitectura de agentes autónomos, automatización y plataformas cloud.",
+    whatsappGreeting:
+      "Hola Abrahan, vi tu perfil en rondontech.com y me interesa conversar sobre Agentes IA, automatización operativa y Software Cloud.",
+  },
+];
+
 export function ContactFooter() {
   const [copied, setCopied] = useState(false);
+  const [selectedTrackId, setSelectedTrackId] = useState<InquiryTrack["id"]>("telecom");
+
+  const activeTrack =
+    INQUIRY_TRACKS.find((track) => track.id === selectedTrackId) ?? INQUIRY_TRACKS[0];
+
+  const sanitizedPhone = PROFILE_DATA.phone.replace(/[^0-9]/g, "");
+  const whatsappHref = `https://wa.me/${sanitizedPhone}?text=${encodeURIComponent(
+    activeTrack.whatsappGreeting
+  )}`;
 
   const copyEmail = () => {
     navigator.clipboard.writeText(PROFILE_DATA.email);
@@ -54,34 +94,75 @@ export function ContactFooter() {
                 domótica de alta gama con Ablu Tech o sistemas autónomos de IA, conversemos directamente.
               </p>
 
+              {/* Intent-Based Inquiry Tracks */}
+              <div className="space-y-3 pt-1">
+                <div className="font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+                  Selecciona el foco de tu consulta:
+                </div>
+                <div className="flex flex-wrap gap-2" role="group" aria-label="Tipo de consulta">
+                  {INQUIRY_TRACKS.map((track) => {
+                    const isSelected = track.id === activeTrack.id;
+                    return (
+                      <button
+                        key={track.id}
+                        type="button"
+                        aria-pressed={isSelected}
+                        onClick={() => setSelectedTrackId(track.id)}
+                        className={`px-3.5 py-2 rounded-full font-mono text-xs transition-all cursor-pointer border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 ${
+                          isSelected
+                            ? "bg-[#bc7155]/20 border-[#bc7155] text-white shadow-sm shadow-[#bc7155]/30"
+                            : "bg-white/5 border-white/15 text-zinc-300 hover:border-white/35 hover:text-white"
+                        }`}
+                      >
+                        {track.label}
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="font-mono text-[11px] sm:text-xs text-cyan-300/90 flex items-start gap-2 leading-relaxed">
+                  <Clock className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                  <span>{activeTrack.slaNote}</span>
+                </p>
+              </div>
+
               {/* Action Buttons in 1000px Pills - Full Width on Mobile */}
               <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
                 <a
-                  href={`https://wa.me/${PROFILE_DATA.phone.replace(/[^0-9]/g, "")}?text=Hola%20Abrahan,%20vi%20tu%20perfil%20en%20rondontech.com%20y%20me%20gustar%C3%ADa%20conversar.`}
+                  href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-pill-clay w-full sm:w-auto"
                 >
-                  <MessageSquare className="w-4 h-4" />
+                  <MessageSquare className="w-4 h-4 shrink-0" />
                   <span>Contactar vía WhatsApp</span>
                 </a>
 
-                <button onClick={copyEmail} className="btn-pill-ghost-light w-full sm:w-auto cursor-pointer">
+                <a
+                  href={PROFILE_DATA.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-pill-ghost-light w-full sm:w-auto"
+                >
+                  <span>LinkedIn</span>
+                  <ArrowUpRight className="w-4 h-4 text-[#bc7155] shrink-0" />
+                </a>
+
+                <button type="button" onClick={copyEmail} className="btn-pill-ghost-light w-full sm:w-auto cursor-pointer">
                   {copied ? (
                     <>
-                      <Check className="w-4 h-4 text-emerald-400" />
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                       <span>{PROFILE_DATA.email} (Copiado)</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4" />
+                      <Copy className="w-4 h-4 shrink-0" />
                       <span>Copiar Correo Electrónico</span>
                     </>
                   )}
                 </button>
 
-                <button onClick={triggerDownloadCV} className="btn-pill-ghost-light w-full sm:w-auto cursor-pointer">
-                  <Download className="w-4 h-4" />
+                <button type="button" onClick={triggerDownloadCV} className="btn-pill-ghost-light w-full sm:w-auto cursor-pointer">
+                  <Download className="w-4 h-4 shrink-0" />
                   <span>Descargar CV [PDF]</span>
                 </button>
               </div>
@@ -154,7 +235,7 @@ export function ContactFooter() {
               Ablu Tech Ltda. <ArrowUpRight className="w-3.5 h-3.5 text-[#bc7155]" />
             </a>
             <a
-              href="https://linkedin.com/in/abrahan-rondon"
+              href={PROFILE_DATA.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors flex items-center gap-1"

@@ -75,16 +75,40 @@ export function ScrollMotionExperience() {
 
   const duration = 10.0; // 10 seconds total video duration
 
-  // Pre-warm video decoder on mount so scroll seeking is instant without lag
+  // Lazy-prime video decoder when approaching #cinematica so initial hero bandwidth stays focused on LCP
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0.001;
-    }
+    const container = containerRef.current;
+    const video = videoRef.current;
+    if (!container || !video) return;
+
+    video.setAttribute("loading", "lazy");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            if (video.preload !== "auto") {
+              video.preload = "auto";
+            }
+            if (video.readyState >= 1 && video.currentTime === 0) {
+              video.currentTime = 0.001;
+            }
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { rootMargin: "600px 0px" }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
 
   // Update video frame smoothly based on scroll using requestAnimationFrame throttling
   useEffect(() => {
     let animationFrameId: number;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const unsubscribe = scrollYProgress.on("change", (latest) => {
       if (videoRef.current) {
         cancelAnimationFrame(animationFrameId);
@@ -92,8 +116,10 @@ export function ScrollMotionExperience() {
           if (!videoRef.current) return;
           // Map 0.0 - 1.0 to video duration
           const targetTime = Math.min(Math.max(latest * duration, 0), duration);
-          if (Math.abs(videoRef.current.currentTime - targetTime) > 0.03) {
+          if (!reducedMotion && Math.abs(videoRef.current.currentTime - targetTime) > 0.03) {
             videoRef.current.currentTime = targetTime;
+            setCurrentTime(targetTime);
+          } else if (reducedMotion) {
             setCurrentTime(targetTime);
           }
 
@@ -121,6 +147,7 @@ export function ScrollMotionExperience() {
     <section
       ref={containerRef}
       id="cinematica"
+      tabIndex={-1}
       className="relative w-full max-w-full min-w-0 h-[260vh] sm:h-[300vh] bg-[#000d10] text-white"
     >
       {/* Sticky Fullscreen Presentation */}
@@ -131,9 +158,16 @@ export function ScrollMotionExperience() {
           <video
             ref={videoRef}
             src="/media/showcase-scroll-motion.mp4"
+            width={1920}
+            height={1080}
             playsInline
             muted
-            preload="auto"
+            preload="metadata"
+            onLoadedMetadata={(e) => {
+              if (e.currentTarget.currentTime === 0) {
+                e.currentTarget.currentTime = 0.001;
+              }
+            }}
             className="w-full h-full object-cover opacity-80"
           />
           {/* Editorial Gradient Overlays */}
