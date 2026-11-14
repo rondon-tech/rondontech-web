@@ -148,25 +148,25 @@ export function HarnessArchitectureInspector({
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-3 min-w-0">
           <div className="space-y-2 min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 font-semibold">
+              <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 font-semibold">
                 <Cpu className="w-3 h-3 shrink-0" />
                 HARNESS² RECURSIVE ENGINE
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 font-semibold">
+              <span className="font-mono text-xs uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 font-semibold">
                 EXIT {telemetry.exitCode} · VERIFIED RUN
               </span>
-              <span className="font-mono text-[10px] text-zinc-400 break-words">
+              <span className="font-mono text-xs text-zinc-400 break-words">
                 {telemetry.packageName} v{telemetry.packageVersion} ·{" "}
                 {telemetry.paperRef} · {telemetry.license}
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] sm:text-xs font-mono text-zinc-300 min-w-0">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-zinc-300 min-w-0">
               <span className="inline-flex items-start gap-1.5 text-cyan-300 break-all min-w-0">
                 <Terminal className="w-3.5 h-3.5 shrink-0 mt-0.5" />
                 <span>$ {telemetry.command}</span>
               </span>
-              <span className="text-zinc-500 hidden sm:inline">|</span>
+              <span className="text-zinc-400 hidden sm:inline">|</span>
               <span className="text-zinc-400">
                 {telemetry.pythonRuntime} · {telemetry.packageManager}
               </span>
@@ -178,7 +178,7 @@ export function HarnessArchitectureInspector({
               type="button"
               onClick={onClose}
               aria-label="Cerrar Inspector Harness²"
-              className="self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-[11px] font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-colors cursor-pointer shrink-0"
+              className="self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-colors cursor-pointer shrink-0"
             >
               <X className="w-3.5 h-3.5" />
               <span>Cerrar Inspector</span>
@@ -189,7 +189,7 @@ export function HarnessArchitectureInspector({
         {/* Dataset Run Switcher: RondonTech Adapter vs Upstream Demo */}
         <div className="mt-4 pt-3.5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 min-w-0">
           <div className="space-y-0.5 min-w-0">
-            <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+            <div className="font-mono text-xs uppercase tracking-wider text-zinc-400">
               Telemetry Run Source
             </div>
             <div className="text-xs sm:text-sm font-semibold text-white break-words">
@@ -209,9 +209,9 @@ export function HarnessArchitectureInspector({
               type="button"
               onClick={() => handleDatasetChange("rondontech")}
               aria-pressed={datasetKey === "rondontech"}
-              className={`inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1.5 rounded-full font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+              className={`inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-semibold transition-all cursor-pointer ${
                 datasetKey === "rondontech"
-                  ? "bg-[#bc7155] text-white shadow-sm shadow-[#bc7155]/40"
+                  ? "bg-[#a65437] hover:bg-[#8c4329] text-white shadow-sm shadow-[#a65437]/40"
                   : "text-zinc-300 hover:text-white hover:bg-white/5"
               }`}
             >
@@ -222,7 +222,7 @@ export function HarnessArchitectureInspector({
               type="button"
               onClick={() => handleDatasetChange("demo")}
               aria-pressed={datasetKey === "demo"}
-              className={`inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1.5 rounded-full font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+              className={`inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs font-semibold transition-all cursor-pointer ${
                 datasetKey === "demo"
                   ? "bg-cyan-400 text-[#000d10] shadow-sm shadow-cyan-400/40"
                   : "text-zinc-300 hover:text-white hover:bg-white/5"
@@ -237,53 +237,53 @@ export function HarnessArchitectureInspector({
         {/* 4 Grounded Telemetry KPIs */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mt-4 min-w-0">
           <div className="rounded-xl bg-[#000d10]/70 border border-white/10 p-3 min-w-0">
-            <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+            <div className="font-mono text-xs uppercase tracking-wider text-zinc-400">
               Budget &amp; Domain
             </div>
             <div className="font-mono text-xs sm:text-base font-bold text-white mt-0.5 break-words">
               k = {telemetry.kBudget} · {telemetry.tasksCompleted}/
               {telemetry.tasksCompleted + telemetry.tasksFailed} OK
             </div>
-            <div className="font-mono text-[11px] text-cyan-300 break-words">
+            <div className="font-mono text-xs text-cyan-300 break-words">
               domain: {telemetry.domain}
             </div>
           </div>
 
           <div className="rounded-xl bg-[#000d10]/70 border border-white/10 p-3 min-w-0">
-            <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+            <div className="font-mono text-xs uppercase tracking-wider text-zinc-400">
               Rollouts &amp; Edits
             </div>
             <div className="font-mono text-xs sm:text-base font-bold text-white mt-0.5 break-words">
               {telemetry.totalExecutions} execs · {telemetry.totalEditorCalls}{" "}
               edits
             </div>
-            <div className="font-mono text-[11px] text-zinc-400 break-words">
+            <div className="font-mono text-xs text-zinc-400 break-words">
               {telemetry.rolloutsPerModeTask} rollouts /{" "}
               {telemetry.stagesPerModeTask} stages
             </div>
           </div>
 
           <div className="rounded-xl bg-[#000d10]/70 border border-white/10 p-3 min-w-0">
-            <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+            <div className="font-mono text-xs uppercase tracking-wider text-zinc-400">
               Always-On Context
             </div>
             <div className="font-mono text-xs sm:text-base font-bold text-emerald-300 mt-0.5 break-words">
               {telemetry.adoptedAlwaysOnChars} /{" "}
               {telemetry.alwaysOnMaxChars.toLocaleString()} ch
             </div>
-            <div className="font-mono text-[11px] text-zinc-400 break-words">
+            <div className="font-mono text-xs text-zinc-400 break-words">
               {alwaysOnRatioPct}% of max budget
             </div>
           </div>
 
           <div className="rounded-xl bg-[#000d10]/70 border border-white/10 p-3 min-w-0">
-            <div className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+            <div className="font-mono text-xs uppercase tracking-wider text-zinc-400">
               Target Fix &amp; Cost
             </div>
             <div className="font-mono text-xs sm:text-base font-bold text-[#f3b59d] mt-0.5 break-all">
               {telemetry.editedComponentPath}
             </div>
-            <div className="font-mono text-[11px] text-zinc-400 break-words">
+            <div className="font-mono text-xs text-zinc-400 break-words">
               {telemetry.baseScriptBytes}B → {telemetry.adoptedScriptBytes}B · $
               {telemetry.totalUsdCost.toFixed(2)} USD
             </div>
@@ -297,7 +297,7 @@ export function HarnessArchitectureInspector({
           type="button"
           onClick={() => setActiveTab("surface")}
           aria-pressed={activeTab === "surface"}
-          className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-mono text-[11px] sm:text-xs font-semibold transition-all cursor-pointer ${
+          className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-mono text-xs font-semibold transition-all cursor-pointer ${
             activeTab === "surface"
               ? "bg-cyan-400 text-[#000d10] shadow-sm shadow-cyan-400/30"
               : "bg-white/5 text-zinc-300 border border-white/10 hover:border-cyan-400/50 hover:text-white"
@@ -311,7 +311,7 @@ export function HarnessArchitectureInspector({
           type="button"
           onClick={() => setActiveTab("trace")}
           aria-pressed={activeTab === "trace"}
-          className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-mono text-[11px] sm:text-xs font-semibold transition-all cursor-pointer ${
+          className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-mono text-xs font-semibold transition-all cursor-pointer ${
             activeTab === "trace"
               ? "bg-emerald-400 text-[#000d10] shadow-sm shadow-emerald-400/30"
               : "bg-white/5 text-zinc-300 border border-white/10 hover:border-emerald-400/50 hover:text-white"
@@ -325,9 +325,9 @@ export function HarnessArchitectureInspector({
           type="button"
           onClick={() => setActiveTab("library")}
           aria-pressed={activeTab === "library"}
-          className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-mono text-[11px] sm:text-xs font-semibold transition-all cursor-pointer ${
+          className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-mono text-xs font-semibold transition-all cursor-pointer ${
             activeTab === "library"
-              ? "bg-[#bc7155] text-white shadow-sm shadow-[#bc7155]/30"
+              ? "bg-[#a65437] hover:bg-[#8c4329] text-white shadow-sm shadow-[#a65437]/30"
               : "bg-white/5 text-zinc-300 border border-white/10 hover:border-[#bc7155]/60 hover:text-white"
           }`}
         >
@@ -373,7 +373,7 @@ export function HarnessArchitectureInspector({
                       type="button"
                       onClick={() => setScopeFilter(scope)}
                       aria-pressed={scopeFilter === scope}
-                      className={`px-2.5 py-1 rounded-full font-mono text-[10px] font-semibold border transition-colors cursor-pointer ${
+                      className={`px-2.5 py-1 rounded-full font-mono text-xs font-semibold border transition-colors cursor-pointer ${
                         scopeFilter === scope
                           ? "bg-white text-[#000d10] border-white"
                           : "bg-white/5 text-zinc-300 border-white/15 hover:border-white/40"
@@ -409,17 +409,17 @@ export function HarnessArchitectureInspector({
                             {comp.id} · {comp.name}
                           </span>
                           <span
-                            className={`font-mono text-[9px] px-1.5 py-0.5 rounded border shrink-0 ${scopeStyle.badge}`}
+                            className={`font-mono text-xs px-1.5 py-0.5 rounded border shrink-0 ${scopeStyle.badge}`}
                           >
                             {scopeStyle.label}
                           </span>
                         </div>
-                        <div className="font-mono text-[11px] text-zinc-300 break-all">
+                        <div className="font-mono text-xs text-zinc-300 break-all">
                           {comp.opencodePath}
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/10 font-mono text-[10px] w-full">
+                      <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/10 font-mono text-xs w-full">
                         <span className="inline-flex items-center gap-1.5 text-zinc-300">
                           <span
                             className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusMeta.dot}`}
@@ -442,7 +442,7 @@ export function HarnessArchitectureInspector({
                     <span className="font-mono text-xs sm:text-sm font-bold text-white uppercase">
                       {selectedComponent.id}: {selectedComponent.name}
                     </span>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-zinc-200 border border-white/15">
+                    <span className="font-mono text-xs px-2 py-0.5 rounded-full bg-white/10 text-zinc-200 border border-white/15">
                       {selectedComponent.runtimeRole}
                     </span>
                   </div>
@@ -450,7 +450,7 @@ export function HarnessArchitectureInspector({
                     <button
                       type="button"
                       onClick={() => setActiveTab("trace")}
-                      className="inline-flex items-center gap-1 font-mono text-[11px] text-emerald-300 hover:text-emerald-200 underline underline-offset-4 cursor-pointer"
+                      className="inline-flex items-center gap-1 font-mono text-xs text-emerald-300 hover:text-emerald-200 underline underline-offset-4 cursor-pointer"
                     >
                       <span>Ver diff real en {telemetry.editedComponentPath}</span>
                       <ArrowRight className="w-3 h-3 shrink-0" />
@@ -462,9 +462,9 @@ export function HarnessArchitectureInspector({
                   {selectedComponent.description}
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 font-mono text-[11px] min-w-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 font-mono text-xs min-w-0">
                   <div className="rounded-lg bg-white/5 px-3 py-2 border border-white/10 min-w-0">
-                    <span className="text-zinc-400 block text-[10px] uppercase">
+                    <span className="text-zinc-400 block text-xs uppercase">
                       OpenCode Surface Path
                     </span>
                     <span className="text-cyan-300 break-all">
@@ -472,7 +472,7 @@ export function HarnessArchitectureInspector({
                     </span>
                   </div>
                   <div className="rounded-lg bg-white/5 px-3 py-2 border border-white/10 min-w-0">
-                    <span className="text-zinc-400 block text-[10px] uppercase">
+                    <span className="text-zinc-400 block text-xs uppercase">
                       Codex Surface Path
                     </span>
                     <span className="text-emerald-300 break-all">
@@ -504,11 +504,11 @@ export function HarnessArchitectureInspector({
                       <span className="font-mono text-xs font-bold text-white uppercase break-all">
                         {task.taskId}
                       </span>
-                      <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-white/10 text-zinc-300 shrink-0">
+                      <span className="font-mono text-xs px-2 py-0.5 rounded bg-white/10 text-zinc-300 shrink-0">
                         fp: {task.harnessFingerprint}
                       </span>
                     </div>
-                    <div className="font-mono text-[10px] text-cyan-300 break-all">
+                    <div className="font-mono text-xs text-cyan-300 break-all">
                       {task.sourceFile}
                     </div>
 
@@ -516,7 +516,7 @@ export function HarnessArchitectureInspector({
                       {task.amounts.map((sample, idx) => (
                         <span
                           key={idx}
-                          className="font-mono text-[10px] text-zinc-300 bg-white/5 border border-white/10 rounded px-2 py-0.5 break-words max-w-full"
+                          className="font-mono text-xs text-zinc-300 bg-white/5 border border-white/10 rounded px-2 py-0.5 break-words max-w-full"
                         >
                           {sample}
                         </span>
@@ -525,7 +525,7 @@ export function HarnessArchitectureInspector({
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 min-w-0">
                       <div className="rounded-lg bg-amber-500/10 border border-amber-400/25 px-3 py-2 min-w-0">
-                        <div className="font-mono text-[10px] uppercase text-amber-300 flex items-center gap-1">
+                        <div className="font-mono text-xs uppercase text-amber-300 flex items-center gap-1">
                           <AlertTriangle className="w-3 h-3 shrink-0" />
                           Base Rollout
                         </div>
@@ -534,7 +534,7 @@ export function HarnessArchitectureInspector({
                         </div>
                       </div>
                       <div className="rounded-lg bg-emerald-500/10 border border-emerald-400/30 px-3 py-2 min-w-0">
-                        <div className="font-mono text-[10px] uppercase text-emerald-300 flex items-center gap-1">
+                        <div className="font-mono text-xs uppercase text-emerald-300 flex items-center gap-1">
                           <CheckCircle2 className="w-3 h-3 shrink-0" />
                           Adopted ({task.adoptedAggLabel} /{" "}
                           {task.adoptedSeqLabel})
@@ -559,7 +559,7 @@ export function HarnessArchitectureInspector({
                       type="button"
                       onClick={() => setTraceMode("agg")}
                       aria-pressed={traceMode === "agg"}
-                      className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-colors cursor-pointer ${
+                      className={`px-3 py-1 rounded-full font-mono text-xs font-semibold transition-colors cursor-pointer ${
                         traceMode === "agg"
                           ? "bg-emerald-400 text-[#000d10]"
                           : "text-zinc-300 hover:text-white"
@@ -571,7 +571,7 @@ export function HarnessArchitectureInspector({
                       type="button"
                       onClick={() => setTraceMode("seq")}
                       aria-pressed={traceMode === "seq"}
-                      className={`px-3 py-1 rounded-full font-mono text-[11px] font-semibold transition-colors cursor-pointer ${
+                      className={`px-3 py-1 rounded-full font-mono text-xs font-semibold transition-colors cursor-pointer ${
                         traceMode === "seq"
                           ? "bg-cyan-400 text-[#000d10]"
                           : "text-zinc-300 hover:text-white"
@@ -600,24 +600,24 @@ export function HarnessArchitectureInspector({
                             : "bg-[#000d10]/60 border-white/10"
                         }`}
                       >
-                        <div className="flex items-center justify-between gap-2 font-mono text-[11px] min-w-0">
+                        <div className="flex items-center justify-between gap-2 font-mono text-xs min-w-0">
                           <span className="font-bold text-white">
                             {step.label}{" "}
                             <span className="text-zinc-400 font-normal">
                               · {step.dim}
                             </span>
                           </span>
-                          <span className="px-1.5 py-0.5 rounded bg-white/10 text-[10px] text-zinc-200 shrink-0">
+                          <span className="px-1.5 py-0.5 rounded bg-white/10 text-xs text-zinc-200 shrink-0">
                             {step.phase}
                           </span>
                         </div>
-                        <div className="font-mono text-[11px] sm:text-xs font-semibold text-cyan-300 break-words">
+                        <div className="font-mono text-xs font-semibold text-cyan-300 break-words">
                           {step.outputPreview}
                         </div>
-                        <p className="text-[11px] text-zinc-300 leading-snug break-words">
+                        <p className="text-xs text-zinc-300 leading-snug break-words">
                           {step.notes}
                         </p>
-                        <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-[10px] text-zinc-400">
+                        <div className="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs text-zinc-400">
                           <span>att: {step.attempts}</span>
                           <span>${step.usd.toFixed(2)}</span>
                           <span>keptBase: {String(step.keptBase)}</span>
@@ -644,7 +644,7 @@ export function HarnessArchitectureInspector({
                       type="button"
                       onClick={() => setDiffViewMode("unified")}
                       aria-pressed={diffViewMode === "unified"}
-                      className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] font-semibold cursor-pointer ${
+                      className={`px-2.5 py-0.5 rounded-full font-mono text-xs font-semibold cursor-pointer ${
                         diffViewMode === "unified"
                           ? "bg-white text-[#000d10]"
                           : "text-zinc-300"
@@ -656,7 +656,7 @@ export function HarnessArchitectureInspector({
                       type="button"
                       onClick={() => setDiffViewMode("split")}
                       aria-pressed={diffViewMode === "split"}
-                      className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] font-semibold cursor-pointer ${
+                      className={`px-2.5 py-0.5 rounded-full font-mono text-xs font-semibold cursor-pointer ${
                         diffViewMode === "split"
                           ? "bg-white text-[#000d10]"
                           : "text-zinc-300"
@@ -668,7 +668,7 @@ export function HarnessArchitectureInspector({
                 </div>
 
                 {diffViewMode === "unified" ? (
-                  <pre className="p-3.5 font-mono text-[11px] sm:text-xs leading-relaxed overflow-x-auto max-w-full text-zinc-200">
+                  <pre className="p-3.5 font-mono text-xs leading-relaxed overflow-x-auto max-w-full text-zinc-200">
                     {telemetry.unifiedDiff.split("\n").map((line, i) => {
                       const lineClass =
                         line.startsWith("-") && !line.startsWith("---")
@@ -688,18 +688,18 @@ export function HarnessArchitectureInspector({
                 ) : (
                   <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/10 min-w-0">
                     <div className="p-3.5 min-w-0">
-                      <div className="font-mono text-[10px] uppercase text-rose-300 mb-2">
+                      <div className="font-mono text-xs uppercase text-rose-300 mb-2">
                         Base ({telemetry.baseScriptBytes}B)
                       </div>
-                      <pre className="font-mono text-[11px] leading-relaxed overflow-x-auto max-w-full text-zinc-300">
+                      <pre className="font-mono text-xs leading-relaxed overflow-x-auto max-w-full text-zinc-300">
                         {telemetry.baseScriptContent}
                       </pre>
                     </div>
                     <div className="p-3.5 min-w-0">
-                      <div className="font-mono text-[10px] uppercase text-emerald-300 mb-2">
+                      <div className="font-mono text-xs uppercase text-emerald-300 mb-2">
                         Adopted ({telemetry.adoptedScriptBytes}B)
                       </div>
-                      <pre className="font-mono text-[11px] leading-relaxed overflow-x-auto max-w-full text-emerald-200">
+                      <pre className="font-mono text-xs leading-relaxed overflow-x-auto max-w-full text-emerald-200">
                         {telemetry.adoptedScriptContent}
                       </pre>
                     </div>
@@ -732,9 +732,9 @@ export function HarnessArchitectureInspector({
                       type="button"
                       onClick={() => setSelectedLessonIndex(idx)}
                       aria-pressed={idx === selectedLessonIndex}
-                      className={`px-2.5 py-1 rounded-full font-mono text-[10px] font-semibold border transition-colors cursor-pointer break-all text-left ${
+                      className={`px-2.5 py-1 rounded-full font-mono text-xs font-semibold border transition-colors cursor-pointer break-all text-left ${
                         idx === selectedLessonIndex
-                          ? "bg-[#bc7155] text-white border-[#bc7155]"
+                          ? "bg-[#a65437] hover:bg-[#8c4329] text-white border-[#a65437]"
                           : "bg-white/5 text-zinc-300 border-white/15 hover:border-white/40"
                       }`}
                     >
@@ -751,11 +751,11 @@ export function HarnessArchitectureInspector({
                     <span className="font-bold text-white break-all">
                       {activeLesson.adoptedRunId}
                     </span>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 text-[10px] uppercase font-semibold shrink-0">
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 text-xs uppercase font-semibold shrink-0">
                       verdict: {activeLesson.verdict}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 font-mono text-[10px] text-zinc-400 break-words">
+                  <div className="flex items-center gap-2 font-mono text-xs text-zinc-400 break-words">
                     <Database className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
                     <span>
                       libraryEntriesBefore: {activeLesson.libraryEntriesBefore}{" "}
@@ -766,7 +766,7 @@ export function HarnessArchitectureInspector({
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 min-w-0">
                   <div className="rounded-lg bg-white/5 border border-white/10 p-3 space-y-1 min-w-0">
-                    <div className="font-mono text-[10px] uppercase text-cyan-300">
+                    <div className="font-mono text-xs uppercase text-cyan-300">
                       Cue (Disparador)
                     </div>
                     <p className="text-xs sm:text-sm text-white font-medium break-words">
@@ -774,7 +774,7 @@ export function HarnessArchitectureInspector({
                     </p>
                   </div>
                   <div className="rounded-lg bg-white/5 border border-white/10 p-3 space-y-1 min-w-0">
-                    <div className="font-mono text-[10px] uppercase text-emerald-300">
+                    <div className="font-mono text-xs uppercase text-emerald-300">
                       Lesson (Regla Transferible)
                     </div>
                     <p className="text-xs sm:text-sm text-white font-medium break-words">
@@ -785,19 +785,19 @@ export function HarnessArchitectureInspector({
 
                 <div className="space-y-2 text-xs sm:text-sm text-zinc-300 min-w-0">
                   <div className="break-words">
-                    <span className="font-mono text-[10px] uppercase text-zinc-400 mr-2">
+                    <span className="font-mono text-xs uppercase text-zinc-400 mr-2">
                       Why Chosen:
                     </span>
                     <span>{activeLesson.whyChosen}</span>
                   </div>
                   <div className="break-words">
-                    <span className="font-mono text-[10px] uppercase text-zinc-400 mr-2">
+                    <span className="font-mono text-xs uppercase text-zinc-400 mr-2">
                       Observed Contrast:
                     </span>
                     <span>{activeLesson.observedContrast}</span>
                   </div>
                   <div className="break-words">
-                    <span className="font-mono text-[10px] uppercase text-zinc-400 mr-2">
+                    <span className="font-mono text-xs uppercase text-zinc-400 mr-2">
                       Evidence:
                     </span>
                     <span className="text-zinc-200">
@@ -806,7 +806,7 @@ export function HarnessArchitectureInspector({
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10 font-mono text-[10px] text-zinc-400">
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10 font-mono text-xs text-zinc-400">
                   <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 break-all">
                     component: {activeLesson.componentEdited}
                   </span>

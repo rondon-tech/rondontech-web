@@ -145,7 +145,7 @@ export function Navbar() {
               <span className="font-mono text-xs sm:text-sm font-bold tracking-tight text-white">
                 RONDONTECH<span className="text-cyan-400">.</span>
               </span>
-              <span className="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-cyan-400/10 text-cyan-300 border border-cyan-400/30">
+              <span className="text-xs leading-none font-mono px-1.5 py-0.5 rounded-full bg-cyan-400/10 text-cyan-300 border border-cyan-400/30">
                 PRO
               </span>
             </div>
@@ -182,7 +182,7 @@ export function Navbar() {
             </button>
             <a
               href="#contacto"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-bold text-white bg-[#bc7155] hover:bg-[#a55f46] transition-all duration-300 shadow-md shadow-[#bc7155]/30 cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono font-bold text-white bg-[#a65437] hover:bg-[#8c4329] transition-all duration-300 shadow-md shadow-[#a65437]/30 cursor-pointer"
             >
               <span>Contacto</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -259,7 +259,7 @@ export function Navbar() {
             <a
               href="#contacto"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2.5 px-3 rounded-full bg-[#bc7155] text-white font-bold text-center shadow-md shadow-[#bc7155]/30"
+              className="py-2.5 px-3 rounded-full bg-[#a65437] hover:bg-[#8c4329] text-white font-bold text-center shadow-md shadow-[#a65437]/30 transition-colors"
             >
               Iniciar Contacto
             </a>

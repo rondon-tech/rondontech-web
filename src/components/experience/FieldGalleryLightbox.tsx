@@ -138,7 +138,7 @@ export function FieldGalleryLightbox({
   return (
     <div className={`space-y-3 min-w-0 ${className}`}>
       {title && (
-        <div className="font-mono text-[11px] font-semibold text-[#000d10] uppercase tracking-wider flex items-center gap-2">
+        <div className="font-mono text-xs font-semibold text-[#000d10] uppercase tracking-wider flex items-center gap-2">
           <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dotClass}`} />
           <span>{title}</span>
         </div>
@@ -171,7 +171,7 @@ export function FieldGalleryLightbox({
 
             <div className="absolute inset-x-0 bottom-0 p-2.5 flex items-end justify-between gap-2">
               <span
-                className={`font-mono text-[10px] font-bold tracking-wide uppercase truncate ${
+                className={`font-mono text-xs font-bold tracking-wide uppercase truncate ${
                   item.badgeClassName ?? "text-white"
                 }`}
               >
@@ -255,7 +255,7 @@ export function FieldGalleryLightbox({
               <p id={captionId} className="text-xs sm:text-sm text-zinc-200 leading-relaxed">
                 {currentItem.alt}
               </p>
-              <span className="font-mono text-[11px] text-zinc-400">
+              <span className="font-mono text-xs text-zinc-400">
                 ESC cerrar · ← → navegar
               </span>
             </div>

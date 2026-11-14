@@ -170,7 +170,7 @@ a.target-current[aria-current="true"] {
 }
 
 .btn-pill-clay {
-  background-color: #bc7155;
+  background-color: #a65437;
   color: #ffffff;
   border-radius: 1000px;
   padding: 15px 28px;
@@ -184,9 +184,9 @@ a.target-current[aria-current="true"] {
 }
 
 .btn-pill-clay:hover {
-  background-color: #ab6247;
+  background-color: #8c4329;
   transform: translateY(-1px);
-  box-shadow: 0 10px 25px -5px rgba(188, 113, 85, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(166, 84, 55, 0.4);
 }
 
 .btn-pill-ghost {

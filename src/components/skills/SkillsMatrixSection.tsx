@@ -64,7 +64,7 @@ export function SkillsMatrixSection() {
         <div className="space-y-4 mb-10 sm:mb-12 w-full min-w-0">
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#000d10] shrink-0" />
-            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
+            <span className="font-mono text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
               MATRIZ TÉCNICA // CAPACIDADES DE INGENIERÍA
             </span>
           </div>
@@ -123,7 +123,7 @@ export function SkillsMatrixSection() {
                 Buscar tecnología, equipo o protocolo...
               </label>
               <Search
-                className="pointer-events-none w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2"
+                className="pointer-events-none w-4 h-4 text-zinc-600 absolute left-3.5 top-1/2 -translate-y-1/2"
                 aria-hidden="true"
               />
               <input
@@ -134,14 +134,14 @@ export function SkillsMatrixSection() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Buscar: 5G, Ericsson, Python, Winfiol..."
                 aria-label="Buscar tecnología, equipo o protocolo..."
-                className="w-full rounded-xl border border-[#d5d3d4] bg-[#fbfbfd] pl-10 pr-10 py-2.5 text-sm text-[#000d10] placeholder:text-zinc-500 font-mono focus:outline-none focus:bg-white focus:border-[#000d10] focus:ring-2 focus:ring-[#0284c7]/20 transition-colors"
+                className="w-full rounded-xl border border-[#d5d3d4] bg-[#fbfbfd] pl-10 pr-10 py-2.5 text-sm text-[#000d10] placeholder:text-zinc-600 font-mono focus:outline-none focus:bg-white focus:border-[#000d10] focus:ring-2 focus:ring-[#0284c7]/20 transition-colors"
               />
               {searchQuery.length > 0 && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
                   aria-label="Limpiar búsqueda"
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg flex items-center justify-center text-zinc-500 hover:text-[#000d10] hover:bg-[#e4e4e7]/60 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284c7]"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg flex items-center justify-center text-zinc-600 hover:text-[#000d10] hover:bg-[#e4e4e7]/60 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0284c7]"
                 >
                   <X className="w-4 h-4" aria-hidden="true" />
                 </button>
@@ -220,7 +220,7 @@ export function SkillsMatrixSection() {
               transition={{ duration: 0.18 }}
               className="mb-14 rounded-2xl bg-white border border-[#d5d3d4] p-8 sm:p-12 text-center shadow-[0_2px_12px_-6px_rgba(0,13,16,0.06)]"
             >
-              <div className="mx-auto mb-4 w-12 h-12 rounded-2xl bg-[#fbfbfd] border border-[#d5d3d4] flex items-center justify-center text-[#bc7155]">
+              <div className="mx-auto mb-4 w-12 h-12 rounded-2xl bg-[#fbfbfd] border border-[#d5d3d4] flex items-center justify-center text-[#9e4d31]">
                 <Search className="w-5 h-5" aria-hidden="true" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#000d10] tracking-tight mb-2">

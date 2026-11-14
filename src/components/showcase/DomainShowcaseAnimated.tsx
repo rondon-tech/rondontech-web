@@ -201,8 +201,8 @@ export function DomainShowcaseAnimated() {
       {/* Editorial Header */}
       <div className="space-y-4 mb-8 sm:mb-12 w-full min-w-0">
         <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#bc7155] shrink-0" />
-          <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#a65437] shrink-0" />
+          <span className="font-mono text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
             DOMINIOS DE ALTA INGENIERÍA // CUATRO PILARES
           </span>
         </div>
@@ -232,15 +232,17 @@ export function DomainShowcaseAnimated() {
                 className={`relative px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer shrink-0 whitespace-nowrap ${
                   isActive
                     ? domain.isFeaturedClay
-                      ? "bg-[#bc7155] text-white shadow-md shadow-[#bc7155]/30 font-bold"
+                      ? "bg-[#a65437] hover:bg-[#8c4329] text-white shadow-md shadow-[#a65437]/30 font-bold"
                       : "bg-[#000d10] text-white font-bold"
                     : "bg-white text-[#000d10] border border-[#d5d3d4] hover:border-[#000d10]"
                 }`}
               >
-                <span className="font-mono text-[11px] sm:text-xs opacity-75">{domain.number}</span>
+                <span className={`font-mono text-xs ${isActive ? "text-white" : "text-zinc-600"}`}>
+                  {domain.number}
+                </span>
                 <span>{domain.title.split(".")[0]}</span>
                 {domain.isFeaturedClay && (
-                  <span className="text-[9px] sm:text-[10px] uppercase font-mono px-1.5 py-0.5 rounded-full bg-white/25 ml-0.5">
+                  <span className="text-xs uppercase font-mono px-2 py-0.5 rounded-full bg-[#6b2e19] text-white border border-white/25 ml-0.5">
                     Destacado
                   </span>
                 )}
@@ -267,7 +269,7 @@ export function DomainShowcaseAnimated() {
             type="button"
             onClick={togglePlay}
             aria-label={isPlaying ? "Pausar carrusel" : "Reanudar carrusel"}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full font-mono text-[11px] font-semibold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full font-mono text-xs font-semibold transition-all cursor-pointer ${
               isPlaying
                 ? "bg-emerald-500/10 text-emerald-800 border border-emerald-500/30"
                 : "bg-amber-500/10 text-amber-800 border border-amber-500/30"
@@ -321,7 +323,7 @@ export function DomainShowcaseAnimated() {
           onMouseLeave={() => setIsHovered(false)}
           className={`w-full max-w-full min-w-0 rounded-2xl overflow-hidden transition-colors duration-300 shadow-xl ${
             activeDomain.isFeaturedClay
-              ? "bg-[#bc7155] text-white border border-[#bc7155]"
+              ? "bg-[#a65437] text-white border border-[#a65437]"
               : "bg-white text-[#000d10] border border-[#d5d3d4]"
           }`}
         >
@@ -343,27 +345,23 @@ export function DomainShowcaseAnimated() {
               <div
                 className={`absolute inset-0 pointer-events-none ${
                   activeDomain.isFeaturedClay
-                    ? "bg-gradient-to-t from-[#bc7155]/80 via-transparent to-black/20"
+                    ? "bg-gradient-to-t from-[#a65437]/85 via-transparent to-black/20"
                     : "bg-gradient-to-t from-black/60 via-transparent to-black/20"
                 }`}
               />
 
-              {/* Floating Top Client / Organization Badge */}
-              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 max-w-[85%]">
+              {/* Floating Top Badges */}
+              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 z-10 flex items-center justify-between gap-2 min-w-0">
                 <span
-                  className={`font-mono text-[10px] sm:text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1 rounded-full backdrop-blur-md truncate inline-block ${
+                  className={`font-mono text-xs uppercase tracking-wider px-2.5 sm:px-3 py-1 rounded-full backdrop-blur-md truncate min-w-0 ${
                     activeDomain.isFeaturedClay
-                      ? "bg-white/25 text-white border border-white/30 font-semibold"
+                      ? "bg-[#6b2e19]/95 text-white border border-white/30 font-semibold"
                       : "bg-[#000d10]/85 text-white border border-white/20 font-semibold"
                   }`}
                 >
                   {activeDomain.clientOrOrg}
                 </span>
-              </div>
-
-              {/* Top Right: Resolution Pill */}
-              <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
-                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/60 text-white/90 border border-white/20 backdrop-blur-md">
+                <span className="hidden sm:inline-block font-mono text-xs uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/65 text-white border border-white/20 backdrop-blur-md shrink-0">
                   16:9 COMPLETO // 2K ULTRA CRISP
                 </span>
               </div>
@@ -378,7 +376,11 @@ export function DomainShowcaseAnimated() {
 
             {/* Slide Progress Bar (fills during 6 seconds) */}
             <div className="w-full space-y-1">
-              <div className="flex items-center justify-between font-mono text-[10px] opacity-75">
+              <div
+                className={`flex items-center justify-between font-mono text-xs ${
+                  activeDomain.isFeaturedClay ? "text-white" : "text-zinc-600"
+                }`}
+              >
                 <span>CICLO AUTOMÁTICO</span>
                 <span>
                   {isInspectorActive
@@ -407,7 +409,7 @@ export function DomainShowcaseAnimated() {
                   className={`h-full rounded-full ${
                     activeDomain.isFeaturedClay
                       ? "bg-white shadow-sm shadow-white/50"
-                      : "bg-[#bc7155] shadow-sm shadow-[#bc7155]/50"
+                      : "bg-[#a65437] shadow-sm shadow-[#a65437]/50"
                   }`}
                 />
               </div>
@@ -422,18 +424,18 @@ export function DomainShowcaseAnimated() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
                     </span>
-                    <span className="font-mono text-[10px] uppercase tracking-wider font-semibold text-emerald-300">
+                    <span className="font-mono text-xs uppercase tracking-wider font-semibold text-emerald-300">
                       {activeDomain.verifiedSeal.status}
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded bg-white/20 text-white border border-white/30">
+                  <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#6b2e19] text-white border border-white/30">
                     RUT: {activeDomain.verifiedSeal.rut}
                   </span>
                 </div>
                 <div className="font-mono text-xs sm:text-sm font-bold text-white tracking-tight leading-snug break-words">
                   {activeDomain.verifiedSeal.companyName}
                 </div>
-                <div className="flex items-start gap-1.5 text-[10px] sm:text-[11px] text-white/80 font-mono">
+                <div className="flex items-start gap-1.5 text-xs text-white font-mono">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                   <span className="break-words leading-snug">{activeDomain.verifiedSeal.registry}</span>
                 </div>
@@ -447,7 +449,7 @@ export function DomainShowcaseAnimated() {
                       : "border-[#d5d3d4] bg-[#000d10]/[0.02] text-zinc-700"
                   }`}
                 >
-                  <div className="font-mono text-[10px] uppercase tracking-wider font-semibold opacity-70">
+                  <div className="font-mono text-xs uppercase tracking-wider font-semibold opacity-80">
                     Capacidades Clave Verificadas
                   </div>
                   <ul className="space-y-1.5">
@@ -455,7 +457,7 @@ export function DomainShowcaseAnimated() {
                       <li key={idx} className="flex items-start gap-2">
                         <CheckCircle2
                           className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${
-                            activeDomain.isFeaturedClay ? "text-white" : "text-[#bc7155]"
+                            activeDomain.isFeaturedClay ? "text-white" : "text-[#9e4d31]"
                           }`}
                         />
                         <span className="leading-snug text-xs sm:text-[13px]">{feat}</span>
@@ -472,10 +474,18 @@ export function DomainShowcaseAnimated() {
             <div className="space-y-4 sm:space-y-5 w-full min-w-0">
               {/* Header Number & Subtitle */}
               <div className="flex items-center justify-between gap-2 border-b pb-3 border-current/15">
-                <span className="font-mono text-2xl sm:text-3xl font-bold opacity-50">
+                <span
+                  className={`font-mono text-2xl sm:text-3xl font-bold ${
+                    activeDomain.isFeaturedClay ? "text-white/90" : "text-zinc-600"
+                  }`}
+                >
                   {activeDomain.number}
                 </span>
-                <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest opacity-90 break-words text-right">
+                <span
+                  className={`font-mono text-xs uppercase tracking-wider sm:tracking-widest break-words text-right ${
+                    activeDomain.isFeaturedClay ? "text-white" : "text-[#000d10]"
+                  }`}
+                >
                   {activeDomain.subtitle}
                 </span>
               </div>
@@ -492,7 +502,7 @@ export function DomainShowcaseAnimated() {
               {/* Tagline */}
               <p
                 className={`text-xs sm:text-sm font-semibold break-words leading-snug ${
-                  activeDomain.isFeaturedClay ? "text-white/95" : "text-[#bc7155]"
+                  activeDomain.isFeaturedClay ? "text-white" : "text-[#9e4d31]"
                 }`}
               >
                 {activeDomain.tagline}
@@ -512,8 +522,8 @@ export function DomainShowcaseAnimated() {
                 {activeDomain.metrics.map((m, i) => (
                   <div key={i} className="space-y-0.5 min-w-0">
                     <div
-                      className={`font-mono text-[9px] sm:text-[10px] uppercase tracking-wider truncate ${
-                        activeDomain.isFeaturedClay ? "text-white/80" : "text-zinc-500"
+                      className={`font-mono text-xs uppercase tracking-[0.03em] leading-tight break-words ${
+                        activeDomain.isFeaturedClay ? "text-white" : "text-zinc-600"
                       }`}
                     >
                       {m.label}
@@ -534,9 +544,9 @@ export function DomainShowcaseAnimated() {
                 {activeDomain.tags.map((tag) => (
                   <span
                     key={tag}
-                    className={`font-mono text-[9px] sm:text-[10px] px-2 py-0.5 rounded-full ${
+                    className={`font-mono text-xs px-2.5 py-0.5 rounded-full ${
                       activeDomain.isFeaturedClay
-                        ? "bg-white/20 text-white border border-white/30"
+                        ? "bg-[#7a361e] text-white border border-white/25"
                         : "bg-[#000d10]/5 text-[#000d10] border border-[#d5d3d4]"
                     }`}
                   >
@@ -555,16 +565,16 @@ export function DomainShowcaseAnimated() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
                     </span>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-cyan-300 font-semibold break-words">
+                    <span className="font-mono text-xs uppercase tracking-wider text-cyan-300 font-semibold break-words">
                       Harness² · {RONDONTECH_ADAPTER_TELEMETRY.paperRef}
                     </span>
                   </div>
-                  <span className="font-mono text-[10px] text-emerald-300 shrink-0">
+                  <span className="font-mono text-xs text-emerald-300 shrink-0">
                     {RONDONTECH_ADAPTER_TELEMETRY.totalExecutions} execs · $
                     {RONDONTECH_ADAPTER_TELEMETRY.totalUsdCost.toFixed(2)}
                   </span>
                 </div>
-                <div className="font-mono text-[11px] text-zinc-300 leading-snug break-words">
+                <div className="font-mono text-xs text-zinc-300 leading-snug break-words">
                   2 ejecuciones reales ({RONDONTECH_ADAPTER_TELEMETRY.domain} +{" "}
                   {HARNESS_TELEMETRY.domain}):{" "}
                   <span className="text-emerald-300">

@@ -188,20 +188,20 @@ export function ScrollMotionExperience() {
                 className="object-cover"
               />
             </div>
-            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/90 font-semibold">
+            <span className="font-mono text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/90 font-semibold">
               RONDONTECH // CINEMATIC SCROLL
             </span>
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4">
             {/* Scrubber timecode */}
-            <div className="font-mono text-[11px] sm:text-xs tracking-wider text-white/90 bg-white/5 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/10">
+            <div className="font-mono text-xs tracking-wider text-white/90 bg-white/5 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/10">
               <span className="text-cyan-400">TCR:</span> 00:0{Math.floor(currentTime)}:
               {Math.floor((currentTime % 1) * 100).toString().padStart(2, "0")} / 00:10:00
             </div>
 
             {/* Scroll-Drive Live Telemetry Pill */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:py-1.5 rounded-full bg-cyan-400/10 border border-cyan-400/30 font-mono text-[11px] sm:text-xs text-cyan-300 font-semibold shadow-sm">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:py-1.5 rounded-full bg-cyan-400/10 border border-cyan-400/30 font-mono text-xs text-cyan-300 font-semibold shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
               <span>SCROLL DRIVE</span>
             </div>
@@ -226,7 +226,7 @@ export function ScrollMotionExperience() {
                 </span>
                 <div className="h-px w-6 sm:w-8 bg-white/20" />
                 <span
-                  className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border font-semibold"
+                  className="font-mono text-xs uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border font-semibold"
                   style={{
                     borderColor: `${currentScene.accentColor}60`,
                     color: currentScene.accentColor,
@@ -251,7 +251,7 @@ export function ScrollMotionExperience() {
               <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10 max-w-lg">
                 {currentScene.kpis.map((kpi, idx) => (
                   <div key={idx} className="space-y-0.5 sm:space-y-1">
-                    <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-white/60">
+                    <div className="font-mono text-xs uppercase tracking-wider text-white/60">
                       {kpi.label}
                     </div>
                     <div className="font-mono text-xs sm:text-base font-bold text-white">
@@ -284,10 +284,10 @@ export function ScrollMotionExperience() {
         {/* Bottom Bar: Timeline Progress & Scene Switcher */}
         <div className="relative z-10 border-t border-white/10 pt-3 sm:pt-4 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4 w-full min-w-0">
           {/* Scroll instruction indicator */}
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono text-white/60">
+          <div className="flex items-center gap-2 text-xs font-mono text-white/60 group">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
             <span className="truncate">DESPLÁZATE HACIA ABAJO PARA EXPLORAR</span>
-            <ChevronDown className="w-3.5 h-3.5 animate-bounce text-cyan-400 shrink-0" />
+            <ChevronDown className="w-3.5 h-3.5 text-cyan-400 shrink-0 transition-transform duration-300 ease-out group-hover:translate-y-0.5 motion-reduce:transition-none" />
           </div>
 
           {/* 3 Step Indicator */}
@@ -311,7 +311,7 @@ export function ScrollMotionExperience() {
                     setActiveSceneIndex(i);
                   }
                 }}
-                className={`flex items-center gap-1 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-[11px] sm:text-xs transition-all cursor-pointer ${
+                className={`flex items-center gap-1 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-mono text-xs transition-all cursor-pointer ${
                   activeSceneIndex === i
                     ? "bg-white text-[#000d10] font-bold"
                     : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"

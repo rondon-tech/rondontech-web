@@ -171,13 +171,13 @@ export function AvatarHUDWidget() {
             </div>
 
             <div className="flex items-center justify-between gap-2 mb-2.5">
-              <span className={`text-[10px] px-2 py-0.5 rounded-full border bg-white/5 ${currentPose.badgeColor}`}>
+              <span className={`text-xs px-2 py-0.5 rounded-full border bg-white/5 ${currentPose.badgeColor}`}>
                 {currentPose.status}
               </span>
-              <span className="text-[10px] text-zinc-400 truncate">{currentPose.label}</span>
+              <span className="text-xs text-zinc-400 truncate">{currentPose.label}</span>
             </div>
 
-            <p className="text-[11px] text-zinc-300 mb-3 leading-relaxed">
+            <p className="text-xs text-zinc-300 mb-3 leading-relaxed">
               Acceso directo a casos de ingeniería, consola de telemetría IA, contacto ejecutivo y CV oficial.
             </p>
 
@@ -191,7 +191,7 @@ export function AvatarHUDWidget() {
                   <Cpu className="w-3.5 h-3.5 text-[#bc7155] shrink-0" />
                   <span>Casos &amp; IA</span>
                 </span>
-                <span className="text-[10px] text-zinc-400">#especialidades</span>
+                <span className="text-xs text-zinc-400">#especialidades</span>
               </a>
 
               <a
@@ -203,7 +203,7 @@ export function AvatarHUDWidget() {
                   <Terminal className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span>Consola &amp; Telemetría IA</span>
                 </span>
-                <span className="text-[10px] text-cyan-400/70">#consola</span>
+                <span className="text-xs text-cyan-400/70">#consola</span>
               </a>
 
               <a
@@ -231,7 +231,7 @@ export function AvatarHUDWidget() {
                   <ArrowUpRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
                   <span>LinkedIn Ejecutivo</span>
                 </span>
-                <span className="text-[10px] text-indigo-300/70">IN</span>
+                <span className="text-xs text-indigo-300/70">IN</span>
               </a>
 
               <button
@@ -285,11 +285,11 @@ export function AvatarHUDWidget() {
         <div className="text-left font-mono hidden sm:block">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] font-bold text-white tracking-wide">
+            <span className="text-xs font-bold text-white tracking-wide">
               ABRAHAN RONDON
             </span>
           </div>
-          <div className="text-[9px] text-cyan-300 font-medium">
+          <div className="text-xs text-cyan-300 font-medium">
             {currentPose.label}
           </div>
         </div>
@@ -301,7 +301,7 @@ export function AvatarHUDWidget() {
             e.stopPropagation();
             setIsMinimized(true);
           }}
-          className="p-1 text-zinc-500 hover:text-zinc-300 transition-colors ml-1 cursor-pointer"
+          className="p-1 text-zinc-400 hover:text-zinc-200 transition-colors ml-1 cursor-pointer"
           title="Minimizar HUD"
           aria-label="Minimizar HUD"
         >

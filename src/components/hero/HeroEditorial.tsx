@@ -125,14 +125,14 @@ export function HeroEditorial() {
       {/* Top HUD Telemetry & Audio Control Strip */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-2.5 pb-3 sm:pb-4 border-b border-white/10 w-full min-w-0">
-          <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.18em] text-zinc-200 font-semibold truncate">
+          <div className="flex items-start sm:items-center gap-2 sm:gap-2.5 min-w-0">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0 mt-1 sm:mt-0" />
+            <span className="font-mono text-xs uppercase tracking-[0.05em] sm:tracking-[0.16em] leading-snug text-zinc-200 font-semibold">
               INGENIERO EN ELECTRÓNICA & TELECOMUNICACIONES // SANTIAGO, CL
             </span>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-xs">
+          <div className="flex items-center gap-2 sm:gap-3 font-mono text-xs">
             <span className="hidden xl:inline text-zinc-400">
               DISPONIBILIDAD: PROYECTOS CRÍTICOS & CONSULTORÍA
             </span>
@@ -255,7 +255,7 @@ export function HeroEditorial() {
                     </b>
                   </span>
                 </div>
-                <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] text-cyan-300/90 font-semibold">
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-300/90 font-semibold">
                   ARQUITECTURA FÍSICA & COGNITIVA
                 </span>
               </div>
@@ -306,7 +306,7 @@ export function HeroEditorial() {
 
               {/* Restrained Institutional Trust Strip */}
               <div className="pt-3 border-t border-white/10 space-y-2 w-full min-w-0">
-                <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-zinc-400 font-medium">
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-zinc-400 font-medium">
                   Operación y Respaldo en:
                 </p>
                 <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 w-full min-w-0">
@@ -319,7 +319,7 @@ export function HeroEditorial() {
                   ].map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/12 font-mono text-[10px] sm:text-[11px] text-zinc-300 max-w-full"
+                      className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/12 font-mono text-xs text-zinc-300 max-w-full"
                     >
                       {item}
                     </span>
@@ -374,12 +374,12 @@ export function HeroEditorial() {
                   {/* Interactive Telemetry Micro-Pill Indicator */}
                   <div className="absolute bottom-2.5 right-2.5 z-10 pointer-events-none">
                     {isProfilePlaying ? (
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 backdrop-blur-md font-mono text-[9px] sm:text-[10px] text-cyan-200 font-semibold shadow-sm">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/40 backdrop-blur-md font-mono text-xs text-cyan-200 font-semibold shadow-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                         <span>VIDEO ACTIVO</span>
                       </div>
                     ) : (
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md font-mono text-[9px] sm:text-[10px] text-white/90 group-hover/video:border-cyan-400/50 group-hover/video:text-cyan-200 transition-colors shadow-sm">
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md font-mono text-xs text-white/90 group-hover/video:border-cyan-400/50 group-hover/video:text-cyan-200 transition-colors shadow-sm">
                         <Play className="w-2.5 h-2.5 fill-current" />
                         <span className="hidden sm:inline">PASA EL MOUSE PARA REPRODUCIR</span>
                         <span className="sm:hidden">TOCAR PARA REPRODUCIR</span>
@@ -395,7 +395,7 @@ export function HeroEditorial() {
                 <div className="p-4 sm:p-5 sm:py-6 space-y-3.5">
                   <div>
                     {/* Official Seal Badge */}
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/30 font-mono text-[10px] sm:text-[11px] text-cyan-300 font-semibold mb-2">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/30 font-mono text-xs text-cyan-300 font-semibold mb-2">
                       <span className="relative w-3.5 h-3.5 rounded-full overflow-hidden inline-block shrink-0">
                         <Image
                           src="/brand/rondontech-emblem-circle.webp"
@@ -417,14 +417,14 @@ export function HeroEditorial() {
                     <p className="font-mono text-xs text-zinc-300 leading-snug mt-0.5">
                       Ingeniero en Electrónica mención Control
                     </p>
-                    <div className="inline-flex items-center gap-1 font-mono text-[11px] text-zinc-400 mt-1">
+                    <div className="inline-flex items-center gap-1 font-mono text-xs text-zinc-400 mt-1">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span>Registro Colegiado & Titulado</span>
                     </div>
                   </div>
 
                   {/* Cyber-Telemetry Data Block */}
-                  <div className="pt-3 border-t border-white/10 space-y-2 text-[11px] sm:text-xs font-mono">
+                  <div className="pt-3 border-t border-white/10 space-y-2 text-xs font-mono">
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-zinc-400">UBICACIÓN</span>
                       <span className="text-white font-semibold flex items-center gap-1">
@@ -455,7 +455,7 @@ export function HeroEditorial() {
           {/* Bottom Telemetry Strip with ScrambleText Cyber-Decoding */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-6 sm:mt-8 pt-6 border-t border-white/10">
             <div className="space-y-1">
-              <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-zinc-400 font-medium">
+              <div className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-medium">
                 Experiencia
               </div>
               <div className="font-mono text-xl sm:text-2xl font-bold text-white">
@@ -465,7 +465,7 @@ export function HeroEditorial() {
             </div>
 
             <div className="space-y-1">
-              <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-zinc-400 font-medium">
+              <div className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-medium">
                 Despliegues
               </div>
               <div className="font-mono text-xl sm:text-2xl font-bold text-white">
@@ -475,7 +475,7 @@ export function HeroEditorial() {
             </div>
 
             <div className="space-y-1">
-              <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-zinc-400 font-medium">
+              <div className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-medium">
                 Empresa
               </div>
               <div className="font-mono text-xl sm:text-2xl font-bold text-[#e89578]">
@@ -485,7 +485,7 @@ export function HeroEditorial() {
             </div>
 
             <div className="space-y-1">
-              <div className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-zinc-400 font-medium">
+              <div className="font-mono text-xs uppercase tracking-wider text-zinc-400 font-medium">
                 Innovación
               </div>
               <div className="font-mono text-xl sm:text-2xl font-bold text-cyan-300">

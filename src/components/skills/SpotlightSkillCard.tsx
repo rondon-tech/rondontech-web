@@ -139,12 +139,12 @@ export function SpotlightSkillCard({
         <div className="min-w-0">
           <div className="flex items-center justify-between gap-3 mb-4 min-w-0">
             <div className="flex items-center gap-2.5 min-w-0">
-              <span className="w-9 h-9 rounded-xl bg-[#fbfbfd] border border-[#d5d3d4] flex items-center justify-center text-[#000d10] group-hover/card:border-[#bc7155]/45 group-hover/card:text-[#bc7155] transition-colors shrink-0">
+              <span className="w-9 h-9 rounded-xl bg-[#fbfbfd] border border-[#d5d3d4] flex items-center justify-center text-[#000d10] group-hover/card:border-[#bc7155]/45 group-hover/card:text-[#9e4d31] transition-colors shrink-0">
                 <CategoryIcon className="w-4 h-4" aria-hidden="true" />
               </span>
               <div className="min-w-0">
-                <div className="flex items-center gap-1.5 font-mono text-[11px] leading-none">
-                  <span className="font-bold tracking-wider text-[#bc7155]">
+                <div className="flex items-center gap-1.5 font-mono text-xs leading-none">
+                  <span className="font-bold tracking-wider text-[#9e4d31]">
                     {formattedIndex}
                   </span>
                   <span className="text-[#d5d3d4]" aria-hidden="true">
@@ -157,7 +157,7 @@ export function SpotlightSkillCard({
               </div>
             </div>
 
-            <span className="shrink-0 px-2.5 py-1 rounded-full bg-[#fbfbfd] border border-[#d5d3d4] font-mono text-[11px] font-medium text-[#000d10]">
+            <span className="shrink-0 px-2.5 py-1 rounded-full bg-[#fbfbfd] border border-[#d5d3d4] font-mono text-xs font-medium text-[#000d10]">
               {tags.length} {tags.length === 1 ? "capacidad" : "capacidades"}
             </span>
           </div>
@@ -166,7 +166,7 @@ export function SpotlightSkillCard({
             {title}
           </h3>
 
-          <p className="text-sm text-zinc-700 leading-relaxed break-words">
+          <p className="text-sm text-zinc-700 leading-relaxed break-words max-w-[58ch]">
             {description}
           </p>
         </div>
@@ -180,9 +180,9 @@ export function SpotlightSkillCard({
             return (
               <span
                 key={tag}
-                className={`px-2.5 py-1 rounded-lg border font-mono text-[11px] font-medium transition-colors duration-150 break-words max-w-full ${
+                className={`px-2.5 py-1 rounded-lg border font-mono text-xs font-medium transition-colors duration-150 break-words max-w-full ${
                   isHighlighted
-                    ? "bg-[#bc7155] text-white border-[#bc7155]"
+                    ? "bg-[#a65437] text-white border-[#a65437]"
                     : "bg-[#f4f4f6] text-[#000d10] border-[#e4e4e7]"
                 }`}
               >

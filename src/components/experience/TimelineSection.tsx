@@ -165,7 +165,7 @@ export function TimelineSection() {
         <div className="space-y-4 mb-8 sm:mb-10 w-full min-w-0">
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#000d10] shrink-0" />
-            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
+            <span className="font-mono text-xs uppercase tracking-wider sm:tracking-[0.2em] text-zinc-600 font-semibold break-words">
               HISTORIAL TÉCNICO // TELECOMUNICACIONES & EMPRENDIMIENTO
             </span>
           </div>
@@ -220,7 +220,7 @@ export function TimelineSection() {
           </div>
 
           <div className="flex items-center justify-between sm:justify-end gap-3 px-1 sm:px-0">
-            <span className="font-mono text-[11px] text-zinc-500 tabular-nums">
+            <span className="font-mono text-xs text-zinc-600 tabular-nums">
               {filteredExperience.length}{" "}
               {filteredExperience.length === 1 ? "rol" : "roles"}
             </span>
@@ -297,14 +297,14 @@ export function TimelineSection() {
                   <div className="space-y-1.5 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       {isCurrent && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#bc7155]/12 border border-[#bc7155]/35 text-[#8c4329] font-mono text-[10px] font-bold uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#bc7155]/12 border border-[#bc7155]/35 text-[#8c4329] font-mono text-xs font-bold uppercase tracking-wider">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#bc7155]" />
                           ACTUALIDAD
                         </span>
                       )}
                       <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-700">
                         <Calendar
-                          className="w-3.5 h-3.5 text-zinc-500 shrink-0"
+                          className="w-3.5 h-3.5 text-zinc-600 shrink-0"
                           aria-hidden="true"
                         />
                         <span>{item.dates}</span>
@@ -317,7 +317,7 @@ export function TimelineSection() {
 
                     <div className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-600">
                       <MapPin
-                        className="w-3.5 h-3.5 text-zinc-500 shrink-0"
+                        className="w-3.5 h-3.5 text-zinc-600 shrink-0"
                         aria-hidden="true"
                       />
                       <span>{item.location}</span>

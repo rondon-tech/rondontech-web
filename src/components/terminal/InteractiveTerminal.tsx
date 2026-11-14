@@ -786,7 +786,7 @@ export function InteractiveTerminal() {
       <div className="max-w-5xl mx-auto w-full min-w-0">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-10 sm:mb-12 w-full min-w-0">
-          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/5 text-[#bc7155] font-mono text-[10px] sm:text-xs tracking-wider uppercase mb-4 max-w-full">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/20 bg-white/5 text-[#bc7155] font-mono text-xs tracking-wider uppercase mb-4 max-w-full">
             <Terminal className="w-3.5 h-3.5 text-[#bc7155] shrink-0" />
             <span className="truncate">
               INTERACTIVE TELEMETRY TERMINAL // KERNEL v3.2
@@ -824,12 +824,12 @@ export function InteractiveTerminal() {
                 <span className="text-xs text-zinc-300 font-mono font-medium hidden sm:inline truncate">
                   OPERATOR: ABRAHAN RONDON
                 </span>
-                <span className="text-[10px] text-cyan-400 font-mono sm:hidden truncate">
+                <span className="text-xs text-cyan-400 font-mono sm:hidden truncate">
                   OPERATOR ACTIVE
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-[11px] text-cyan-400/80 shrink-0">
+            <div className="flex items-center gap-2 text-xs text-cyan-400/80 shrink-0">
               <div className="relative w-5 h-5 rounded-full overflow-hidden border border-cyan-400/60 shadow-sm shadow-cyan-400/30 shrink-0 bg-black">
                 <Image
                   src="/brand/rondontech-emblem-circle.webp"
@@ -861,7 +861,7 @@ export function InteractiveTerminal() {
 
           {/* Interactive Input Line */}
           <div className="px-3 sm:px-6 py-3 bg-[#060b18] border-t border-cyan-500/20 flex items-center gap-2 w-full max-w-full min-w-0">
-            <span className="text-cyan-400 font-bold whitespace-nowrap shrink-0 text-[11px] sm:text-sm">
+            <span className="text-cyan-400 font-bold whitespace-nowrap shrink-0 text-xs sm:text-sm">
               visitor@rondontech:~$
             </span>
             <input
@@ -872,7 +872,7 @@ export function InteractiveTerminal() {
               onKeyDown={handleKeyDown}
               placeholder="Escribe 'adapter', 'harness', 'trace' o 'library'..."
               aria-label="Comando de consola RondonTech"
-              className="flex-1 min-w-0 bg-transparent text-white focus:outline-none placeholder:text-zinc-600 font-mono text-xs sm:text-sm"
+              className="flex-1 min-w-0 bg-transparent text-white focus:outline-none placeholder:text-zinc-400 font-mono text-xs sm:text-sm"
               autoComplete="off"
               spellCheck="false"
             />
@@ -888,8 +888,8 @@ export function InteractiveTerminal() {
           </div>
 
           {/* Suggested Quick Chips */}
-          <div className="px-4 sm:px-6 py-2.5 bg-[#040813] border-t border-zinc-800/80 flex items-center gap-2 overflow-x-auto w-full max-w-full min-w-0 text-[11px]">
-            <span className="text-zinc-500 whitespace-nowrap shrink-0">
+          <div className="px-4 sm:px-6 py-2.5 bg-[#040813] border-t border-zinc-800/80 flex items-center gap-2 overflow-x-auto w-full max-w-full min-w-0 text-xs">
+            <span className="text-zinc-400 whitespace-nowrap shrink-0">
               Comandos rápidos:
             </span>
             {COMMAND_CHIPS.map((chip) => {

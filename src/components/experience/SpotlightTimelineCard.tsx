@@ -145,18 +145,18 @@ export function SpotlightTimelineCard({
             {(organization || isCurrent || featured) && (
               <div className="flex flex-wrap items-center gap-2">
                 {organization && (
-                  <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-sky-700 break-words">
+                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-sky-700 break-words">
                     {organization}
                   </span>
                 )}
                 {isCurrent && (
-                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#bc7155] text-white font-mono text-[10px] font-bold uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#a65437] text-white font-mono text-xs font-bold uppercase tracking-wider">
                     <span className="w-1.5 h-1.5 rounded-full bg-white" />
                     En curso
                   </span>
                 )}
                 {!isCurrent && featured && (
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#bc7155]/12 border border-[#bc7155]/35 text-[#8c4329] font-mono text-[10px] font-bold uppercase tracking-wider">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#bc7155]/12 border border-[#bc7155]/35 text-[#8c4329] font-mono text-xs font-bold uppercase tracking-wider">
                     Destacado
                   </span>
                 )}
@@ -174,7 +174,7 @@ export function SpotlightTimelineCard({
             </h3>
 
             {(dates || location) && (
-              <div className="lg:hidden flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] text-zinc-600">
+              <div className="lg:hidden flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-zinc-600">
                 {dates && <span>{dates}</span>}
                 {dates && location && <span aria-hidden="true">·</span>}
                 {location && <span>{location}</span>}
@@ -200,7 +200,7 @@ export function SpotlightTimelineCard({
           </span>
         </button>
 
-        <p className="mt-3 text-sm sm:text-[15px] text-zinc-700 leading-relaxed break-words">
+        <p className="mt-3 max-w-[58ch] text-sm sm:text-[15px] text-zinc-700 leading-relaxed break-words">
           {context}
         </p>
 
@@ -229,7 +229,7 @@ export function SpotlightTimelineCard({
             >
               <div className="pt-5 mt-5 border-t border-[#d5d3d4]/80 space-y-5">
                 <div className="space-y-2.5">
-                  <div className="font-mono text-[11px] font-semibold uppercase tracking-wider text-sky-700">
+                  <div className="font-mono text-xs font-semibold uppercase tracking-wider text-sky-700">
                     {"// Actividades & Responsabilidades Clave"}
                   </div>
                   <ul className="space-y-2.5">
@@ -240,7 +240,7 @@ export function SpotlightTimelineCard({
                       >
                         <CheckCircle2
                           className={`w-4 h-4 shrink-0 mt-0.5 ${
-                            isAccentEmber ? "text-[#bc7155]" : "text-[#0284c7]"
+                            isAccentEmber ? "text-[#9e4d31]" : "text-[#0284c7]"
                           }`}
                           aria-hidden="true"
                         />
@@ -261,7 +261,7 @@ export function SpotlightTimelineCard({
                     {techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-md font-mono text-[11px] font-medium bg-[#fbfbfd] border border-[#d5d3d4] text-[#000d10]"
+                        className="px-2.5 py-1 rounded-md font-mono text-xs font-medium bg-[#fbfbfd] border border-[#d5d3d4] text-[#000d10]"
                       >
                         {tech}
                       </span>

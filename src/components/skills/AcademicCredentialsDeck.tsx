@@ -52,7 +52,7 @@ export function AcademicCredentialsDeck({
             </span>
           </div>
 
-          <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+          <span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
             {String(education.length).padStart(2, "0")} Credenciales Oficiales
           </span>
         </div>
@@ -72,7 +72,7 @@ export function AcademicCredentialsDeck({
                     />
                     {edu.dates}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/15 font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-300">
+                  <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/15 font-mono text-xs font-semibold uppercase tracking-wider text-zinc-300">
                     TÍTULO OFICIAL
                   </span>
                 </div>
@@ -86,7 +86,7 @@ export function AcademicCredentialsDeck({
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed pt-3 border-t border-white/10 break-words">
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed pt-3 border-t border-white/10 break-words max-w-[58ch]">
                 {edu.details}
               </p>
             </article>

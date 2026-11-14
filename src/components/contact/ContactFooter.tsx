@@ -79,7 +79,7 @@ export function ContactFooter() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full min-w-0">
             {/* Left Column: Big Statement */}
             <div className="lg:col-span-8 space-y-6 w-full min-w-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 font-mono text-[10px] sm:text-xs uppercase tracking-wider text-emerald-400 max-w-full">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 font-mono text-xs uppercase tracking-wider text-emerald-400 max-w-full">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span className="truncate">DISPONIBLE PARA PROYECTOS & CONSULTORÍA CRÍTICA</span>
               </div>
@@ -96,7 +96,7 @@ export function ContactFooter() {
 
               {/* Intent-Based Inquiry Tracks */}
               <div className="space-y-3 pt-1">
-                <div className="font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+                <div className="font-mono text-xs uppercase tracking-wider text-zinc-400">
                   Selecciona el foco de tu consulta:
                 </div>
                 <div className="flex flex-wrap gap-2" role="group" aria-label="Tipo de consulta">
@@ -119,7 +119,7 @@ export function ContactFooter() {
                     );
                   })}
                 </div>
-                <p className="font-mono text-[11px] sm:text-xs text-cyan-300/90 flex items-start gap-2 leading-relaxed">
+                <p className="font-mono text-xs text-cyan-300/90 flex items-start gap-2 leading-relaxed">
                   <Clock className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
                   <span>{activeTrack.slaNote}</span>
                 </p>
@@ -212,7 +212,7 @@ export function ContactFooter() {
                     TECH
                   </span>
                 </div>
-                <div className="font-mono text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.28em] text-zinc-400 uppercase font-semibold">
+                <div className="font-mono text-xs tracking-[0.18em] sm:tracking-[0.26em] text-zinc-400 uppercase font-semibold">
                   BEYOND INFRASTRUCTURE
                 </div>
               </div>
